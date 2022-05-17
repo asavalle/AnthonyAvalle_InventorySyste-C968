@@ -19,26 +19,26 @@ namespace InventoryTrackingApp
 
             dgvParts.DataSource = Inventory.AllParts; 
         }
-        //Search parts list
-        private void searchParts_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-        //Search Products
-        private void searchProducts_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+     
         //Parts Search button event
         private void btnPartSearch_Click(object sender, EventArgs e)
         {
-            /*var product = new Product
+            
+            //********WoRKS************
+            foreach (DataGridViewRow part in dgvParts.Rows)
             {
-                ProductID = 1
-            };*/
+                if (part.Cells[1].Value.ToString().Contains(searchParts.Text))
+                {
+                    tempLabelForTest.Text = dgvParts.Rows[part.Index].ToString();
+                    dgvParts.Rows[part.Index].Selected = true;
 
-           //product.addAssociatedPart(new Inhouse(1, "part1", 1.00, 20, 5, 30));
-       }
+                }
+            }
+
+        }
+
+        
+
         //Product Search button event
         private void btnProdSearch_Click(object sender, EventArgs e)
         {

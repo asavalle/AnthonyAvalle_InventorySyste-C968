@@ -6,8 +6,8 @@ namespace InventoryTrackingApp
 {
     class Inhouse : Part
     {
-        
-        public override int PartID { get ; set ; }
+
+        public override int PartID { get; set; }
         public override string Name { get; set ; }
         public override decimal Price { get ; set ; }
         public override int InStock { get ; set ; }
@@ -16,7 +16,15 @@ namespace InventoryTrackingApp
         public int MachineID { get; set; }
 
 
-      
+
+
+        //On constructor call, counts number of elements in the AllParts list and assigns to PartID
+        public Inhouse()
+        {
+            
+            PartID += Inventory.AllParts.Count;
+
+        }
     }
 
 

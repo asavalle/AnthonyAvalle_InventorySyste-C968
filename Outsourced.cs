@@ -14,6 +14,10 @@ namespace InventoryTrackingApp
         public override int Max { get; set; }
         public string CompanyName { get; set; }
 
-       
+        //On constructor call, counts number of elements in the AllParts list and assigns to PartID
+        public Outsourced()
+        {
+            PartID += Inventory.AllParts.Count;
+        }
     }
 }

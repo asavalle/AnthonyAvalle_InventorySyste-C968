@@ -45,6 +45,7 @@ namespace InventoryTrackingApp
             this.searchParts = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.bt_Exit = new System.Windows.Forms.Button();
+            this.tempLabelForTest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,6 @@ namespace InventoryTrackingApp
             this.searchProducts.Name = "searchProducts";
             this.searchProducts.Size = new System.Drawing.Size(399, 23);
             this.searchProducts.TabIndex = 14;
-            this.searchProducts.TextChanged += new System.EventHandler(this.searchProducts_TextChanged);
             // 
             // btnProdSearch
             // 
@@ -69,7 +69,7 @@ namespace InventoryTrackingApp
             // 
             // btnPartSearch
             // 
-            this.btnPartSearch.Location = new System.Drawing.Point(546, 115);
+            this.btnPartSearch.Location = new System.Drawing.Point(481, 116);
             this.btnPartSearch.Name = "btnPartSearch";
             this.btnPartSearch.Size = new System.Drawing.Size(75, 23);
             this.btnPartSearch.TabIndex = 11;
@@ -91,7 +91,7 @@ namespace InventoryTrackingApp
             // 
             this.labelParts.AutoSize = true;
             this.labelParts.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelParts.Location = new System.Drawing.Point(100, 75);
+            this.labelParts.Location = new System.Drawing.Point(35, 76);
             this.labelParts.Name = "labelParts";
             this.labelParts.Size = new System.Drawing.Size(58, 30);
             this.labelParts.TabIndex = 8;
@@ -99,7 +99,7 @@ namespace InventoryTrackingApp
             // 
             // btnDelPart
             // 
-            this.btnDelPart.Location = new System.Drawing.Point(546, 529);
+            this.btnDelPart.Location = new System.Drawing.Point(610, 519);
             this.btnDelPart.Name = "btnDelPart";
             this.btnDelPart.Size = new System.Drawing.Size(75, 23);
             this.btnDelPart.TabIndex = 4;
@@ -108,7 +108,7 @@ namespace InventoryTrackingApp
             // 
             // btnModPart
             // 
-            this.btnModPart.Location = new System.Drawing.Point(546, 467);
+            this.btnModPart.Location = new System.Drawing.Point(610, 457);
             this.btnModPart.Name = "btnModPart";
             this.btnModPart.Size = new System.Drawing.Size(75, 23);
             this.btnModPart.TabIndex = 3;
@@ -117,7 +117,7 @@ namespace InventoryTrackingApp
             // 
             // btnAddPart
             // 
-            this.btnAddPart.Location = new System.Drawing.Point(424, 467);
+            this.btnAddPart.Location = new System.Drawing.Point(488, 457);
             this.btnAddPart.Name = "btnAddPart";
             this.btnAddPart.Size = new System.Drawing.Size(75, 23);
             this.btnAddPart.TabIndex = 2;
@@ -127,11 +127,16 @@ namespace InventoryTrackingApp
             // 
             // dgvParts
             // 
+            this.dgvParts.AllowUserToAddRows = false;
+            this.dgvParts.AllowUserToDeleteRows = false;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvParts.Location = new System.Drawing.Point(100, 155);
+            this.dgvParts.Location = new System.Drawing.Point(35, 155);
+            this.dgvParts.MultiSelect = false;
             this.dgvParts.Name = "dgvParts";
+            this.dgvParts.ReadOnly = true;
             this.dgvParts.RowTemplate.Height = 25;
-            this.dgvParts.Size = new System.Drawing.Size(613, 281);
+            this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvParts.Size = new System.Drawing.Size(650, 281);
             this.dgvParts.TabIndex = 15;
             // 
             // dgvProducts
@@ -140,12 +145,12 @@ namespace InventoryTrackingApp
             this.dgvProducts.Location = new System.Drawing.Point(789, 155);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(602, 281);
+            this.dgvProducts.Size = new System.Drawing.Size(650, 281);
             this.dgvProducts.TabIndex = 16;
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(1113, 467);
+            this.btnAddProduct.Location = new System.Drawing.Point(1242, 457);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(75, 23);
             this.btnAddProduct.TabIndex = 5;
@@ -155,7 +160,7 @@ namespace InventoryTrackingApp
             // 
             // btnModProduct
             // 
-            this.btnModProduct.Location = new System.Drawing.Point(1235, 467);
+            this.btnModProduct.Location = new System.Drawing.Point(1364, 457);
             this.btnModProduct.Name = "btnModProduct";
             this.btnModProduct.Size = new System.Drawing.Size(75, 23);
             this.btnModProduct.TabIndex = 6;
@@ -164,7 +169,7 @@ namespace InventoryTrackingApp
             // 
             // btnDelProduct
             // 
-            this.btnDelProduct.Location = new System.Drawing.Point(1235, 529);
+            this.btnDelProduct.Location = new System.Drawing.Point(1364, 519);
             this.btnDelProduct.Name = "btnDelProduct";
             this.btnDelProduct.Size = new System.Drawing.Size(75, 23);
             this.btnDelProduct.TabIndex = 7;
@@ -173,11 +178,10 @@ namespace InventoryTrackingApp
             // 
             // searchParts
             // 
-            this.searchParts.Location = new System.Drawing.Point(100, 116);
+            this.searchParts.Location = new System.Drawing.Point(35, 117);
             this.searchParts.Name = "searchParts";
             this.searchParts.Size = new System.Drawing.Size(399, 23);
             this.searchParts.TabIndex = 13;
-            this.searchParts.TextChanged += new System.EventHandler(this.searchParts_TextChanged);
             // 
             // labelTitle
             // 
@@ -199,11 +203,22 @@ namespace InventoryTrackingApp
             this.bt_Exit.UseVisualStyleBackColor = true;
             this.bt_Exit.Click += new System.EventHandler(this.bt_Exit_Click);
             // 
+            // tempLabelForTest
+            // 
+            this.tempLabelForTest.AutoSize = true;
+            this.tempLabelForTest.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.tempLabelForTest.Location = new System.Drawing.Point(54, 598);
+            this.tempLabelForTest.Name = "tempLabelForTest";
+            this.tempLabelForTest.Size = new System.Drawing.Size(138, 32);
+            this.tempLabelForTest.TabIndex = 19;
+            this.tempLabelForTest.Text = "TEST LABEL";
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 720);
+            this.Controls.Add(this.tempLabelForTest);
             this.Controls.Add(this.bt_Exit);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.dgvParts);
@@ -246,6 +261,7 @@ namespace InventoryTrackingApp
         private System.Windows.Forms.TextBox searchParts;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button bt_Exit;
+        private System.Windows.Forms.Label tempLabelForTest;
     }
 }
 

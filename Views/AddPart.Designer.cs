@@ -151,7 +151,6 @@ namespace InventoryTrackingApp.Views
             this.label_PartInventory.Size = new System.Drawing.Size(57, 15);
             this.label_PartInventory.TabIndex = 11;
             this.label_PartInventory.Text = "Inventory";
-            this.label_PartInventory.Click += new System.EventHandler(this.label3_Click);
             // 
             // label_PartMax
             // 
@@ -198,6 +197,7 @@ namespace InventoryTrackingApp.Views
             this.btn_SavePart.TabIndex = 16;
             this.btn_SavePart.Text = "Save";
             this.btn_SavePart.UseVisualStyleBackColor = true;
+            this.btn_SavePart.Click += new System.EventHandler(this.btn_SavePart_Click);
             // 
             // btn_CancelPart
             // 

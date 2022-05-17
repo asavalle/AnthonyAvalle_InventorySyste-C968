@@ -15,10 +15,7 @@ namespace InventoryTrackingApp.Views
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void rbOutsourced_CheckedChanged(object sender, EventArgs e)
         {
@@ -35,6 +32,17 @@ namespace InventoryTrackingApp.Views
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_SavePart_Click(object sender, EventArgs e)
+        {
+
+
+
+            if (rbInhouse.Checked)
+            {
+                Inventory.AllParts.Add(new Inhouse());
+            }
         }
     }
 }
