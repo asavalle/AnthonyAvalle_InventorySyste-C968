@@ -6,23 +6,19 @@ namespace InventoryTrackingApp
 {
     class Inhouse : Part
     {
+        
+        public override int PartID { get ; set ; }
+        public override string Name { get; set ; }
+        public override decimal Price { get ; set ; }
+        public override int InStock { get ; set ; }
+        public override int Min { get ; set ; }
+        public override int Max { get ; set; }
         public int MachineID { get; set; }
-        public override int PartID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override decimal Price { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int InStock { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int Min { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public override int Max { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
 
-
-        //constructor
-        public Inhouse(int id, string name,decimal price, int inStock, int min, int max)
-        {
-
-        }
+      
     }
 
 
-    
+
 }

@@ -10,7 +10,7 @@ namespace InventoryTrackingApp
 
 
         //public properties
-        private BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
+        public BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
         public int ProductID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -24,7 +24,7 @@ namespace InventoryTrackingApp
             AssociatedParts.Add(part);
         }
         public bool removeAssociatedPart(int index) {
-            if (index > AssociatedParts.Count) return false;
+            /*if (index > AssociatedParts.Count) return false*/;
 
             AssociatedParts.Remove(lookupAssociatedPart(index));
 
