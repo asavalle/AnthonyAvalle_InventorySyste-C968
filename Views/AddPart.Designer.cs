@@ -32,21 +32,23 @@ namespace InventoryTrackingApp.Views
             this.addPartTitle = new System.Windows.Forms.Label();
             this.rbInhouse = new System.Windows.Forms.RadioButton();
             this.rbOutsourced = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label_PartID = new System.Windows.Forms.Label();
-            this.label_PartName = new System.Windows.Forms.Label();
-            this.label_PartInventory = new System.Windows.Forms.Label();
-            this.label_PartMax = new System.Windows.Forms.Label();
-            this.label_PartMin = new System.Windows.Forms.Label();
-            this.labelMachineID = new System.Windows.Forms.Label();
-            this.labelCompName = new System.Windows.Forms.Label();
+            this.tbPartID = new System.Windows.Forms.TextBox();
+            this.tbAddPartName = new System.Windows.Forms.TextBox();
+            this.tbAddPriceCost = new System.Windows.Forms.TextBox();
+            this.tbAddPartMax = new System.Windows.Forms.TextBox();
+            this.tbAddPartMin = new System.Windows.Forms.TextBox();
+            this.tbCompanyOrMachine = new System.Windows.Forms.TextBox();
+            this.label_AddPartID = new System.Windows.Forms.Label();
+            this.label_AddPartName = new System.Windows.Forms.Label();
+            this.label_AddPartPriceCost = new System.Windows.Forms.Label();
+            this.label_AddPartMax = new System.Windows.Forms.Label();
+            this.label_AddPartMin = new System.Windows.Forms.Label();
+            this.label_AddPartMachineID = new System.Windows.Forms.Label();
+            this.label_AddPartCompName = new System.Windows.Forms.Label();
             this.btn_SavePart = new System.Windows.Forms.Button();
             this.btn_CancelPart = new System.Windows.Forms.Button();
+            this.label_AddPartInventory = new System.Windows.Forms.Label();
+            this.tbAddPartInventory = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // addPartTitle
@@ -83,111 +85,112 @@ namespace InventoryTrackingApp.Views
             this.rbOutsourced.UseVisualStyleBackColor = true;
             this.rbOutsourced.CheckedChanged += new System.EventHandler(this.rbOutsourced_CheckedChanged);
             // 
-            // textBox1
+            // tbPartID
             // 
-            this.textBox1.Location = new System.Drawing.Point(274, 75);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 3;
+            this.tbPartID.Location = new System.Drawing.Point(274, 75);
+            this.tbPartID.Name = "tbPartID";
+            this.tbPartID.ReadOnly = true;
+            this.tbPartID.Size = new System.Drawing.Size(100, 23);
+            this.tbPartID.TabIndex = 3;
             // 
-            // textBox2
+            // tbAddPartName
             // 
-            this.textBox2.Location = new System.Drawing.Point(274, 127);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
-            this.textBox2.TabIndex = 4;
+            this.tbAddPartName.Location = new System.Drawing.Point(274, 127);
+            this.tbAddPartName.Name = "tbAddPartName";
+            this.tbAddPartName.Size = new System.Drawing.Size(100, 23);
+            this.tbAddPartName.TabIndex = 4;
             // 
-            // textBox3
+            // tbAddPriceCost
             // 
-            this.textBox3.Location = new System.Drawing.Point(274, 179);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 23);
-            this.textBox3.TabIndex = 5;
+            this.tbAddPriceCost.Location = new System.Drawing.Point(274, 214);
+            this.tbAddPriceCost.Name = "tbAddPriceCost";
+            this.tbAddPriceCost.Size = new System.Drawing.Size(100, 23);
+            this.tbAddPriceCost.TabIndex = 5;
             // 
-            // textBox4
+            // tbAddPartMax
             // 
-            this.textBox4.Location = new System.Drawing.Point(274, 231);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(56, 23);
-            this.textBox4.TabIndex = 6;
+            this.tbAddPartMax.Location = new System.Drawing.Point(274, 266);
+            this.tbAddPartMax.Name = "tbAddPartMax";
+            this.tbAddPartMax.Size = new System.Drawing.Size(56, 23);
+            this.tbAddPartMax.TabIndex = 6;
             // 
-            // textBox5
+            // tbAddPartMin
             // 
-            this.textBox5.Location = new System.Drawing.Point(413, 231);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(56, 23);
-            this.textBox5.TabIndex = 7;
+            this.tbAddPartMin.Location = new System.Drawing.Point(413, 266);
+            this.tbAddPartMin.Name = "tbAddPartMin";
+            this.tbAddPartMin.Size = new System.Drawing.Size(56, 23);
+            this.tbAddPartMin.TabIndex = 7;
             // 
-            // textBox6
+            // tbCompanyOrMachine
             // 
-            this.textBox6.Location = new System.Drawing.Point(274, 283);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 23);
-            this.textBox6.TabIndex = 8;
+            this.tbCompanyOrMachine.Location = new System.Drawing.Point(274, 318);
+            this.tbCompanyOrMachine.Name = "tbCompanyOrMachine";
+            this.tbCompanyOrMachine.Size = new System.Drawing.Size(100, 23);
+            this.tbCompanyOrMachine.TabIndex = 8;
             // 
-            // label_PartID
+            // label_AddPartID
             // 
-            this.label_PartID.AutoSize = true;
-            this.label_PartID.Location = new System.Drawing.Point(206, 79);
-            this.label_PartID.Name = "label_PartID";
-            this.label_PartID.Size = new System.Drawing.Size(18, 15);
-            this.label_PartID.TabIndex = 9;
-            this.label_PartID.Text = "ID";
+            this.label_AddPartID.AutoSize = true;
+            this.label_AddPartID.Location = new System.Drawing.Point(206, 79);
+            this.label_AddPartID.Name = "label_AddPartID";
+            this.label_AddPartID.Size = new System.Drawing.Size(18, 15);
+            this.label_AddPartID.TabIndex = 9;
+            this.label_AddPartID.Text = "ID";
             // 
-            // label_PartName
+            // label_AddPartName
             // 
-            this.label_PartName.AutoSize = true;
-            this.label_PartName.Location = new System.Drawing.Point(185, 131);
-            this.label_PartName.Name = "label_PartName";
-            this.label_PartName.Size = new System.Drawing.Size(39, 15);
-            this.label_PartName.TabIndex = 10;
-            this.label_PartName.Text = "Name";
+            this.label_AddPartName.AutoSize = true;
+            this.label_AddPartName.Location = new System.Drawing.Point(185, 131);
+            this.label_AddPartName.Name = "label_AddPartName";
+            this.label_AddPartName.Size = new System.Drawing.Size(39, 15);
+            this.label_AddPartName.TabIndex = 10;
+            this.label_AddPartName.Text = "Name";
             // 
-            // label_PartInventory
+            // label_AddPartPriceCost
             // 
-            this.label_PartInventory.AutoSize = true;
-            this.label_PartInventory.Location = new System.Drawing.Point(167, 183);
-            this.label_PartInventory.Name = "label_PartInventory";
-            this.label_PartInventory.Size = new System.Drawing.Size(57, 15);
-            this.label_PartInventory.TabIndex = 11;
-            this.label_PartInventory.Text = "Inventory";
+            this.label_AddPartPriceCost.AutoSize = true;
+            this.label_AddPartPriceCost.Location = new System.Drawing.Point(167, 218);
+            this.label_AddPartPriceCost.Name = "label_AddPartPriceCost";
+            this.label_AddPartPriceCost.Size = new System.Drawing.Size(68, 15);
+            this.label_AddPartPriceCost.TabIndex = 11;
+            this.label_AddPartPriceCost.Text = "Price / Cost";
             // 
-            // label_PartMax
+            // label_AddPartMax
             // 
-            this.label_PartMax.AutoSize = true;
-            this.label_PartMax.Location = new System.Drawing.Point(194, 235);
-            this.label_PartMax.Name = "label_PartMax";
-            this.label_PartMax.Size = new System.Drawing.Size(30, 15);
-            this.label_PartMax.TabIndex = 12;
-            this.label_PartMax.Text = "Max";
+            this.label_AddPartMax.AutoSize = true;
+            this.label_AddPartMax.Location = new System.Drawing.Point(194, 270);
+            this.label_AddPartMax.Name = "label_AddPartMax";
+            this.label_AddPartMax.Size = new System.Drawing.Size(30, 15);
+            this.label_AddPartMax.TabIndex = 12;
+            this.label_AddPartMax.Text = "Max";
             // 
-            // label_PartMin
+            // label_AddPartMin
             // 
-            this.label_PartMin.AutoSize = true;
-            this.label_PartMin.Location = new System.Drawing.Point(367, 235);
-            this.label_PartMin.Name = "label_PartMin";
-            this.label_PartMin.Size = new System.Drawing.Size(28, 15);
-            this.label_PartMin.TabIndex = 13;
-            this.label_PartMin.Text = "Min";
+            this.label_AddPartMin.AutoSize = true;
+            this.label_AddPartMin.Location = new System.Drawing.Point(367, 270);
+            this.label_AddPartMin.Name = "label_AddPartMin";
+            this.label_AddPartMin.Size = new System.Drawing.Size(28, 15);
+            this.label_AddPartMin.TabIndex = 13;
+            this.label_AddPartMin.Text = "Min";
             // 
-            // labelMachineID
+            // label_AddPartMachineID
             // 
-            this.labelMachineID.AutoSize = true;
-            this.labelMachineID.Location = new System.Drawing.Point(157, 287);
-            this.labelMachineID.Name = "labelMachineID";
-            this.labelMachineID.Size = new System.Drawing.Size(67, 15);
-            this.labelMachineID.TabIndex = 14;
-            this.labelMachineID.Text = "Machine ID";
+            this.label_AddPartMachineID.AutoSize = true;
+            this.label_AddPartMachineID.Location = new System.Drawing.Point(157, 322);
+            this.label_AddPartMachineID.Name = "label_AddPartMachineID";
+            this.label_AddPartMachineID.Size = new System.Drawing.Size(67, 15);
+            this.label_AddPartMachineID.TabIndex = 14;
+            this.label_AddPartMachineID.Text = "Machine ID";
             // 
-            // labelCompName
+            // label_AddPartCompName
             // 
-            this.labelCompName.AutoSize = true;
-            this.labelCompName.Location = new System.Drawing.Point(130, 287);
-            this.labelCompName.Name = "labelCompName";
-            this.labelCompName.Size = new System.Drawing.Size(94, 15);
-            this.labelCompName.TabIndex = 15;
-            this.labelCompName.Text = "Company Name";
-            this.labelCompName.Visible = false;
+            this.label_AddPartCompName.AutoSize = true;
+            this.label_AddPartCompName.Location = new System.Drawing.Point(130, 321);
+            this.label_AddPartCompName.Name = "label_AddPartCompName";
+            this.label_AddPartCompName.Size = new System.Drawing.Size(94, 15);
+            this.label_AddPartCompName.TabIndex = 15;
+            this.label_AddPartCompName.Text = "Company Name";
+            this.label_AddPartCompName.Visible = false;
             // 
             // btn_SavePart
             // 
@@ -209,26 +212,45 @@ namespace InventoryTrackingApp.Views
             this.btn_CancelPart.UseVisualStyleBackColor = true;
             this.btn_CancelPart.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label_AddPartInventory
+            // 
+            this.label_AddPartInventory.AutoSize = true;
+            this.label_AddPartInventory.Location = new System.Drawing.Point(185, 174);
+            this.label_AddPartInventory.Name = "label_AddPartInventory";
+            this.label_AddPartInventory.Size = new System.Drawing.Size(57, 15);
+            this.label_AddPartInventory.TabIndex = 19;
+            this.label_AddPartInventory.Text = "Inventory";
+            // 
+            // tbAddPartInventory
+            // 
+            this.tbAddPartInventory.HideSelection = false;
+            this.tbAddPartInventory.Location = new System.Drawing.Point(274, 170);
+            this.tbAddPartInventory.Name = "tbAddPartInventory";
+            this.tbAddPartInventory.Size = new System.Drawing.Size(100, 23);
+            this.tbAddPartInventory.TabIndex = 18;
+            // 
             // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 450);
+            this.Controls.Add(this.label_AddPartInventory);
+            this.Controls.Add(this.tbAddPartInventory);
             this.Controls.Add(this.btn_CancelPart);
             this.Controls.Add(this.btn_SavePart);
-            this.Controls.Add(this.labelCompName);
-            this.Controls.Add(this.labelMachineID);
-            this.Controls.Add(this.label_PartMin);
-            this.Controls.Add(this.label_PartMax);
-            this.Controls.Add(this.label_PartInventory);
-            this.Controls.Add(this.label_PartName);
-            this.Controls.Add(this.label_PartID);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label_AddPartCompName);
+            this.Controls.Add(this.label_AddPartMachineID);
+            this.Controls.Add(this.label_AddPartMin);
+            this.Controls.Add(this.label_AddPartMax);
+            this.Controls.Add(this.label_AddPartPriceCost);
+            this.Controls.Add(this.label_AddPartName);
+            this.Controls.Add(this.label_AddPartID);
+            this.Controls.Add(this.tbCompanyOrMachine);
+            this.Controls.Add(this.tbAddPartMin);
+            this.Controls.Add(this.tbAddPartMax);
+            this.Controls.Add(this.tbAddPriceCost);
+            this.Controls.Add(this.tbAddPartName);
+            this.Controls.Add(this.tbPartID);
             this.Controls.Add(this.rbOutsourced);
             this.Controls.Add(this.rbInhouse);
             this.Controls.Add(this.addPartTitle);
@@ -244,20 +266,22 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Label addPartTitle;
         private System.Windows.Forms.RadioButton rbInhouse;
         private System.Windows.Forms.RadioButton rbOutsourced;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label_PartID;
-        private System.Windows.Forms.Label label_PartName;
-        private System.Windows.Forms.Label label_PartInventory;
-        private System.Windows.Forms.Label label_PartMax;
-        private System.Windows.Forms.Label label_PartMin;
-        private System.Windows.Forms.Label labelMachineID;
-        private System.Windows.Forms.Label labelCompName;
+        private System.Windows.Forms.TextBox tbPartID;
+        private System.Windows.Forms.TextBox tbAddPartName;
+        private System.Windows.Forms.TextBox tbAddPriceCost;
+        private System.Windows.Forms.TextBox tbAddPartMax;
+        private System.Windows.Forms.TextBox tbAddPartMin;
+        private System.Windows.Forms.TextBox tbCompanyOrMachine;
+        private System.Windows.Forms.Label label_AddPartID;
+        private System.Windows.Forms.Label label_AddPartName;
+        private System.Windows.Forms.Label label_AddPartPriceCost;
+        private System.Windows.Forms.Label label_AddPartMax;
+        private System.Windows.Forms.Label label_AddPartMin;
+        private System.Windows.Forms.Label label_AddPartMachineID;
+        private System.Windows.Forms.Label label_AddPartCompName;
         private System.Windows.Forms.Button btn_SavePart;
         private System.Windows.Forms.Button btn_CancelPart;
+        private System.Windows.Forms.Label label_AddPartInventory;
+        private System.Windows.Forms.TextBox tbAddPartInventory;
     }
 }

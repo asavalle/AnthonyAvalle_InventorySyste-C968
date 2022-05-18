@@ -25,6 +25,8 @@ namespace InventoryTrackingApp
             PartID += Inventory.AllParts.Count;
 
         }
+
+       
     }
 
 

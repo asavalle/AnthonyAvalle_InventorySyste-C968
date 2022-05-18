@@ -45,7 +45,7 @@ namespace InventoryTrackingApp
             this.searchParts = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.bt_Exit = new System.Windows.Forms.Button();
-            this.tempLabelForTest = new System.Windows.Forms.Label();
+            this.btn_RestSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -203,22 +203,22 @@ namespace InventoryTrackingApp
             this.bt_Exit.UseVisualStyleBackColor = true;
             this.bt_Exit.Click += new System.EventHandler(this.bt_Exit_Click);
             // 
-            // tempLabelForTest
+            // btn_RestSearch
             // 
-            this.tempLabelForTest.AutoSize = true;
-            this.tempLabelForTest.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.tempLabelForTest.Location = new System.Drawing.Point(54, 598);
-            this.tempLabelForTest.Name = "tempLabelForTest";
-            this.tempLabelForTest.Size = new System.Drawing.Size(138, 32);
-            this.tempLabelForTest.TabIndex = 19;
-            this.tempLabelForTest.Text = "TEST LABEL";
+            this.btn_RestSearch.Location = new System.Drawing.Point(610, 115);
+            this.btn_RestSearch.Name = "btn_RestSearch";
+            this.btn_RestSearch.Size = new System.Drawing.Size(75, 25);
+            this.btn_RestSearch.TabIndex = 20;
+            this.btn_RestSearch.Text = "Reset";
+            this.btn_RestSearch.UseVisualStyleBackColor = true;
+            this.btn_RestSearch.Click += new System.EventHandler(this.btn_RestSearch_Click);
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 720);
-            this.Controls.Add(this.tempLabelForTest);
+            this.Controls.Add(this.btn_RestSearch);
             this.Controls.Add(this.bt_Exit);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.dgvParts);
@@ -261,7 +261,7 @@ namespace InventoryTrackingApp
         private System.Windows.Forms.TextBox searchParts;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button bt_Exit;
-        private System.Windows.Forms.Label tempLabelForTest;
+        private System.Windows.Forms.Button btn_RestSearch;
     }
 }
 

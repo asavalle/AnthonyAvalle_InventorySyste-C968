@@ -8,8 +8,6 @@ namespace InventoryTrackingApp
 {
     static class Inventory
     {
-        private static object dgvParts;
-
         public static BindingList<Product> Products { get; set; } = new BindingList<Product>();
 
         public static BindingList<Part> AllParts { get; set; } = new BindingList<Part>();
@@ -41,7 +39,7 @@ namespace InventoryTrackingApp
         *************************/
         static Inventory()
         {
-            
+
 
             //InHouse Parts Source
             AllParts.Add(new Inhouse { Name = "handle bar", Price = (decimal)10.00, InStock = 10, Min = 5, Max = 20, MachineID = 1000 });
@@ -58,6 +56,5 @@ namespace InventoryTrackingApp
 
         }
 
-       
     }
 }
