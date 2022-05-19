@@ -84,5 +84,17 @@ namespace InventoryTrackingApp
             searchParts.Text = "";
             dgvParts.DataSource = Inventory.AllParts;
         }
+
+        private void btnModPart_Click(object sender, EventArgs e)
+        {
+            //DataGridViewSelectedRowCollection currentPart = dgvParts.SelectedRows;
+
+            ModifyParts modifyParts = new ModifyParts();
+            //modifyParts.getCurrentRow(currentPart);
+
+            modifyParts.Show();
+            
+
+        }
     }
 }

@@ -114,6 +114,7 @@ namespace InventoryTrackingApp
             this.btnModPart.TabIndex = 3;
             this.btnModPart.Text = "MODIFY";
             this.btnModPart.UseVisualStyleBackColor = true;
+            this.btnModPart.Click += new System.EventHandler(this.btnModPart_Click);
             // 
             // btnAddPart
             // 
