@@ -16,7 +16,6 @@ namespace InventoryTrackingApp
         public abstract int InStock { get; set; }
         public abstract int Min { get; set; }
         public abstract int Max { get; set; }
-        public bool Outsorced { get; set; } = false;
 
         public string ToString(string Name)
         {

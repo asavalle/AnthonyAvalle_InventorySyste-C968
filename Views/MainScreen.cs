@@ -49,24 +49,10 @@ namespace InventoryTrackingApp
             if (!found)
             {
                 MessageBox.Show("No Part found matching that criteria!");
-                //dgvParts.DataSource = Inventory.AllParts;
             }
         }
 
-        //********WoRKS************
-        //    foreach (DataGridViewRow part in dgvParts.Rows)
-        //    {
-        //        if (part.Cells[1].Value.ToString().Contains(searchParts.Text))
-        //        {
-        //            tempLabelForTest.Text = dgvParts.Rows[part.Index].ToString();
-        //            dgvParts.Rows[part.Index].Selected = true;
-
-        //        }
-        //    }
-
-        //}
-
-
+        
 
         //Product Search button event
         private void btnProdSearch_Click(object sender, EventArgs e)
@@ -95,6 +81,7 @@ namespace InventoryTrackingApp
         private void btn_RestSearch_Click(object sender, EventArgs e)
         {
             dgvParts.ClearSelection();
+            searchParts.Text = "";
             dgvParts.DataSource = Inventory.AllParts;
         }
     }
