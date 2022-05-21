@@ -43,11 +43,11 @@ namespace InventoryTrackingApp.Views
 
             if (rbInhouse.Checked)
             {
-                Inventory.AllParts.Add(new Inhouse{ Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock=Convert.ToInt32(tbAddPartInventory.Text),Min=Convert.ToInt32(tbAddPartMin.Text), Max=Convert.ToInt32(tbAddPartMax.Text) , MachineID= Convert.ToInt32(tbCompanyOrMachine.Text)});
+                Inventory.addPart(new Inhouse{ Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock=Convert.ToInt32(tbAddPartInventory.Text),Min=Convert.ToInt32(tbAddPartMin.Text), Max=Convert.ToInt32(tbAddPartMax.Text) , MachineID= Convert.ToInt32(tbCompanyOrMachine.Text)});
             }
             else
             {
-                Inventory.AllParts.Add(new Outsourced { Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock = Convert.ToInt32(tbAddPartInventory.Text), Min = Convert.ToInt32(tbAddPartMin.Text), Max = Convert.ToInt32(tbAddPartMax.Text), CompanyName = tbCompanyOrMachine.Text }) ;
+                Inventory.addPart(new Outsourced { Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock = Convert.ToInt32(tbAddPartInventory.Text), Min = Convert.ToInt32(tbAddPartMin.Text), Max = Convert.ToInt32(tbAddPartMax.Text), CompanyName = tbCompanyOrMachine.Text }) ;
 
             }
             MessageBox.Show("Part Added");
