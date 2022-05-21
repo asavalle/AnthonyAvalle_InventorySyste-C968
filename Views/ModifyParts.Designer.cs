@@ -49,7 +49,6 @@ namespace InventoryTrackingApp.Views
             this.label1 = new System.Windows.Forms.Label();
             this.btn_ModPartSave = new System.Windows.Forms.Button();
             this.btn_ModPartCancel = new System.Windows.Forms.Button();
-            this.testLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label_ModPartID
@@ -176,7 +175,6 @@ namespace InventoryTrackingApp.Views
             this.rb_ModPartInHouse.TabStop = true;
             this.rb_ModPartInHouse.Text = "In-House";
             this.rb_ModPartInHouse.UseVisualStyleBackColor = true;
-            this.rb_ModPartInHouse.CheckedChanged += new System.EventHandler(this.rb_ModPartInHouse_CheckedChanged);
             // 
             // rb_ModPartOutsourced
             // 
@@ -187,7 +185,6 @@ namespace InventoryTrackingApp.Views
             this.rb_ModPartOutsourced.TabIndex = 15;
             this.rb_ModPartOutsourced.Text = "Outsourced";
             this.rb_ModPartOutsourced.UseVisualStyleBackColor = true;
-            this.rb_ModPartOutsourced.CheckedChanged += new System.EventHandler(this.rb_ModPartOutsourced_CheckedChanged);
             // 
             // label_ModPartCompanyName
             // 
@@ -225,22 +222,13 @@ namespace InventoryTrackingApp.Views
             this.btn_ModPartCancel.TabIndex = 19;
             this.btn_ModPartCancel.Text = "Cancel";
             this.btn_ModPartCancel.UseVisualStyleBackColor = true;
-            // 
-            // testLabel
-            // 
-            this.testLabel.AutoSize = true;
-            this.testLabel.Location = new System.Drawing.Point(31, 457);
-            this.testLabel.Name = "testLabel";
-            this.testLabel.Size = new System.Drawing.Size(27, 15);
-            this.testLabel.TabIndex = 20;
-            this.testLabel.Text = "Test";
+            this.btn_ModPartCancel.Click += new System.EventHandler(this.btn_ModPartCancel_Click);
             // 
             // ModifyParts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 539);
-            this.Controls.Add(this.testLabel);
             this.Controls.Add(this.btn_ModPartCancel);
             this.Controls.Add(this.btn_ModPartSave);
             this.Controls.Add(this.label1);
@@ -288,7 +276,6 @@ namespace InventoryTrackingApp.Views
         public System.Windows.Forms.TextBox tb_ModPartMax;
         public System.Windows.Forms.TextBox tb_ModPartMin;
         public System.Windows.Forms.TextBox tb_ModPartMachineCompany;
-        public System.Windows.Forms.Label testLabel;
         public System.Windows.Forms.Label label_ModPartID;
     }
 }

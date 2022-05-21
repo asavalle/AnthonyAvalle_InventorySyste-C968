@@ -18,6 +18,12 @@ namespace InventoryTrackingApp
             InitializeComponent();
             dgvParts.DataSource = Inventory.AllParts;
             dgvParts.ClearSelection();
+
+            dgvParts.DefaultCellStyle.BackColor = Color.White;
+            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Chocolate;
+
+            dgvParts.RowHeadersVisible = false;
+            dgvParts.ClearSelection();
         }
 
         //Parts Search button event
@@ -88,14 +94,28 @@ namespace InventoryTrackingApp
 
         private void btnModPart_Click(object sender, EventArgs e)
         {
-
-            ModifyParts modifyParts = new ModifyParts();        
+            ModifyParts modifyParts = new ModifyParts();
+            this.Hide();
             modifyParts.Show();
-            //modifyParts.getCurrentRow(dgvParts);
-            modifyParts.getSelectedRow(dgvParts.SelectedRows);
+         
+        }
 
+        private void dgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedIndex = e.RowIndex;
+            Inventory.CurrentPartID = (int)dgvParts.Rows[selectedIndex].Cells[0].Value;
+            Inventory.CurrentPart = Inventory.lookupPart(Inventory.CurrentPartID);
         }
 
 
     }
+
+
+
+
+
+
+
+
+
 }

@@ -51,6 +51,7 @@ namespace InventoryTrackingApp.Views
             this.btn_DelProduct = new System.Windows.Forms.Button();
             this.btn_ProdCancel = new System.Windows.Forms.Button();
             this.btnSaveProd = new System.Windows.Forms.Button();
+            this.testLableAP = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -240,11 +241,21 @@ namespace InventoryTrackingApp.Views
             this.btnSaveProd.Text = "Save";
             this.btnSaveProd.UseVisualStyleBackColor = true;
             // 
+            // testLableAP
+            // 
+            this.testLableAP.AutoSize = true;
+            this.testLableAP.Location = new System.Drawing.Point(73, 552);
+            this.testLableAP.Name = "testLableAP";
+            this.testLableAP.Size = new System.Drawing.Size(31, 15);
+            this.testLableAP.TabIndex = 22;
+            this.testLableAP.Text = "TEST";
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 726);
+            this.Controls.Add(this.testLableAP);
             this.Controls.Add(this.btnSaveProd);
             this.Controls.Add(this.btn_ProdCancel);
             this.Controls.Add(this.btn_DelProduct);
@@ -301,5 +312,6 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Button btn_DelProduct;
         private System.Windows.Forms.Button btn_ProdCancel;
         private System.Windows.Forms.Button btnSaveProd;
+        private System.Windows.Forms.Label testLableAP;
     }
 }

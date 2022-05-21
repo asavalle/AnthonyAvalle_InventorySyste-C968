@@ -233,7 +233,7 @@ namespace InventoryTrackingApp.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 450);
+            this.ClientSize = new System.Drawing.Size(576, 485);
             this.Controls.Add(this.label_AddPartInventory);
             this.Controls.Add(this.tbAddPartInventory);
             this.Controls.Add(this.btn_CancelPart);

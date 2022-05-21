@@ -40,19 +40,46 @@ namespace InventoryTrackingApp.Views
 
         private void btn_SavePart_Click(object sender, EventArgs e)
         {
+            BindingList<Part> list = new BindingList<Part>();   
+
 
             if (rbInhouse.Checked)
             {
-                Inventory.addPart(new Inhouse{ Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock=Convert.ToInt32(tbAddPartInventory.Text),Min=Convert.ToInt32(tbAddPartMin.Text), Max=Convert.ToInt32(tbAddPartMax.Text) , MachineID= Convert.ToInt32(tbCompanyOrMachine.Text)});
+                Inhouse newInhouse = new Inhouse
+                {
+                    Name = tbAddPartName.Text,
+                    Price = Convert.ToDecimal(tbAddPriceCost.Text),
+                    InStock = Convert.ToInt32(tbAddPartInventory.Text),
+                    Min = Convert.ToInt32(tbAddPartMin.Text),
+                    Max = Convert.ToInt32(tbAddPartMax.Text),
+                    MachineID = Convert.ToInt32(tbCompanyOrMachine.Text)
+                };
+                             
+
+                Inventory.addPart(newInhouse);
             }
             else
             {
-                Inventory.addPart(new Outsourced { Name = tbAddPartName.Text, Price = Convert.ToDecimal(tbAddPriceCost.Text), InStock = Convert.ToInt32(tbAddPartInventory.Text), Min = Convert.ToInt32(tbAddPartMin.Text), Max = Convert.ToInt32(tbAddPartMax.Text), CompanyName = tbCompanyOrMachine.Text }) ;
+                Outsourced newOutsourced = new Outsourced
+                {
+                    Name = tbAddPartName.Text,
+                    Price = Convert.ToDecimal(tbAddPriceCost.Text),
+                    InStock = Convert.ToInt32(tbAddPartInventory.Text),
+                    Min = Convert.ToInt32(tbAddPartMin.Text),
+                    Max = Convert.ToInt32(tbAddPartMax.Text),
+                    CompanyName = tbCompanyOrMachine.Text
+                };
+
+                Inventory.addPart(newOutsourced);
 
             }
+
+
             MessageBox.Show("Part Added");
-            this.Close();
+            //this.Close();
             mainScreen.Show();
         }
+
+       
     }
 }

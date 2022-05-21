@@ -17,11 +17,11 @@ namespace InventoryTrackingApp
         public abstract int Min { get; set; }
         public abstract int Max { get; set; }
 
-        public string ToString(string Name)
-        {
 
-            return Name.ToString();
-        }
+        
+
+
+
 
     }
 }

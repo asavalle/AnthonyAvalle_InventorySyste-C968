@@ -131,14 +131,16 @@ namespace InventoryTrackingApp
             this.dgvParts.AllowUserToAddRows = false;
             this.dgvParts.AllowUserToDeleteRows = false;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvParts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvParts.Location = new System.Drawing.Point(35, 155);
             this.dgvParts.MultiSelect = false;
             this.dgvParts.Name = "dgvParts";
             this.dgvParts.ReadOnly = true;
             this.dgvParts.RowTemplate.Height = 25;
             this.dgvParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvParts.Size = new System.Drawing.Size(650, 281);
+            this.dgvParts.Size = new System.Drawing.Size(601, 281);
             this.dgvParts.TabIndex = 15;
+            this.dgvParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParts_CellClick);
             // 
             // dgvProducts
             // 
@@ -146,7 +148,7 @@ namespace InventoryTrackingApp
             this.dgvProducts.Location = new System.Drawing.Point(789, 155);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(650, 281);
+            this.dgvProducts.Size = new System.Drawing.Size(620, 281);
             this.dgvProducts.TabIndex = 16;
             // 
             // btnAddProduct

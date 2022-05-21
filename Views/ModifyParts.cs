@@ -10,63 +10,54 @@ namespace InventoryTrackingApp.Views
 {
     public partial class ModifyParts : Form
     {
-        private int rowIndex = 0;
+        //private int rowIndex = 0;
 
         public ModifyParts()
         {
             InitializeComponent();
-        }
+            rb_ModPartInHouse.Checked = true;
+            label_ModPartCompanyName.Visible = false;
 
-        public void getSelectedRow(DataGridViewSelectedRowCollection dgvSelectedRow) {
-            foreach(DataGridViewRow cell in dgvSelectedRow)
+
+            if (Inventory.CurrentPart is Inhouse)
             {
-                int rowIndex = (int)cell.Index;
-                Inventory.updatePart(rowIndex);
+                rb_ModPartInHouse.Checked = true;
+
+                Inhouse ihPart = (Inhouse)Inventory.CurrentPart;
+                tb_ModPartID.Text = ihPart.PartID.ToString();
+                tb_ModPartName.Text = ihPart.Name.ToString(); ;
+                tb_ModPartInventory.Text = ihPart.InStock.ToString();
+                tb_ModPartPrice.Text = ihPart.Price.ToString();
+                tb_ModPartMax.Text = ihPart.Max.ToString();
+                tb_ModPartMin.Text = ihPart.Min.ToString();
+                tb_ModPartMachineCompany.Text = ihPart.MachineID.ToString();
+                
+            }
+            else if(Inventory.CurrentPart is Outsourced)
+            {
+                rb_ModPartOutsourced.Checked = true;
+
+                Outsourced oPart = (Outsourced)Inventory.CurrentPart;
+                tb_ModPartID.Text = oPart.PartID.ToString();
+                tb_ModPartName.Text = oPart.Name.ToString(); ;
+                tb_ModPartInventory.Text = oPart.InStock.ToString();
+                tb_ModPartPrice.Text = oPart.Price.ToString();
+                tb_ModPartMax.Text = oPart.Max.ToString();
+                tb_ModPartMin.Text = oPart.Min.ToString();
+                tb_ModPartMachineCompany.Text = oPart.CompanyName;
 
             }
-
-        }
-        //public void getCurrentRow(DataGridView dgv)
-        //{
-
-        //    if (rb_ModPartInHouse.Checked) {
-
-        //        WORKs...DO NOT DELETE
-        //        foreach (DataGridViewRow row in dgv.SelectedRows)
-        //        {
-
-        //            Gets Row Index/PartID from selected row
-        //             But I don't know how best tp use this in Inventory.updatePart()
-
-        //            int rowIndex = (int)row.Cells[0].Value;
-        //            Inventory.updatePart(rowIndex);
-        //            Inventory.SetCurrentSelectedDGV(dgv.Rows[rowIndex]);
-
-
-        //            tb_ModPartID.Text = row.Cells[0].Value.ToString();
-        //            tb_ModPartName.Text = row.Cells[1].Value.ToString();
-        //            tb_ModPartInventory.Text = row.Cells[2].Value.ToString();
-        //            tb_ModPartPrice.Text = row.Cells[3].Value.ToString();
-        //            tb_ModPartMax.Text = row.Cells[4].Value.ToString();
-        //            tb_ModPartMin.Text = row.Cells[5].Value.ToString();
-        //            tb_ModPartMachineCompany.Text = row.Cells[6].Value.ToString(); //The AllParts list is populated by type Part, but Part doesn't contain the additional fields for MachineID or CompanyName
-
-        //            ....need to complete the form fields
-        //        }
-        //    }
-
-        //}
-
-        private void rb_ModPartInHouse_CheckedChanged(object sender, EventArgs e)
-        {
-            this.label_ModPartMachineID.Visible = false;
-            this.label_ModPartCompanyName.Visible = true;
         }
 
-        private void rb_ModPartOutsourced_CheckedChanged(object sender, EventArgs e)
+        
+
+       
+        private void btn_ModPartCancel_Click(object sender, EventArgs e)
         {
-            this.label_ModPartMachineID.Visible = true;
-            this.label_ModPartCompanyName.Visible = false;
+            MainScreen main = new MainScreen();
+            this.Close();
+            main.Show();
+            
         }
     }
 }
