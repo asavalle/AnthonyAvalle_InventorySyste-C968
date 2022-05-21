@@ -17,6 +17,7 @@ namespace InventoryTrackingApp
         {
             InitializeComponent();
             dgvParts.DataSource = Inventory.AllParts;
+            dgvParts.ClearSelection();
         }
 
         //Parts Search button event
@@ -87,14 +88,14 @@ namespace InventoryTrackingApp
 
         private void btnModPart_Click(object sender, EventArgs e)
         {
-            //DataGridViewSelectedRowCollection currentPart = dgvParts.SelectedRows;
 
-            ModifyParts modifyParts = new ModifyParts();
-            //modifyParts.getCurrentRow(currentPart);
-
+            ModifyParts modifyParts = new ModifyParts();        
             modifyParts.Show();
-            
+            //modifyParts.getCurrentRow(dgvParts);
+            modifyParts.getSelectedRow(dgvParts.SelectedRows);
 
         }
+
+
     }
 }

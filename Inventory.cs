@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
+using InventoryTrackingApp.Views;
 
 namespace InventoryTrackingApp
 {
     static class Inventory
     {
+        
         public static BindingList<Product> Products { get; set; } = new BindingList<Product>();
 
         public static BindingList<Part> AllParts { get; set; } = new BindingList<Part>();
+  
+        
 
         //  public static void addProduct(Product product) { }
 
@@ -19,9 +23,12 @@ namespace InventoryTrackingApp
         // public static Product lookupProduct(int) { }
 
         // public static void updateProduct(int) { }
+        
+        /******************************************************************************************/
 
         public static void addPart(Part part) {
             //create new instance of bindinglist, and add passed in part type to list
+            //Test if part is of type Inhouse or Outsourced and add <Part> variable and assign value of Machine or Company name
             AllParts.Add(part);
         }
 
@@ -29,7 +36,10 @@ namespace InventoryTrackingApp
 
         //public static Part lookupPart(int){}
 
-        //  public static void updatePart(int) { }
+          public static void updatePart(int partID) {
+           ModifyParts.ActiveForm. partID.ToString();
+            
+        }
 
 
 

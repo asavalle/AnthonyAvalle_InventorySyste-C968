@@ -168,6 +168,7 @@ namespace InventoryTrackingApp.Views
             // rb_ModPartInHouse
             // 
             this.rb_ModPartInHouse.AutoSize = true;
+            this.rb_ModPartInHouse.Checked = true;
             this.rb_ModPartInHouse.Location = new System.Drawing.Point(184, 30);
             this.rb_ModPartInHouse.Name = "rb_ModPartInHouse";
             this.rb_ModPartInHouse.Size = new System.Drawing.Size(74, 19);
@@ -175,6 +176,7 @@ namespace InventoryTrackingApp.Views
             this.rb_ModPartInHouse.TabStop = true;
             this.rb_ModPartInHouse.Text = "In-House";
             this.rb_ModPartInHouse.UseVisualStyleBackColor = true;
+            this.rb_ModPartInHouse.CheckedChanged += new System.EventHandler(this.rb_ModPartInHouse_CheckedChanged);
             // 
             // rb_ModPartOutsourced
             // 
@@ -183,9 +185,9 @@ namespace InventoryTrackingApp.Views
             this.rb_ModPartOutsourced.Name = "rb_ModPartOutsourced";
             this.rb_ModPartOutsourced.Size = new System.Drawing.Size(87, 19);
             this.rb_ModPartOutsourced.TabIndex = 15;
-            this.rb_ModPartOutsourced.TabStop = true;
             this.rb_ModPartOutsourced.Text = "Outsourced";
             this.rb_ModPartOutsourced.UseVisualStyleBackColor = true;
+            this.rb_ModPartOutsourced.CheckedChanged += new System.EventHandler(this.rb_ModPartOutsourced_CheckedChanged);
             // 
             // label_ModPartCompanyName
             // 
@@ -267,20 +269,11 @@ namespace InventoryTrackingApp.Views
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label_ModPartID;
         private System.Windows.Forms.Label label_ModPartName;
         private System.Windows.Forms.Label label_ModPartInventory;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label_ModPartMax;
         private System.Windows.Forms.Label label_ModPartMin;
-        private System.Windows.Forms.TextBox tb_ModPartID;
-        private System.Windows.Forms.TextBox tb_ModPartName;
-        private System.Windows.Forms.TextBox tb_ModPartInventory;
-        private System.Windows.Forms.TextBox tb_ModPartPrice;
-        private System.Windows.Forms.TextBox tb_ModPartMax;
-        private System.Windows.Forms.TextBox tb_ModPartMin;
-        private System.Windows.Forms.TextBox tb_ModPartMachineCompany;
         private System.Windows.Forms.Label label_ModPartMachineID;
         private System.Windows.Forms.RadioButton rb_ModPartInHouse;
         private System.Windows.Forms.RadioButton rb_ModPartOutsourced;
@@ -288,6 +281,14 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_ModPartSave;
         private System.Windows.Forms.Button btn_ModPartCancel;
-        private System.Windows.Forms.Label testLabel;
+        public System.Windows.Forms.TextBox tb_ModPartID;
+        public System.Windows.Forms.TextBox tb_ModPartName;
+        public System.Windows.Forms.TextBox tb_ModPartInventory;
+        public System.Windows.Forms.TextBox tb_ModPartPrice;
+        public System.Windows.Forms.TextBox tb_ModPartMax;
+        public System.Windows.Forms.TextBox tb_ModPartMin;
+        public System.Windows.Forms.TextBox tb_ModPartMachineCompany;
+        public System.Windows.Forms.Label testLabel;
+        public System.Windows.Forms.Label label_ModPartID;
     }
 }
