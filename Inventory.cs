@@ -29,7 +29,6 @@ namespace InventoryTrackingApp
         /******************************************************************************************/
 
         public static void addPart(Part part) {
-            //Test if part is of type Inhouse or Outsourced and add <Part> variable and assign value of Machine or Company name
             AllParts.Add(part);
         }
 
@@ -37,7 +36,6 @@ namespace InventoryTrackingApp
 
         public static Part lookupPart(int index) 
         {
-            //given the index, look up a part with that partID
             
             foreach(Part part in AllParts)
             {
@@ -49,8 +47,18 @@ namespace InventoryTrackingApp
             }
             return null;
         }
-        public static void updatePart(int partID) {
-           
+        public static void updatePart(int partID, Part partToUpdate) {
+
+            Part current = lookupPart(partID);
+            Part newPart = partToUpdate;
+
+            
+                if(current.PartID == partID)
+                {
+                    AllParts.Remove(current);
+                    AllParts.Add(newPart);
+                }
+            
             
         }
 

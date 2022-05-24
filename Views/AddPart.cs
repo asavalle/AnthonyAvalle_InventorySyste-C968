@@ -16,20 +16,21 @@ namespace InventoryTrackingApp.Views
         public AddPart()
         {
             InitializeComponent();
+            btn_SavePart.Enabled = false;
         }
 
         
 
         private void rbOutsourced_CheckedChanged(object sender, EventArgs e)
         {
-            this.label_AddPartMachineID.Visible = false;
-            this.label_AddPartCompName.Visible = true;
+            this.label_AddPartSource.Text = "Company Name";
+            //this.label_AddPartCompName.Visible = true;
         }
 
         private void rbInhouse_CheckedChanged(object sender, EventArgs e)
         {
-            this.label_AddPartMachineID.Visible = true;
-            this.label_AddPartCompName.Visible = false;
+            this.label_AddPartSource.Text = "Machine ID";
+            //this.label_AddPartCompName.Visible = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -76,10 +77,13 @@ namespace InventoryTrackingApp.Views
 
 
             MessageBox.Show("Part Added");
-            //this.Close();
+            this.Close();
             mainScreen.Show();
         }
 
-       
+        private void tbAddPartName_TextChanged(object sender, EventArgs e)
+        {
+            btn_SavePart.Enabled = true;
+        }
     }
 }

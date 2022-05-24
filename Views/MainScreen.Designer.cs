@@ -46,6 +46,7 @@ namespace InventoryTrackingApp
             this.labelTitle = new System.Windows.Forms.Label();
             this.bt_Exit = new System.Windows.Forms.Button();
             this.btn_RestSearch = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -55,24 +56,24 @@ namespace InventoryTrackingApp
             this.searchProducts.Location = new System.Drawing.Point(789, 115);
             this.searchProducts.Name = "searchProducts";
             this.searchProducts.Size = new System.Drawing.Size(399, 23);
-            this.searchProducts.TabIndex = 14;
+            this.searchProducts.TabIndex = 7;
             // 
             // btnProdSearch
             // 
-            this.btnProdSearch.Location = new System.Drawing.Point(1235, 116);
+            this.btnProdSearch.Location = new System.Drawing.Point(1194, 115);
             this.btnProdSearch.Name = "btnProdSearch";
-            this.btnProdSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnProdSearch.TabIndex = 12;
+            this.btnProdSearch.Size = new System.Drawing.Size(75, 25);
+            this.btnProdSearch.TabIndex = 8;
             this.btnProdSearch.Text = "Search";
             this.btnProdSearch.UseVisualStyleBackColor = true;
             this.btnProdSearch.Click += new System.EventHandler(this.btnProdSearch_Click);
             // 
             // btnPartSearch
             // 
-            this.btnPartSearch.Location = new System.Drawing.Point(481, 116);
+            this.btnPartSearch.Location = new System.Drawing.Point(440, 115);
             this.btnPartSearch.Name = "btnPartSearch";
-            this.btnPartSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnPartSearch.TabIndex = 11;
+            this.btnPartSearch.Size = new System.Drawing.Size(75, 27);
+            this.btnPartSearch.TabIndex = 2;
             this.btnPartSearch.Text = "Search";
             this.btnPartSearch.UseVisualStyleBackColor = true;
             this.btnPartSearch.Click += new System.EventHandler(this.btnPartSearch_Click);
@@ -99,29 +100,31 @@ namespace InventoryTrackingApp
             // 
             // btnDelPart
             // 
-            this.btnDelPart.Location = new System.Drawing.Point(610, 519);
+            this.btnDelPart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDelPart.ForeColor = System.Drawing.Color.White;
+            this.btnDelPart.Location = new System.Drawing.Point(642, 403);
             this.btnDelPart.Name = "btnDelPart";
-            this.btnDelPart.Size = new System.Drawing.Size(75, 23);
-            this.btnDelPart.TabIndex = 4;
+            this.btnDelPart.Size = new System.Drawing.Size(75, 33);
+            this.btnDelPart.TabIndex = 6;
             this.btnDelPart.Text = "DELETE";
-            this.btnDelPart.UseVisualStyleBackColor = true;
+            this.btnDelPart.UseVisualStyleBackColor = false;
             // 
             // btnModPart
             // 
-            this.btnModPart.Location = new System.Drawing.Point(610, 457);
+            this.btnModPart.Location = new System.Drawing.Point(642, 211);
             this.btnModPart.Name = "btnModPart";
             this.btnModPart.Size = new System.Drawing.Size(75, 23);
-            this.btnModPart.TabIndex = 3;
+            this.btnModPart.TabIndex = 5;
             this.btnModPart.Text = "MODIFY";
             this.btnModPart.UseVisualStyleBackColor = true;
             this.btnModPart.Click += new System.EventHandler(this.btnModPart_Click);
             // 
             // btnAddPart
             // 
-            this.btnAddPart.Location = new System.Drawing.Point(488, 457);
+            this.btnAddPart.Location = new System.Drawing.Point(642, 155);
             this.btnAddPart.Name = "btnAddPart";
             this.btnAddPart.Size = new System.Drawing.Size(75, 23);
-            this.btnAddPart.TabIndex = 2;
+            this.btnAddPart.TabIndex = 4;
             this.btnAddPart.Text = "ADD";
             this.btnAddPart.UseVisualStyleBackColor = true;
             this.btnAddPart.Click += new System.EventHandler(this.btnAddPart_Click);
@@ -153,38 +156,40 @@ namespace InventoryTrackingApp
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(1242, 457);
+            this.btnAddProduct.Location = new System.Drawing.Point(1417, 155);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(75, 23);
-            this.btnAddProduct.TabIndex = 5;
+            this.btnAddProduct.TabIndex = 10;
             this.btnAddProduct.Text = "ADD";
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // btnModProduct
             // 
-            this.btnModProduct.Location = new System.Drawing.Point(1364, 457);
+            this.btnModProduct.Location = new System.Drawing.Point(1417, 211);
             this.btnModProduct.Name = "btnModProduct";
             this.btnModProduct.Size = new System.Drawing.Size(75, 23);
-            this.btnModProduct.TabIndex = 6;
+            this.btnModProduct.TabIndex = 11;
             this.btnModProduct.Text = "MODIFY";
             this.btnModProduct.UseVisualStyleBackColor = true;
             // 
             // btnDelProduct
             // 
-            this.btnDelProduct.Location = new System.Drawing.Point(1364, 519);
+            this.btnDelProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDelProduct.ForeColor = System.Drawing.Color.White;
+            this.btnDelProduct.Location = new System.Drawing.Point(1417, 403);
             this.btnDelProduct.Name = "btnDelProduct";
-            this.btnDelProduct.Size = new System.Drawing.Size(75, 23);
-            this.btnDelProduct.TabIndex = 7;
+            this.btnDelProduct.Size = new System.Drawing.Size(75, 33);
+            this.btnDelProduct.TabIndex = 12;
             this.btnDelProduct.Text = "DELETE";
-            this.btnDelProduct.UseVisualStyleBackColor = true;
+            this.btnDelProduct.UseVisualStyleBackColor = false;
             // 
             // searchParts
             // 
             this.searchParts.Location = new System.Drawing.Point(35, 117);
             this.searchParts.Name = "searchParts";
             this.searchParts.Size = new System.Drawing.Size(399, 23);
-            this.searchParts.TabIndex = 13;
+            this.searchParts.TabIndex = 1;
             // 
             // labelTitle
             // 
@@ -198,29 +203,39 @@ namespace InventoryTrackingApp
             // 
             // bt_Exit
             // 
-            this.bt_Exit.Location = new System.Drawing.Point(1193, 649);
+            this.bt_Exit.Location = new System.Drawing.Point(1375, 662);
             this.bt_Exit.Name = "bt_Exit";
             this.bt_Exit.Size = new System.Drawing.Size(117, 46);
-            this.bt_Exit.TabIndex = 18;
+            this.bt_Exit.TabIndex = 13;
             this.bt_Exit.Text = "EXIT";
             this.bt_Exit.UseVisualStyleBackColor = true;
             this.bt_Exit.Click += new System.EventHandler(this.bt_Exit_Click);
             // 
             // btn_RestSearch
             // 
-            this.btn_RestSearch.Location = new System.Drawing.Point(610, 115);
+            this.btn_RestSearch.Location = new System.Drawing.Point(562, 117);
             this.btn_RestSearch.Name = "btn_RestSearch";
             this.btn_RestSearch.Size = new System.Drawing.Size(75, 25);
-            this.btn_RestSearch.TabIndex = 20;
+            this.btn_RestSearch.TabIndex = 3;
             this.btn_RestSearch.Text = "Reset";
             this.btn_RestSearch.UseVisualStyleBackColor = true;
             this.btn_RestSearch.Click += new System.EventHandler(this.btn_RestSearch_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1334, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Reset";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 720);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_RestSearch);
             this.Controls.Add(this.bt_Exit);
             this.Controls.Add(this.labelTitle);
@@ -265,6 +280,7 @@ namespace InventoryTrackingApp
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button bt_Exit;
         private System.Windows.Forms.Button btn_RestSearch;
+        private System.Windows.Forms.Button button1;
     }
 }
 

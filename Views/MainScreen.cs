@@ -16,22 +16,33 @@ namespace InventoryTrackingApp
         public MainScreen()
         {
             InitializeComponent();
-            dgvParts.DataSource = Inventory.AllParts;
-            dgvParts.ClearSelection();
 
+            /***********SETUP DATA GRID***************/
+            dgvParts.DataSource = Inventory.AllParts;
             dgvParts.DefaultCellStyle.BackColor = Color.White;
-            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Chocolate;
+            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            dgvParts.DefaultCellStyle.SelectionForeColor = Color.Black;
 
             dgvParts.RowHeadersVisible = false;
             dgvParts.ClearSelection();
+
+            btnModPart.Enabled = false;
+
         }
 
-        //Parts Search button event
+        /***********SAVE PART BUTTON EVENT***************/
         private void btnPartSearch_Click(object sender, EventArgs e)
         {
-            
+
+            /*Creates a temporary BindingLIst to house the search results.
+             if the search textbox is not an empty string (blank) the loop through the list of AllParts
+            for the Part object that contains the text entered into the text box. If it matches add it to the 
+            temporary list. After all the objects are located, set the Found boolean to true. Then set the DataGridView control's
+            DataSource to the temp list to show the results.
+            If the search term is not found, display the message box.*/
+
+
             dgvParts.ClearSelection();
-            dgvParts.DefaultCellStyle.SelectionForeColor = Color.Aquamarine;
             bool found = false;
             BindingList<Part> TempList = new BindingList<Part>();
 
@@ -59,54 +70,84 @@ namespace InventoryTrackingApp
             }
         }
 
-        
 
-        //Product Search button event
+
+        /***********SEARCH PRODUCT BUTTON EVENT***************/
         private void btnProdSearch_Click(object sender, EventArgs e)
         {
 
         }
-        //Open AddPart screen
+
+        /***********ADD PART BUTTON EVENT***************/
         private void btnAddPart_Click(object sender, EventArgs e)
         {
             AddPart addPart = new AddPart();
             this.Hide();
             addPart.Show();
         }
-        //Open AddProduct screen
+
+
+        /***********ADD PRODUCT BUTTON EVENT***************/
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             AddProduct addProduct = new AddProduct();
             addProduct.Show();
         }
-        //Close Main Window
+
+        /***********EXIT BUTTON EVENT***************/
         private void bt_Exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        /***********RESET BUTTON EVENT***************/
         private void btn_RestSearch_Click(object sender, EventArgs e)
         {
-            dgvParts.ClearSelection();
             searchParts.Text = "";
             dgvParts.DataSource = Inventory.AllParts;
+            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            btnModPart.Enabled = false;
+            dgvParts.ClearSelection();
         }
 
+        
+        /***********CELL CLICK (SELECTED ROW) EVENT***************/
+        private void dgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                /*Find the RowIndex of the selected (clicked) row and set the CurrentPartID property in the Inventory class to the row index.
+                 Then set the CurrentPart property to the Part object via the lookUpPart method in the Inventory class*/
+
+                
+
+                int selectedIndex = e.RowIndex;
+                dgvParts.DefaultCellStyle.SelectionBackColor = Color.Aqua;
+                dgvParts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
+                Inventory.CurrentPartID = (int)dgvParts.Rows[selectedIndex].Cells[0].Value;
+                Inventory.CurrentPart = Inventory.lookupPart(Inventory.CurrentPartID);
+                btnModPart.Enabled = true;
+            }
+            catch
+            {
+                dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+                dgvParts.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                btnModPart.Enabled = false;
+
+                MessageBox.Show("You clicked a header. Please select a row.");
+            }
+        }
+
+        /***********MODIFY PART BUTTON EVENT***************/
         private void btnModPart_Click(object sender, EventArgs e)
         {
             ModifyParts modifyParts = new ModifyParts();
             this.Hide();
             modifyParts.Show();
-         
-        }
 
-        private void dgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int selectedIndex = e.RowIndex;
-            Inventory.CurrentPartID = (int)dgvParts.Rows[selectedIndex].Cells[0].Value;
-            Inventory.CurrentPart = Inventory.lookupPart(Inventory.CurrentPartID);
         }
-
 
     }
 
