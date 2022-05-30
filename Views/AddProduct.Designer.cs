@@ -32,9 +32,9 @@ namespace InventoryTrackingApp.Views
             this.addProductTitle = new System.Windows.Forms.Label();
             this.btn_SearchProduct = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.dgvAllParts = new System.Windows.Forms.DataGridView();
+            this.dgvAssocParts = new System.Windows.Forms.DataGridView();
+            this.label_AllParts = new System.Windows.Forms.Label();
             this.tb_ProductID = new System.Windows.Forms.TextBox();
             this.label_ProductID = new System.Windows.Forms.Label();
             this.label_ProductName = new System.Windows.Forms.Label();
@@ -42,18 +42,19 @@ namespace InventoryTrackingApp.Views
             this.label_ProductPrice = new System.Windows.Forms.Label();
             this.label_ProductMax = new System.Windows.Forms.Label();
             this.label_ProductMin = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.btn_AddProdcut = new System.Windows.Forms.Button();
+            this.tb_AddProdName = new System.Windows.Forms.TextBox();
+            this.tb_AddProdInventory = new System.Windows.Forms.TextBox();
+            this.tb_AddProdPrice = new System.Windows.Forms.TextBox();
+            this.tb_AddProdMax = new System.Windows.Forms.TextBox();
+            this.tb_AddProdMin = new System.Windows.Forms.TextBox();
+            this.btn_AddAssocPart = new System.Windows.Forms.Button();
             this.btn_DelProduct = new System.Windows.Forms.Button();
             this.btn_ProdCancel = new System.Windows.Forms.Button();
             this.btnSaveProd = new System.Windows.Forms.Button();
             this.testLableAP = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.label_AssocParts = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).BeginInit();
             this.SuspendLayout();
             // 
             // addProductTitle
@@ -82,35 +83,43 @@ namespace InventoryTrackingApp.Views
             this.textBox1.Size = new System.Drawing.Size(263, 23);
             this.textBox1.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgvAllParts
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(413, 84);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(447, 232);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvAllParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllParts.Location = new System.Drawing.Point(413, 84);
+            this.dgvAllParts.Name = "dgvAllParts";
+            this.dgvAllParts.RowTemplate.Height = 25;
+            this.dgvAllParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAllParts.Size = new System.Drawing.Size(601, 281);
+            this.dgvAllParts.TabIndex = 3;
+            this.dgvAllParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllParts_CellClick);
             // 
-            // dataGridView2
+            // dgvAssocParts
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(413, 365);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(447, 232);
-            this.dataGridView2.TabIndex = 4;
+            this.dgvAssocParts.AllowUserToAddRows = false;
+            this.dgvAssocParts.AllowUserToDeleteRows = false;
+            this.dgvAssocParts.AllowUserToResizeRows = false;
+            this.dgvAssocParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAssocParts.Location = new System.Drawing.Point(413, 457);
+            this.dgvAssocParts.MultiSelect = false;
+            this.dgvAssocParts.Name = "dgvAssocParts";
+            this.dgvAssocParts.RowTemplate.Height = 25;
+            this.dgvAssocParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAssocParts.Size = new System.Drawing.Size(601, 281);
+            this.dgvAssocParts.TabIndex = 4;
             // 
-            // label2
+            // label_AllParts
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(413, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 15);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "All candidate Parts";
+            this.label_AllParts.AutoSize = true;
+            this.label_AllParts.Location = new System.Drawing.Point(413, 63);
+            this.label_AllParts.Name = "label_AllParts";
+            this.label_AllParts.Size = new System.Drawing.Size(105, 15);
+            this.label_AllParts.TabIndex = 5;
+            this.label_AllParts.Text = "All candidate Parts";
             // 
             // tb_ProductID
             // 
+            this.tb_ProductID.Enabled = false;
             this.tb_ProductID.Location = new System.Drawing.Point(116, 245);
             this.tb_ProductID.Name = "tb_ProductID";
             this.tb_ProductID.Size = new System.Drawing.Size(184, 23);
@@ -170,76 +179,84 @@ namespace InventoryTrackingApp.Views
             this.label_ProductMin.TabIndex = 12;
             this.label_ProductMin.Text = "Min";
             // 
-            // textBox2
+            // tb_AddProdName
             // 
-            this.textBox2.Location = new System.Drawing.Point(116, 293);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(184, 23);
-            this.textBox2.TabIndex = 13;
+            this.tb_AddProdName.Location = new System.Drawing.Point(116, 293);
+            this.tb_AddProdName.Name = "tb_AddProdName";
+            this.tb_AddProdName.Size = new System.Drawing.Size(184, 23);
+            this.tb_AddProdName.TabIndex = 13;
+            this.tb_AddProdName.TextChanged += new System.EventHandler(this.tb_AddProdName_TextChanged);
             // 
-            // textBox3
+            // tb_AddProdInventory
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 339);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(184, 23);
-            this.textBox3.TabIndex = 14;
+            this.tb_AddProdInventory.Location = new System.Drawing.Point(116, 339);
+            this.tb_AddProdInventory.Name = "tb_AddProdInventory";
+            this.tb_AddProdInventory.Size = new System.Drawing.Size(184, 23);
+            this.tb_AddProdInventory.TabIndex = 14;
             // 
-            // textBox4
+            // tb_AddProdPrice
             // 
-            this.textBox4.Location = new System.Drawing.Point(116, 377);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(184, 23);
-            this.textBox4.TabIndex = 15;
+            this.tb_AddProdPrice.Location = new System.Drawing.Point(116, 377);
+            this.tb_AddProdPrice.Name = "tb_AddProdPrice";
+            this.tb_AddProdPrice.Size = new System.Drawing.Size(184, 23);
+            this.tb_AddProdPrice.TabIndex = 15;
             // 
-            // textBox5
+            // tb_AddProdMax
             // 
-            this.textBox5.Location = new System.Drawing.Point(116, 412);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(79, 23);
-            this.textBox5.TabIndex = 16;
+            this.tb_AddProdMax.Location = new System.Drawing.Point(116, 412);
+            this.tb_AddProdMax.Name = "tb_AddProdMax";
+            this.tb_AddProdMax.Size = new System.Drawing.Size(79, 23);
+            this.tb_AddProdMax.TabIndex = 16;
             // 
-            // textBox6
+            // tb_AddProdMin
             // 
-            this.textBox6.Location = new System.Drawing.Point(235, 412);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(79, 23);
-            this.textBox6.TabIndex = 17;
+            this.tb_AddProdMin.Location = new System.Drawing.Point(235, 412);
+            this.tb_AddProdMin.Name = "tb_AddProdMin";
+            this.tb_AddProdMin.Size = new System.Drawing.Size(79, 23);
+            this.tb_AddProdMin.TabIndex = 17;
             // 
-            // btn_AddProdcut
+            // btn_AddAssocPart
             // 
-            this.btn_AddProdcut.Location = new System.Drawing.Point(808, 322);
-            this.btn_AddProdcut.Name = "btn_AddProdcut";
-            this.btn_AddProdcut.Size = new System.Drawing.Size(52, 23);
-            this.btn_AddProdcut.TabIndex = 18;
-            this.btn_AddProdcut.Text = "Add";
-            this.btn_AddProdcut.UseVisualStyleBackColor = true;
+            this.btn_AddAssocPart.Location = new System.Drawing.Point(413, 369);
+            this.btn_AddAssocPart.Name = "btn_AddAssocPart";
+            this.btn_AddAssocPart.Size = new System.Drawing.Size(67, 31);
+            this.btn_AddAssocPart.TabIndex = 18;
+            this.btn_AddAssocPart.Text = "Add";
+            this.btn_AddAssocPart.UseVisualStyleBackColor = true;
+            this.btn_AddAssocPart.Click += new System.EventHandler(this.btn_AddAssocPart_Click);
             // 
             // btn_DelProduct
             // 
-            this.btn_DelProduct.Location = new System.Drawing.Point(808, 603);
+            this.btn_DelProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btn_DelProduct.ForeColor = System.Drawing.Color.White;
+            this.btn_DelProduct.Location = new System.Drawing.Point(413, 744);
             this.btn_DelProduct.Name = "btn_DelProduct";
-            this.btn_DelProduct.Size = new System.Drawing.Size(52, 23);
+            this.btn_DelProduct.Size = new System.Drawing.Size(67, 29);
             this.btn_DelProduct.TabIndex = 19;
             this.btn_DelProduct.Text = "Delete";
-            this.btn_DelProduct.UseVisualStyleBackColor = true;
+            this.btn_DelProduct.UseVisualStyleBackColor = false;
+            this.btn_DelProduct.Click += new System.EventHandler(this.btn_DelProduct_Click);
             // 
             // btn_ProdCancel
             // 
-            this.btn_ProdCancel.Location = new System.Drawing.Point(808, 679);
+            this.btn_ProdCancel.Location = new System.Drawing.Point(1151, 773);
             this.btn_ProdCancel.Name = "btn_ProdCancel";
             this.btn_ProdCancel.Size = new System.Drawing.Size(72, 35);
             this.btn_ProdCancel.TabIndex = 20;
             this.btn_ProdCancel.Text = "Cancel";
             this.btn_ProdCancel.UseVisualStyleBackColor = true;
+            this.btn_ProdCancel.Click += new System.EventHandler(this.btn_ProdCancel_Click);
             // 
             // btnSaveProd
             // 
-            this.btnSaveProd.Location = new System.Drawing.Point(713, 679);
+            this.btnSaveProd.Enabled = false;
+            this.btnSaveProd.Location = new System.Drawing.Point(1056, 773);
             this.btnSaveProd.Name = "btnSaveProd";
             this.btnSaveProd.Size = new System.Drawing.Size(72, 35);
             this.btnSaveProd.TabIndex = 21;
             this.btnSaveProd.Text = "Save";
             this.btnSaveProd.UseVisualStyleBackColor = true;
+            this.btnSaveProd.Click += new System.EventHandler(this.btnSaveProd_Click);
             // 
             // testLableAP
             // 
@@ -250,21 +267,31 @@ namespace InventoryTrackingApp.Views
             this.testLableAP.TabIndex = 22;
             this.testLableAP.Text = "TEST";
             // 
+            // label_AssocParts
+            // 
+            this.label_AssocParts.AutoSize = true;
+            this.label_AssocParts.Location = new System.Drawing.Point(413, 439);
+            this.label_AssocParts.Name = "label_AssocParts";
+            this.label_AssocParts.Size = new System.Drawing.Size(93, 15);
+            this.label_AssocParts.TabIndex = 23;
+            this.label_AssocParts.Text = "Associated Parts";
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 726);
+            this.ClientSize = new System.Drawing.Size(1235, 820);
+            this.Controls.Add(this.label_AssocParts);
             this.Controls.Add(this.testLableAP);
             this.Controls.Add(this.btnSaveProd);
             this.Controls.Add(this.btn_ProdCancel);
             this.Controls.Add(this.btn_DelProduct);
-            this.Controls.Add(this.btn_AddProdcut);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.btn_AddAssocPart);
+            this.Controls.Add(this.tb_AddProdMin);
+            this.Controls.Add(this.tb_AddProdMax);
+            this.Controls.Add(this.tb_AddProdPrice);
+            this.Controls.Add(this.tb_AddProdInventory);
+            this.Controls.Add(this.tb_AddProdName);
             this.Controls.Add(this.label_ProductMin);
             this.Controls.Add(this.label_ProductMax);
             this.Controls.Add(this.label_ProductPrice);
@@ -272,17 +299,17 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.label_ProductName);
             this.Controls.Add(this.label_ProductID);
             this.Controls.Add(this.tb_ProductID);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label_AllParts);
+            this.Controls.Add(this.dgvAssocParts);
+            this.Controls.Add(this.dgvAllParts);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_SearchProduct);
             this.Controls.Add(this.addProductTitle);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
             this.Load += new System.EventHandler(this.AddProduct_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,8 +320,8 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Label addProductTitle;
         private System.Windows.Forms.Button btn_SearchProduct;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvAllParts;
+        private System.Windows.Forms.DataGridView dgvAssocParts;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_ProductID;
         private System.Windows.Forms.Label label_ProductID;
@@ -308,10 +335,17 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button btn_AddProdcut;
+        private System.Windows.Forms.Button btn_AddAssocPart;
         private System.Windows.Forms.Button btn_DelProduct;
         private System.Windows.Forms.Button btn_ProdCancel;
         private System.Windows.Forms.Button btnSaveProd;
         private System.Windows.Forms.Label testLableAP;
+        private System.Windows.Forms.Label label_AllParts;
+        private System.Windows.Forms.Label label_AssocParts;
+        private System.Windows.Forms.TextBox tb_AddProdName;
+        private System.Windows.Forms.TextBox tb_AddProdInventory;
+        private System.Windows.Forms.TextBox tb_AddProdPrice;
+        private System.Windows.Forms.TextBox tb_AddProdMax;
+        private System.Windows.Forms.TextBox tb_AddProdMin;
     }
 }

@@ -17,7 +17,7 @@ namespace InventoryTrackingApp
         {
             InitializeComponent();
 
-            /***********SETUP DATA GRID***************/
+            /***********SETUP Parts DATA GRID***************/
             dgvParts.DataSource = Inventory.AllParts;
             dgvParts.DefaultCellStyle.BackColor = Color.White;
             dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
@@ -28,6 +28,18 @@ namespace InventoryTrackingApp
 
             btnModPart.Enabled = false;
 
+            /**************SETUP Products DATA GRID***********/
+            dgvProducts.DataSource = Inventory.Products;
+            dgvProducts.DefaultCellStyle.BackColor = Color.White;
+            dgvProducts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            dgvProducts.DefaultCellStyle.SelectionForeColor = Color.Black;
+            dgvProducts.ReadOnly = true;
+            dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvProducts.RowHeadersVisible = false;
+            dgvProducts.ClearSelection();
+
+            btnModProduct.Enabled = false;
         }
 
         /***********SAVE PART BUTTON EVENT***************/
@@ -75,7 +87,7 @@ namespace InventoryTrackingApp
         /***********SEARCH PRODUCT BUTTON EVENT***************/
         private void btnProdSearch_Click(object sender, EventArgs e)
         {
-
+        
         }
 
         /***********ADD PART BUTTON EVENT***************/
@@ -91,6 +103,7 @@ namespace InventoryTrackingApp
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
             AddProduct addProduct = new AddProduct();
+            this.Hide();
             addProduct.Show();
         }
 
@@ -98,10 +111,11 @@ namespace InventoryTrackingApp
         private void bt_Exit_Click(object sender, EventArgs e)
         {
             this.Close();
+            
         }
 
         /***********RESET BUTTON EVENT***************/
-        private void btn_RestSearch_Click(object sender, EventArgs e)
+        private void btn_ResetSearch_Click(object sender, EventArgs e)
         {
             searchParts.Text = "";
             dgvParts.DataSource = Inventory.AllParts;
@@ -149,6 +163,52 @@ namespace InventoryTrackingApp
 
         }
 
+        private void btnDelPart_Click(object sender, EventArgs e)
+        {
+            var dialogResult = MessageBox.Show("Are you sure you want to delete this Part?", "Delete Part?", MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+            {
+                Inventory.deletePart(Inventory.CurrentPart);
+                dgvParts.DataSource = Inventory.AllParts;
+                dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+                dgvParts.ClearSelection();
+                MessageBox.Show("Part has been deleted.");
+            }
+            
+        }
+
+        private void DgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                /*Find the RowIndex of the selected (clicked) row and set the CurrentPartID property in the Inventory class to the row index.
+                 Then set the CurrentPart property to the Part object via the lookUpPart method in the Inventory class*/
+
+                int selectedIndex = e.RowIndex;
+                dgvProducts.DefaultCellStyle.SelectionBackColor = Color.Aqua;
+                dgvProducts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
+                Inventory.CurrentProductID = (int)dgvProducts.Rows[selectedIndex].Cells[0].Value;
+                Inventory.CurrentProduct = Inventory.lookupProduct(Inventory.CurrentProductID);
+                btnModProduct.Enabled = true;
+            }
+            catch
+            {
+                dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+                dgvParts.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                btnModProduct.Enabled = false;
+
+                MessageBox.Show("You clicked a header. Please select a row.");
+            }
+        }
+
+        private void btnModProduct_Click(object sender, EventArgs e)
+        {
+
+            ModifyProducts modProd = new ModifyProducts();
+            this.Hide();
+            modProd.Show();
+        }
     }
 
 

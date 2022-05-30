@@ -46,10 +46,11 @@ namespace InventoryTrackingApp.Views
 
             if (rbInhouse.Checked)
             {
+                var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
                 Inhouse newInhouse = new Inhouse
                 {
                     Name = tbAddPartName.Text,
-                    Price = Convert.ToDecimal(tbAddPriceCost.Text),
+                    Price = Convert.ToDecimal(priceRounded),
                     InStock = Convert.ToInt32(tbAddPartInventory.Text),
                     Min = Convert.ToInt32(tbAddPartMin.Text),
                     Max = Convert.ToInt32(tbAddPartMax.Text),

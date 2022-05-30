@@ -45,7 +45,7 @@ namespace InventoryTrackingApp
             this.searchParts = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.bt_Exit = new System.Windows.Forms.Button();
-            this.btn_RestSearch = new System.Windows.Forms.Button();
+            this.btn_ResetSearch = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -108,6 +108,7 @@ namespace InventoryTrackingApp
             this.btnDelPart.TabIndex = 6;
             this.btnDelPart.Text = "DELETE";
             this.btnDelPart.UseVisualStyleBackColor = false;
+            this.btnDelPart.Click += new System.EventHandler(this.btnDelPart_Click);
             // 
             // btnModPart
             // 
@@ -133,6 +134,7 @@ namespace InventoryTrackingApp
             // 
             this.dgvParts.AllowUserToAddRows = false;
             this.dgvParts.AllowUserToDeleteRows = false;
+            this.dgvParts.AllowUserToResizeRows = false;
             this.dgvParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvParts.Location = new System.Drawing.Point(35, 155);
@@ -147,16 +149,23 @@ namespace InventoryTrackingApp
             // 
             // dgvProducts
             // 
+            this.dgvProducts.AllowUserToAddRows = false;
+            this.dgvProducts.AllowUserToDeleteRows = false;
+            this.dgvProducts.AllowUserToResizeRows = false;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(789, 155);
+            this.dgvProducts.MultiSelect = false;
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.ReadOnly = true;
             this.dgvProducts.RowTemplate.Height = 25;
-            this.dgvProducts.Size = new System.Drawing.Size(620, 281);
+            this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProducts.Size = new System.Drawing.Size(601, 281);
             this.dgvProducts.TabIndex = 16;
+            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProducts_CellClick);
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(1417, 155);
+            this.btnAddProduct.Location = new System.Drawing.Point(1396, 155);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(75, 23);
             this.btnAddProduct.TabIndex = 10;
@@ -166,18 +175,19 @@ namespace InventoryTrackingApp
             // 
             // btnModProduct
             // 
-            this.btnModProduct.Location = new System.Drawing.Point(1417, 211);
+            this.btnModProduct.Location = new System.Drawing.Point(1396, 211);
             this.btnModProduct.Name = "btnModProduct";
             this.btnModProduct.Size = new System.Drawing.Size(75, 23);
             this.btnModProduct.TabIndex = 11;
             this.btnModProduct.Text = "MODIFY";
             this.btnModProduct.UseVisualStyleBackColor = true;
+            this.btnModProduct.Click += new System.EventHandler(this.btnModProduct_Click);
             // 
             // btnDelProduct
             // 
             this.btnDelProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDelProduct.ForeColor = System.Drawing.Color.White;
-            this.btnDelProduct.Location = new System.Drawing.Point(1417, 403);
+            this.btnDelProduct.Location = new System.Drawing.Point(1396, 403);
             this.btnDelProduct.Name = "btnDelProduct";
             this.btnDelProduct.Size = new System.Drawing.Size(75, 33);
             this.btnDelProduct.TabIndex = 12;
@@ -211,19 +221,19 @@ namespace InventoryTrackingApp
             this.bt_Exit.UseVisualStyleBackColor = true;
             this.bt_Exit.Click += new System.EventHandler(this.bt_Exit_Click);
             // 
-            // btn_RestSearch
+            // btn_ResetSearch
             // 
-            this.btn_RestSearch.Location = new System.Drawing.Point(562, 117);
-            this.btn_RestSearch.Name = "btn_RestSearch";
-            this.btn_RestSearch.Size = new System.Drawing.Size(75, 25);
-            this.btn_RestSearch.TabIndex = 3;
-            this.btn_RestSearch.Text = "Reset";
-            this.btn_RestSearch.UseVisualStyleBackColor = true;
-            this.btn_RestSearch.Click += new System.EventHandler(this.btn_RestSearch_Click);
+            this.btn_ResetSearch.Location = new System.Drawing.Point(562, 117);
+            this.btn_ResetSearch.Name = "btn_ResetSearch";
+            this.btn_ResetSearch.Size = new System.Drawing.Size(75, 25);
+            this.btn_ResetSearch.TabIndex = 3;
+            this.btn_ResetSearch.Text = "Reset";
+            this.btn_ResetSearch.UseVisualStyleBackColor = true;
+            this.btn_ResetSearch.Click += new System.EventHandler(this.btn_ResetSearch_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1334, 118);
+            this.button1.Location = new System.Drawing.Point(1315, 116);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 9;
@@ -236,7 +246,7 @@ namespace InventoryTrackingApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 720);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btn_RestSearch);
+            this.Controls.Add(this.btn_ResetSearch);
             this.Controls.Add(this.bt_Exit);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.dgvParts);
@@ -272,15 +282,15 @@ namespace InventoryTrackingApp
         private System.Windows.Forms.Button btnProdSearch;
         private System.Windows.Forms.Button btnPartSearch;
         private System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.DataGridView dgvParts;
         private System.Windows.Forms.Button btnAddProduct;
         private System.Windows.Forms.Button btnModProduct;
         private System.Windows.Forms.Button btnDelProduct;
         private System.Windows.Forms.TextBox searchParts;
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button bt_Exit;
-        private System.Windows.Forms.Button btn_RestSearch;
+        private System.Windows.Forms.Button btn_ResetSearch;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.DataGridView dgvParts;
     }
 }
 
