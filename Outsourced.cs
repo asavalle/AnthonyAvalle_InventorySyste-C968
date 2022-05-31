@@ -15,9 +15,16 @@ namespace InventoryTrackingApp
         public string CompanyName { get; set; }
 
         //On constructor call, counts number of elements in the AllParts list and assigns to PartID
-        public Outsourced()
+        public Outsourced( string name, decimal price, int inStock, int min, int max, string companyName)
         {
             PartID += Inventory.AllParts.Count;
+            Name = name;
+            Price = price;
+            InStock = inStock;
+            Min = min;
+            Max = max;
+            CompanyName = companyName;
+
         }
     }
 }

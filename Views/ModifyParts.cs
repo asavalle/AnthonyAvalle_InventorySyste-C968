@@ -14,8 +14,7 @@ namespace InventoryTrackingApp.Views
         {
             InitializeComponent();
             rb_ModPartInHouse.Checked = true;  //Set Inhouse checked by default
-            //btn_ModPartSave.Enabled = false;
-            //Check if CurrentPart is of type Inhouse
+    
             if (Inventory.CurrentPart is Inhouse)
             {
                 /*Set the Inventory property, CurrentPart, which is type Part, to a new Inhouse type before adding the objects from the
@@ -71,12 +70,14 @@ namespace InventoryTrackingApp.Views
             {
                  if (rb_ModPartInHouse.Checked)
                 {
-                    Part updated = new Inhouse{PartID=Inventory.CurrentPartID, Name = tb_ModPartName.Text, InStock= Convert.ToInt32(tb_ModPartInventory.Text),Price= Convert.ToDecimal(tb_ModPartPrice.Text), Max= Convert.ToInt32(tb_ModPartMax.Text),Min= Convert.ToInt32(tb_ModPartMin.Text), MachineID= Convert.ToInt32(tb_ModPartMachineCompany.Text) };
+                    Part updated = new Inhouse( tb_ModPartName.Text,Convert.ToDecimal(tb_ModPartPrice.Text),Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text),Convert.ToInt32(tb_ModPartMin.Text), Convert.ToInt32(tb_ModPartMachineCompany.Text) );
+                    updated.PartID = Inventory.CurrentPartID;
                     Inventory.updatePart(Inventory.CurrentPartID, updated);
                 }
                 else
                 {
-                    Part updated = new Outsourced { PartID = Inventory.CurrentPartID, Name = tb_ModPartName.Text, InStock = Convert.ToInt32(tb_ModPartInventory.Text), Price = Convert.ToDecimal(tb_ModPartPrice.Text), Max = Convert.ToInt32(tb_ModPartMax.Text), Min = Convert.ToInt32(tb_ModPartMin.Text), CompanyName = tb_ModPartMachineCompany.Text};
+                    Part updated = new Outsourced (tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text),  Convert.ToInt32(tb_ModPartInventory.Text) , Convert.ToInt32(tb_ModPartMax.Text),  Convert.ToInt32(tb_ModPartMin.Text),  tb_ModPartMachineCompany.Text);
+                    updated.PartID = Inventory.CurrentPartID;
                     Inventory.updatePart(Inventory.CurrentPartID, updated);
 
                 }
@@ -86,9 +87,6 @@ namespace InventoryTrackingApp.Views
                 main.Show();
 
             }
-
-
-
 
         }
 

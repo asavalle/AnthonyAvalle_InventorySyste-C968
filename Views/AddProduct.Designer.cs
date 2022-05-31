@@ -30,8 +30,8 @@ namespace InventoryTrackingApp.Views
         private void InitializeComponent()
         {
             this.addProductTitle = new System.Windows.Forms.Label();
-            this.btn_SearchProduct = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btn_AddProdSearch = new System.Windows.Forms.Button();
+            this.tb_AddProdSearch = new System.Windows.Forms.TextBox();
             this.dgvAllParts = new System.Windows.Forms.DataGridView();
             this.dgvAssocParts = new System.Windows.Forms.DataGridView();
             this.label_AllParts = new System.Windows.Forms.Label();
@@ -48,10 +48,9 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMax = new System.Windows.Forms.TextBox();
             this.tb_AddProdMin = new System.Windows.Forms.TextBox();
             this.btn_AddAssocPart = new System.Windows.Forms.Button();
-            this.btn_DelProduct = new System.Windows.Forms.Button();
+            this.btn_DelAscPart = new System.Windows.Forms.Button();
             this.btn_ProdCancel = new System.Windows.Forms.Button();
             this.btnSaveProd = new System.Windows.Forms.Button();
-            this.testLableAP = new System.Windows.Forms.Label();
             this.label_AssocParts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).BeginInit();
@@ -67,21 +66,21 @@ namespace InventoryTrackingApp.Views
             this.addProductTitle.TabIndex = 0;
             this.addProductTitle.Text = "Add Product";
             // 
-            // btn_SearchProduct
+            // btn_AddProdSearch
             // 
-            this.btn_SearchProduct.Location = new System.Drawing.Point(413, 19);
-            this.btn_SearchProduct.Name = "btn_SearchProduct";
-            this.btn_SearchProduct.Size = new System.Drawing.Size(67, 23);
-            this.btn_SearchProduct.TabIndex = 1;
-            this.btn_SearchProduct.Text = "Search";
-            this.btn_SearchProduct.UseVisualStyleBackColor = true;
+            this.btn_AddProdSearch.Location = new System.Drawing.Point(413, 19);
+            this.btn_AddProdSearch.Name = "btn_AddProdSearch";
+            this.btn_AddProdSearch.Size = new System.Drawing.Size(67, 23);
+            this.btn_AddProdSearch.TabIndex = 1;
+            this.btn_AddProdSearch.Text = "Search";
+            this.btn_AddProdSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tb_AddProdSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(486, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(263, 23);
-            this.textBox1.TabIndex = 2;
+            this.tb_AddProdSearch.Location = new System.Drawing.Point(486, 19);
+            this.tb_AddProdSearch.Name = "tb_AddProdSearch";
+            this.tb_AddProdSearch.Size = new System.Drawing.Size(263, 23);
+            this.tb_AddProdSearch.TabIndex = 2;
             // 
             // dgvAllParts
             // 
@@ -92,7 +91,7 @@ namespace InventoryTrackingApp.Views
             this.dgvAllParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAllParts.Size = new System.Drawing.Size(601, 281);
             this.dgvAllParts.TabIndex = 3;
-            this.dgvAllParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllParts_CellClick);
+            this.dgvAllParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAllParts_CellClick);
             // 
             // dgvAssocParts
             // 
@@ -103,10 +102,13 @@ namespace InventoryTrackingApp.Views
             this.dgvAssocParts.Location = new System.Drawing.Point(413, 457);
             this.dgvAssocParts.MultiSelect = false;
             this.dgvAssocParts.Name = "dgvAssocParts";
+            this.dgvAssocParts.ReadOnly = true;
+            this.dgvAssocParts.RowHeadersVisible = false;
             this.dgvAssocParts.RowTemplate.Height = 25;
             this.dgvAssocParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAssocParts.Size = new System.Drawing.Size(601, 281);
             this.dgvAssocParts.TabIndex = 4;
+            this.dgvAssocParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssocParts_CellClick);
             // 
             // label_AllParts
             // 
@@ -225,17 +227,17 @@ namespace InventoryTrackingApp.Views
             this.btn_AddAssocPart.UseVisualStyleBackColor = true;
             this.btn_AddAssocPart.Click += new System.EventHandler(this.btn_AddAssocPart_Click);
             // 
-            // btn_DelProduct
+            // btn_DelAscPart
             // 
-            this.btn_DelProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btn_DelProduct.ForeColor = System.Drawing.Color.White;
-            this.btn_DelProduct.Location = new System.Drawing.Point(413, 744);
-            this.btn_DelProduct.Name = "btn_DelProduct";
-            this.btn_DelProduct.Size = new System.Drawing.Size(67, 29);
-            this.btn_DelProduct.TabIndex = 19;
-            this.btn_DelProduct.Text = "Delete";
-            this.btn_DelProduct.UseVisualStyleBackColor = false;
-            this.btn_DelProduct.Click += new System.EventHandler(this.btn_DelProduct_Click);
+            this.btn_DelAscPart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btn_DelAscPart.ForeColor = System.Drawing.Color.White;
+            this.btn_DelAscPart.Location = new System.Drawing.Point(413, 744);
+            this.btn_DelAscPart.Name = "btn_DelAscPart";
+            this.btn_DelAscPart.Size = new System.Drawing.Size(67, 29);
+            this.btn_DelAscPart.TabIndex = 19;
+            this.btn_DelAscPart.Text = "Delete";
+            this.btn_DelAscPart.UseVisualStyleBackColor = false;
+            this.btn_DelAscPart.Click += new System.EventHandler(this.btn_DelAscPart_Click);
             // 
             // btn_ProdCancel
             // 
@@ -258,15 +260,6 @@ namespace InventoryTrackingApp.Views
             this.btnSaveProd.UseVisualStyleBackColor = true;
             this.btnSaveProd.Click += new System.EventHandler(this.btnSaveProd_Click);
             // 
-            // testLableAP
-            // 
-            this.testLableAP.AutoSize = true;
-            this.testLableAP.Location = new System.Drawing.Point(73, 552);
-            this.testLableAP.Name = "testLableAP";
-            this.testLableAP.Size = new System.Drawing.Size(31, 15);
-            this.testLableAP.TabIndex = 22;
-            this.testLableAP.Text = "TEST";
-            // 
             // label_AssocParts
             // 
             this.label_AssocParts.AutoSize = true;
@@ -282,10 +275,9 @@ namespace InventoryTrackingApp.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1235, 820);
             this.Controls.Add(this.label_AssocParts);
-            this.Controls.Add(this.testLableAP);
             this.Controls.Add(this.btnSaveProd);
             this.Controls.Add(this.btn_ProdCancel);
-            this.Controls.Add(this.btn_DelProduct);
+            this.Controls.Add(this.btn_DelAscPart);
             this.Controls.Add(this.btn_AddAssocPart);
             this.Controls.Add(this.tb_AddProdMin);
             this.Controls.Add(this.tb_AddProdMax);
@@ -302,8 +294,8 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.label_AllParts);
             this.Controls.Add(this.dgvAssocParts);
             this.Controls.Add(this.dgvAllParts);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btn_SearchProduct);
+            this.Controls.Add(this.tb_AddProdSearch);
+            this.Controls.Add(this.btn_AddProdSearch);
             this.Controls.Add(this.addProductTitle);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
@@ -318,8 +310,8 @@ namespace InventoryTrackingApp.Views
         #endregion
 
         private System.Windows.Forms.Label addProductTitle;
-        private System.Windows.Forms.Button btn_SearchProduct;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btn_AddProdSearch;
+        private System.Windows.Forms.TextBox tb_AddProdSearch;
         private System.Windows.Forms.DataGridView dgvAllParts;
         private System.Windows.Forms.DataGridView dgvAssocParts;
         private System.Windows.Forms.Label label2;
@@ -336,10 +328,9 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Button btn_AddAssocPart;
-        private System.Windows.Forms.Button btn_DelProduct;
+        private System.Windows.Forms.Button btn_DelAscPart;
         private System.Windows.Forms.Button btn_ProdCancel;
         private System.Windows.Forms.Button btnSaveProd;
-        private System.Windows.Forms.Label testLableAP;
         private System.Windows.Forms.Label label_AllParts;
         private System.Windows.Forms.Label label_AssocParts;
         private System.Windows.Forms.TextBox tb_AddProdName;

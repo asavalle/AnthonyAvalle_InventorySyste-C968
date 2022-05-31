@@ -183,10 +183,10 @@ namespace InventoryTrackingApp
             {
                 /*Find the RowIndex of the selected (clicked) row and set the CurrentPartID property in the Inventory class to the row index.
                  Then set the CurrentPart property to the Part object via the lookUpPart method in the Inventory class*/
-
-                int selectedIndex = e.RowIndex;
                 dgvProducts.DefaultCellStyle.SelectionBackColor = Color.Aqua;
                 dgvProducts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
+
+                int selectedIndex = e.RowIndex;               
                 Inventory.CurrentProductID = (int)dgvProducts.Rows[selectedIndex].Cells[0].Value;
                 Inventory.CurrentProduct = Inventory.lookupProduct(Inventory.CurrentProductID);
                 btnModProduct.Enabled = true;

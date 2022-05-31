@@ -43,7 +43,7 @@ namespace InventoryTrackingApp
 
         // public static void updateProduct(int) { }
 
-        /******************************************************************************************/
+        /***************************  PARTS  **************************************************/
 
         public static void addPart(Part part) {
             AllParts.Add(part);
@@ -101,32 +101,7 @@ namespace InventoryTrackingApp
 
 
 
-        /*************************
-        ***Hard coded test data***
-        *************************/
-        static Inventory()
-        {
-
-
-            //    InHouse Parts Source
-            AllParts.Add(new Inhouse { Name = "handle bar", Price = Convert.ToDecimal("10.20"), InStock = 10, Min = 5, Max = 20, MachineID = 1000 });
-            AllParts.Add(new Inhouse { Name = "front wheel", Price = Convert.ToDecimal("5.20"), InStock = 10, Min = 10, Max = 40, MachineID = 1001 });
-            AllParts.Add(new Inhouse { Name = "rear wheel", Price = Convert.ToDecimal("5.20"), InStock = 10, Min = 10, Max = 40, MachineID = 1002 });
-            AllParts.Add(new Inhouse { Name = "seat", Price = Convert.ToDecimal("5.25"), InStock = 10, Min = 5, Max = 20, MachineID = 1000 });
-            AllParts.Add(new Inhouse { Name = " Double Rear Wheel", Price = Convert.ToDecimal("10.99"), InStock = 20, Min = 10, Max = 20, MachineID = 1002 });
-
-            //    Outsourced Parts Source
-            AllParts.Add(new Outsourced { Name = "left pedal", Price = Convert.ToDecimal("10.20"), InStock = 10, Min = 5, Max = 20, CompanyName = "Company1" });
-            AllParts.Add(new Outsourced { Name = "right pedal", Price = Convert.ToDecimal("5.45"), InStock = 10, Min = 10, Max = 40, CompanyName = "Company2" });
-            AllParts.Add(new Outsourced { Name = "boy's frame", Price = Convert.ToDecimal("25.60"), InStock = 10, Min = 10, Max = 40, CompanyName = "Company3" });
-            AllParts.Add(new Outsourced { Name = "girls frame", Price = Convert.ToDecimal("25.60"), InStock = 10, Min = 5, Max = 20, CompanyName = "Company4" });
-
-            //Products Source
-            Products.Add(new Product { Name = "Boy's Bicycle", Price = Convert.ToDecimal("150.00"), InStock = 10, Min = 5, Max = 20 });
-            Products.Add(new Product { Name = "Girl's Bicycle", Price = Convert.ToDecimal("150.00"), InStock = 10, Min = 5, Max = 20 });
-            Products.Add(new Product { Name = "Tri-wheeler", Price = Convert.ToDecimal("299.99"), InStock = 10, Min = 5, Max = 20 });
-
-        }
-
+        
+       
     }
 }

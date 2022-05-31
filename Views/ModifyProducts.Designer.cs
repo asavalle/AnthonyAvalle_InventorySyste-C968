@@ -84,6 +84,7 @@ namespace InventoryTrackingApp.Views
             this.btn_ModSaveProd.TabIndex = 45;
             this.btn_ModSaveProd.Text = "Save";
             this.btn_ModSaveProd.UseVisualStyleBackColor = true;
+            this.btn_ModSaveProd.Click += new System.EventHandler(this.btn_ModSaveProd_Click);
             // 
             // btn_ModProdCancel
             // 

@@ -32,7 +32,8 @@ namespace InventoryTrackingApp.Views
                 tb_ModProdPrice.Text = Inventory.CurrentProduct.Price.ToString();
                 tb_ModProdMax.Text = Inventory.CurrentProduct.Max.ToString();
                 tb_ModProdMin.Text = Inventory.CurrentProduct.Min.ToString();
-
+                
+                
             }
             catch (NullReferenceException)
             {
@@ -62,6 +63,11 @@ namespace InventoryTrackingApp.Views
         private void btn_ModAssocPart_Click(object sender, EventArgs e)
         {
             Product.addAssociatedPart(Inventory.CurrentPart);
+        }
+
+        private void btn_ModSaveProd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

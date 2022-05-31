@@ -48,14 +48,14 @@ namespace InventoryTrackingApp.Views
             {
                 var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
                 Inhouse newInhouse = new Inhouse
-                {
-                    Name = tbAddPartName.Text,
-                    Price = Convert.ToDecimal(priceRounded),
-                    InStock = Convert.ToInt32(tbAddPartInventory.Text),
-                    Min = Convert.ToInt32(tbAddPartMin.Text),
-                    Max = Convert.ToInt32(tbAddPartMax.Text),
-                    MachineID = Convert.ToInt32(tbCompanyOrMachine.Text)
-                };
+                (
+                    tbAddPartName.Text,
+                    Convert.ToDecimal(priceRounded),
+                    Convert.ToInt32(tbAddPartInventory.Text),
+                    Convert.ToInt32(tbAddPartMin.Text),
+                    Convert.ToInt32(tbAddPartMax.Text),
+                    Convert.ToInt32(tbCompanyOrMachine.Text)
+                );
                              
 
                 Inventory.addPart(newInhouse);
@@ -63,14 +63,14 @@ namespace InventoryTrackingApp.Views
             else
             {
                 Outsourced newOutsourced = new Outsourced
-                {
-                    Name = tbAddPartName.Text,
-                    Price = Convert.ToDecimal(tbAddPriceCost.Text),
-                    InStock = Convert.ToInt32(tbAddPartInventory.Text),
-                    Min = Convert.ToInt32(tbAddPartMin.Text),
-                    Max = Convert.ToInt32(tbAddPartMax.Text),
-                    CompanyName = tbCompanyOrMachine.Text
-                };
+                (
+                    tbAddPartName.Text,
+                    Convert.ToDecimal(tbAddPriceCost.Text),
+                    Convert.ToInt32(tbAddPartInventory.Text),
+                    Convert.ToInt32(tbAddPartMin.Text),
+                    Convert.ToInt32(tbAddPartMax.Text),
+                    tbCompanyOrMachine.Text
+                );
 
                 Inventory.addPart(newOutsourced);
 
