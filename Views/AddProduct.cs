@@ -10,12 +10,23 @@ namespace InventoryTrackingApp.Views
 {
     public partial class AddProduct : Form
     {
+
+        Product tempProd = new Product
+        {
+            Name = "",
+            InStock = 0,
+            Price = Convert.ToDecimal(0.00),
+            Max = 0,
+            Min = 0
+        };
+
         public AddProduct()
         {
             InitializeComponent();
             btnSaveProd.Enabled = false;
-            
             dgvAllParts.DataSource = Inventory.AllParts;
+            dgvAssocParts.DataSource = Product.AssociatedParts;
+            dgvAllParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAllParts.RowHeadersVisible = false;
             dgvAllParts.MultiSelect = false;
             dgvAllParts.ReadOnly = true;
@@ -24,10 +35,16 @@ namespace InventoryTrackingApp.Views
             dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvAllParts.ClearSelection();
 
-            dgvAssocParts.DataSource = Product.AssociatedParts;
+            
+
         }
 
-        private void AddProduct_Load(object sender, EventArgs e) { }
+        private void AddProduct_Load(object sender, EventArgs e) {
+           
+
+        }
+
+
 
         private void btn_ProdCancel_Click(object sender, EventArgs e)
         {
@@ -44,13 +61,13 @@ namespace InventoryTrackingApp.Views
             {
                 /*Find the RowIndex of the selected (clicked) row and set the CurrentPartID property in the Inventory class to the row index.
                  Then set the CurrentPart property to the Part object via the lookUpPart method in the Inventory class*/
-
-                int selectedIndex = e.RowIndex;
                 dgvAllParts.DefaultCellStyle.SelectionBackColor = Color.Aqua;
                 dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
-                Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
-                Inventory.CurrentPart = Inventory.lookupPart(Inventory.CurrentPartID);
-                testLableAP.Text = Inventory.CurrentPartID.ToString();
+
+                var selectedIndex = e.RowIndex;
+                //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
+                Inventory.CurrentPartID = selectedIndex;
+                Inventory.CurrentPart = Inventory.lookupPart(selectedIndex);
             }
             catch
             {
@@ -62,24 +79,35 @@ namespace InventoryTrackingApp.Views
             }
         }
 
-        private void btnSaveProd_Click(object sender, EventArgs e)
+        
+        private void btn_AddAssocPart_Click(object sender, EventArgs e)
         {
-            if(tb_AddProdName.Text != "") {
-                Product newProd = new Product
-                {
-                    Name = tb_AddProdName.Text,
-                    InStock = Convert.ToInt32(tb_AddProdInventory.Text),
-                    Price = Convert.ToDecimal(tb_AddProdPrice.Text),
-                    Max = Convert.ToInt32(tb_AddProdMax.Text),
-                    Min = Convert.ToInt32(tb_AddProdMin.Text)
-                };
-                Inventory.addProduct(newProd);
+            if (tb_AddProdName.Text != "")
+            {
+                tempProd.Name = tb_AddProdName.Text;
+                tempProd.InStock = Convert.ToInt32(tb_AddProdInventory.Text);
+                tempProd.Price = Convert.ToDecimal(tb_AddProdPrice.Text);
+                tempProd.Max = Convert.ToInt32(tb_AddProdMax.Text);
+                tempProd.Min = Convert.ToInt32(tb_AddProdMin.Text);
+                
                 MessageBox.Show($"New Product, {tb_AddProdName.Text}, Added.");
             }
             else
             {
                 MessageBox.Show("Please enter a Part Name as a minimum requirement.");
             }
+            Product.addAssociatedPart(Inventory.CurrentPart);
+
+
+        }
+        private void btnSaveProd_Click(object sender, EventArgs e)
+        {
+            Inventory.CurrentProduct = tempProd;
+            Inventory.addProduct(Inventory.CurrentProduct);
+            dgvAssocParts.Rows.Clear();
+            this.Close();
+            MainScreen main = new MainScreen();
+            main.Show();
 
         }
 
@@ -89,13 +117,7 @@ namespace InventoryTrackingApp.Views
 
         }
 
-        private void btn_AddAssocPart_Click(object sender, EventArgs e)
-        {
-            
-            Inventory.CurrentPart = Inventory.lookupPart(Inventory.CurrentPartID);
-            Product.AssociatedParts.Add(Inventory.CurrentPart); 
-            
-        }
+       
 
         private void btn_DelProduct_Click(object sender, EventArgs e)
         {

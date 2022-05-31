@@ -209,6 +209,14 @@ namespace InventoryTrackingApp
             this.Hide();
             modProd.Show();
         }
+
+
+        //DELETE FOR FINAL SUBMISSION
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PartsNProductsLists showAll = new PartsNProductsLists() ;
+            showAll.Show();
+        }
     }
 
 

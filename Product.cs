@@ -10,7 +10,7 @@ namespace InventoryTrackingApp
 
 
         //public properties
-        public static BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
+        public static BindingList<Part> AssociatedParts { get; set; } 
 
         public int ProductID { get; set; } = 0;
         public string Name { get; set; }
@@ -24,6 +24,7 @@ namespace InventoryTrackingApp
         public Product()
         {
             ProductID += Inventory.Products.Count;
+            AssociatedParts = new BindingList<Part>();
         }
 
 

@@ -15,6 +15,7 @@ namespace InventoryTrackingApp.Views
             InitializeComponent();
             dgvModAllParts.DataSource = Inventory.AllParts;
             dgvModAssocParts.DataSource = Product.AssociatedParts;
+
             dgvModAllParts.RowHeadersVisible = false;
             btn_ModSaveProd.Enabled = true;
 
@@ -22,18 +23,21 @@ namespace InventoryTrackingApp.Views
 
         private void ModifyProducts_Load(object sender, EventArgs e)
         {
-            try { 
-            tb_ModProdName.Text = Inventory.CurrentProduct.Name.ToString();
-            tb_ModProdInventory.Text = Inventory.CurrentProduct.InStock.ToString();
-            tb_ModProdPrice.Text = Inventory.CurrentProduct.Price.ToString();
-            tb_ModProdMax.Text = Inventory.CurrentProduct.Max.ToString();
-            tb_ModProdMin.Text = Inventory.CurrentProduct.Min.ToString();
+            BindingList<Part> asscPartList = new BindingList<Part>();
+
+            try
+            {
+                tb_ModProdName.Text = Inventory.CurrentProduct.Name.ToString();
+                tb_ModProdInventory.Text = Inventory.CurrentProduct.InStock.ToString();
+                tb_ModProdPrice.Text = Inventory.CurrentProduct.Price.ToString();
+                tb_ModProdMax.Text = Inventory.CurrentProduct.Max.ToString();
+                tb_ModProdMin.Text = Inventory.CurrentProduct.Min.ToString();
+
             }
             catch (NullReferenceException)
             {
                 MessageBox.Show("Please select a Product.");
             }
-
 
         }
 
@@ -51,7 +55,7 @@ namespace InventoryTrackingApp.Views
         {
             var index = e.RowIndex;
             Inventory.CurrentPartID = index;
-            Inventory.CurrentPart = Inventory.lookupPart(index); //doesn't fill in the fields, currentpart is empty. Need to grab part from list
+            Inventory.CurrentPart = Inventory.lookupPart(index); 
 
         } 
         
