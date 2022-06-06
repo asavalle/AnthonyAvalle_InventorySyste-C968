@@ -106,6 +106,7 @@ namespace InventoryTrackingApp.Views
             this.btn_ModDelProduct.TabIndex = 43;
             this.btn_ModDelProduct.Text = "Delete";
             this.btn_ModDelProduct.UseVisualStyleBackColor = false;
+            this.btn_ModDelProduct.Click += new System.EventHandler(this.btn_ModDelProduct_Click);
             // 
             // btn_ModAssocPart
             // 
@@ -151,6 +152,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModProdName.Name = "tb_ModProdName";
             this.tb_ModProdName.Size = new System.Drawing.Size(184, 23);
             this.tb_ModProdName.TabIndex = 37;
+            this.tb_ModProdName.TextChanged += new System.EventHandler(this.tb_ModProdName_TextChanged);
             // 
             // label_ProductMin
             // 
@@ -236,6 +238,7 @@ namespace InventoryTrackingApp.Views
             this.dgvModAssocParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvModAssocParts.Size = new System.Drawing.Size(601, 281);
             this.dgvModAssocParts.TabIndex = 28;
+            this.dgvModAssocParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvModAssocParts_CellClick);
             // 
             // dgvModAllParts
             // 

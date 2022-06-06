@@ -10,6 +10,15 @@ namespace InventoryTrackingApp.Views
 {
     public partial class ModifyProducts : Form
     {
+        Product tempProd = new Product
+                (
+                    Inventory.CurrentProduct.Name,
+                    Inventory.CurrentProduct.Price ,
+                    Inventory.CurrentProduct.InStock,
+                    Inventory.CurrentProduct.Max,
+                    Inventory.CurrentProduct.Min,
+                    tempList
+                );
         public ModifyProducts()
         {
             InitializeComponent();
@@ -67,7 +76,33 @@ namespace InventoryTrackingApp.Views
 
         private void btn_ModSaveProd_Click(object sender, EventArgs e)
         {
+            //foreach (Control c in this.Controls)
+            //{
+            //    if (c.GetType() == typeof(TextBox))
+            //    {
+                   
+            //    };
+            //};
+        }
 
+       
+
+        private void dgvModAssocParts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedIndex = e.RowIndex;
+            //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
+            Inventory.CurrentPartID = selectedIndex;
+        }
+
+        private void btn_ModDelProduct_Click(object sender, EventArgs e)
+        {
+            Product.removeAssociatedPart(Inventory.CurrentPartID);
+
+        }
+
+        private void tb_ModProdName_TextChanged(object sender, EventArgs e)
+        {
+            //Inventory.CurrentProduct.Name =  tb_ModProdName.Text;
         }
     }
 }

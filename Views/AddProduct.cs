@@ -89,15 +89,7 @@ namespace InventoryTrackingApp.Views
         {
             if (tb_AddProdName.Text != "")
             {
-                /*
-                Inventory.Products.Add(new Product(tb_AddProdName.Text,
-                    Convert.ToDecimal(tb_AddProdPrice.Text),
-                    Convert.ToInt32(tb_AddProdInventory.Text),
-                    Convert.ToInt32(tb_AddProdMax.Text),
-                    Convert.ToInt32(tb_AddProdMin.Text),
-                    tempList));
-                */
-
+             
                 tempProd.Name = tb_AddProdName.Text;
                 tempProd.Price = Convert.ToDecimal(tb_AddProdPrice.Text);
                 tempProd.InStock = Convert.ToInt32(tb_AddProdInventory.Text);
@@ -129,20 +121,20 @@ namespace InventoryTrackingApp.Views
 
         }
 
-       
-
-        private void btn_DelAscPart_Click(object sender, EventArgs e)
-        {
-            Product.removeAssociatedPart(selectedIndex);
-
-        }
-
         private void dgvAssocParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedIndex = e.RowIndex;
             //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
             Inventory.CurrentPartID = selectedIndex;
-            
+
         }
+
+        private void btn_DelAscPart_Click(object sender, EventArgs e)
+        {
+            Product.removeAssociatedPart(Inventory.CurrentPartID);
+
+        }
+
+       
     }
 }

@@ -41,8 +41,7 @@ namespace InventoryTrackingApp
             AssociatedParts.Add(part);
         }
         public static bool removeAssociatedPart(int index) {
-            /*if (index > AssociatedParts.Count) return false*/;
-
+ 
             AssociatedParts.Remove(lookupAssociatedPart(index));
 
             return true;
