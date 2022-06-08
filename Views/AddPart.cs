@@ -24,13 +24,11 @@ namespace InventoryTrackingApp.Views
         private void rbOutsourced_CheckedChanged(object sender, EventArgs e)
         {
             this.label_AddPartSource.Text = "Company Name";
-            //this.label_AddPartCompName.Visible = true;
         }
 
         private void rbInhouse_CheckedChanged(object sender, EventArgs e)
         {
             this.label_AddPartSource.Text = "Machine ID";
-            //this.label_AddPartCompName.Visible = false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -13,17 +13,17 @@ namespace InventoryTrackingApp.Views
         Product tempProd = new Product
                 (
                     Inventory.CurrentProduct.Name,
-                    Inventory.CurrentProduct.Price ,
+                    Inventory.CurrentProduct.Price,
                     Inventory.CurrentProduct.InStock,
                     Inventory.CurrentProduct.Max,
                     Inventory.CurrentProduct.Min,
-                    tempList
+                    Inventory.CurrentProduct.AssociatedParts
                 );
         public ModifyProducts()
         {
             InitializeComponent();
             dgvModAllParts.DataSource = Inventory.AllParts;
-            dgvModAssocParts.DataSource = Product.AssociatedParts;
+            dgvModAssocParts.DataSource = Inventory.CurrentProduct.AssociatedParts;
 
             dgvModAllParts.RowHeadersVisible = false;
             btn_ModSaveProd.Enabled = true;
@@ -36,6 +36,7 @@ namespace InventoryTrackingApp.Views
 
             try
             {
+                tb_ModProductID.Text = Inventory.CurrentProduct.ProductID.ToString();
                 tb_ModProdName.Text = Inventory.CurrentProduct.Name.ToString();
                 tb_ModProdInventory.Text = Inventory.CurrentProduct.InStock.ToString();
                 tb_ModProdPrice.Text = Inventory.CurrentProduct.Price.ToString();
@@ -71,18 +72,30 @@ namespace InventoryTrackingApp.Views
         
         private void btn_ModAssocPart_Click(object sender, EventArgs e)
         {
-            Product.addAssociatedPart(Inventory.CurrentPart);
+            tempProd.addAssociatedPart(Inventory.CurrentPart);
         }
 
         private void btn_ModSaveProd_Click(object sender, EventArgs e)
         {
-            //foreach (Control c in this.Controls)
-            //{
-            //    if (c.GetType() == typeof(TextBox))
-            //    {
-                   
-            //    };
-            //};
+            var confirm = MessageBox.Show("Update Product", "Do you want to update this Product?", MessageBoxButtons.YesNo);
+            if(confirm == DialogResult.Yes)
+            {
+                tempProd.Name = tb_ModProdName.Text;
+                tempProd.InStock = Convert.ToInt32(tb_ModProdInventory.Text);
+                tempProd.Price = Convert.ToDecimal(tb_ModProdPrice.Text);
+                tempProd.Max = Convert.ToInt32(tb_ModProdMax.Text);
+                tempProd.Min = Convert.ToInt32(tb_ModProdMin.Text);
+
+                Inventory.updateProduct(Inventory.CurrentProductID, tempProd);
+                MessageBox.Show("Part has been modified.");
+                //dgvModAssocParts.Rows.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Part has NOT been modified.");             
+            }
+
+
         }
 
        
@@ -90,13 +103,12 @@ namespace InventoryTrackingApp.Views
         private void dgvModAssocParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedIndex = e.RowIndex;
-            //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
             Inventory.CurrentPartID = selectedIndex;
         }
 
         private void btn_ModDelProduct_Click(object sender, EventArgs e)
         {
-            Product.removeAssociatedPart(Inventory.CurrentPartID);
+            tempProd.removeAssociatedPart(Inventory.CurrentPartID);
 
         }
 
@@ -104,5 +116,7 @@ namespace InventoryTrackingApp.Views
         {
             //Inventory.CurrentProduct.Name =  tb_ModProdName.Text;
         }
+
+        
     }
 }

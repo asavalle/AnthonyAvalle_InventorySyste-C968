@@ -18,12 +18,14 @@ namespace InventoryTrackingApp
         public static int CurrentPartID { get; set; }
         public static Product CurrentProduct { get; set; }
         public static int CurrentProductID { get; set; }
+        //public static object AllProducts { get; private set; }
 
 
 
         /***************PUBLIC METHODS****************/
         public static void addProduct(Product product) {
             Products.Add(product);
+            
         }
 
         // public static bool removeProduct(int) { }
@@ -41,7 +43,20 @@ namespace InventoryTrackingApp
             return null;
         }
 
-        // public static void updateProduct(int) { }
+        public static void updateProduct(int prodID, Product prod) 
+        {
+            Product current = lookupProduct(prodID);
+            Product newProd = prod;
+
+
+            if (current.ProductID == prodID)
+            {
+                Products.Remove(current);
+                Products.Add(prod);
+            }
+
+
+        }
 
         /***************************  PARTS  **************************************************/
 

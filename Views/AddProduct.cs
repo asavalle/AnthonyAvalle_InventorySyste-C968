@@ -11,15 +11,7 @@ namespace InventoryTrackingApp.Views
     public partial class AddProduct : Form
     {
         static BindingList<Part> tempList = new BindingList<Part>();
-        Product tempProd = new Product
-        (
-            "",
-            Convert.ToDecimal(0.00),
-            0,
-            0,
-            0,
-            tempList
-        );
+        
 
         public AddProduct()
         {
@@ -42,10 +34,42 @@ namespace InventoryTrackingApp.Views
         }
 
         private void AddProduct_Load(object sender, EventArgs e) {
+
+            //if (tb_AddProdName.Text == "" ) { tb_AddProdName.BackColor = Color.Red; } else { tb_AddProdName.BackColor = Color.Transparent; }
+            //if (tb_AddProdPrice.Text == "") { tb_AddProdPrice.BackColor = Color.Red; } else { tb_AddProdPrice.BackColor = Color.Transparent; }
+            //if (tb_AddProdInventory.Text =="") { tb_AddProdInventory.BackColor = Color.Red; } else { tb_AddProdInventory.BackColor = Color.Transparent; }
+            //if (tb_AddProdMax.Text == "") { tb_AddProdMax.BackColor = Color.Red; } else { tb_AddProdMax.BackColor = Color.Transparent; }
+            //if (tb_AddProdMin.Text == "") { tb_AddProdMin.BackColor = Color.Red; } else { tb_AddProdMin.BackColor = Color.Transparent; }
+
         }
 
+        private void ClearForm()
+        {
+            tb_AddProdName.Clear();
+            tb_AddProdPrice.Clear();
+            tb_AddProdInventory.Clear();
+            tb_AddProdMax.Clear();
+            tb_AddProdMin.Clear();
+        }
 
+        private Product BuildTempProduct()
+        {
+            var newProdList = new BindingList<Part>();
+            var priceRounded = string.Format("{0:0.00}", (string)tb_AddProdPrice.Text);
+            Product tempProd = new Product(
+                        tb_AddProdName.Text,
+                        Convert.ToDecimal(priceRounded),
+                        Convert.ToInt32(tb_AddProdInventory.Text),
+                        Convert.ToInt32(tb_AddProdMax.Text),
+                        Convert.ToInt32(tb_AddProdMin.Text),
+                        newProdList
+                    );
+            
 
+            return tempProd;
+        }
+
+        
         private void btn_ProdCancel_Click(object sender, EventArgs e)
         {
             MainScreen main = new MainScreen();
@@ -65,8 +89,7 @@ namespace InventoryTrackingApp.Views
                 dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
 
                 var selectedIndex = e.RowIndex;
-                //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
-                Inventory.CurrentPartID = selectedIndex;
+                //Inventory.CurrentPartID = selectedIndex;
                 Inventory.CurrentPart = Inventory.lookupPart(selectedIndex);
             }
             catch
@@ -84,35 +107,29 @@ namespace InventoryTrackingApp.Views
         {                
             tempList.Add(Inventory.CurrentPart);
 
+
         }
         private void btnSaveProd_Click(object sender, EventArgs e)
         {
-            if (tb_AddProdName.Text != "")
+            
+            Product tempProduct = BuildTempProduct();
+            foreach (Part p in tempList)
             {
-             
-                tempProd.Name = tb_AddProdName.Text;
-                tempProd.Price = Convert.ToDecimal(tb_AddProdPrice.Text);
-                tempProd.InStock = Convert.ToInt32(tb_AddProdInventory.Text);
-                tempProd.Max = Convert.ToInt32(tb_AddProdMax.Text);
-                tempProd.Min = Convert.ToInt32(tb_AddProdMin.Text);
-               
-            }
-            else
-            {
-                MessageBox.Show("Please enter a Part Name as a minimum requirement.");
+                tempProduct.addAssociatedPart(p);
+
             }
 
-            //Product.addAssociatedPart(Inventory.CurrentPart);
-            MessageBox.Show($"New Product Added.");
-
-
-            Inventory.CurrentProduct = tempProd;
-            Inventory.addProduct(Inventory.CurrentProduct);
-            //dgvAssocParts.Rows.Clear();
+            var confirmResult = MessageBox.Show("Are you sure you want to add this product?", "Confirm Add Product.", MessageBoxButtons.YesNo);
+            
+            if(confirmResult == DialogResult.Yes)
+            {
+                Inventory.addProduct(tempProduct);             
+                
+            }
             this.Close();
             MainScreen main = new MainScreen();
             main.Show();
-
+            
         }
 
         private void tb_AddProdName_TextChanged(object sender, EventArgs e)
@@ -124,14 +141,15 @@ namespace InventoryTrackingApp.Views
         private void dgvAssocParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var selectedIndex = e.RowIndex;
-            //Inventory.CurrentPartID = (int)dgvAllParts.Rows[selectedIndex].Cells[0].Value;
             Inventory.CurrentPartID = selectedIndex;
 
         }
 
         private void btn_DelAscPart_Click(object sender, EventArgs e)
         {
-            Product.removeAssociatedPart(Inventory.CurrentPartID);
+            
+            Inventory.CurrentProduct.removeAssociatedPart(Inventory.CurrentProductID);
+            //Product.removeAssociatedPart(Inventory.CurrentPartID);
 
         }
 

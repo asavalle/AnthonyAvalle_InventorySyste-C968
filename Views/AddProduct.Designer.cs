@@ -85,7 +85,7 @@ namespace InventoryTrackingApp.Views
             // dgvAllParts
             // 
             this.dgvAllParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllParts.Location = new System.Drawing.Point(413, 84);
+            this.dgvAllParts.Location = new System.Drawing.Point(489, 84);
             this.dgvAllParts.Name = "dgvAllParts";
             this.dgvAllParts.RowTemplate.Height = 25;
             this.dgvAllParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -99,7 +99,7 @@ namespace InventoryTrackingApp.Views
             this.dgvAssocParts.AllowUserToDeleteRows = false;
             this.dgvAssocParts.AllowUserToResizeRows = false;
             this.dgvAssocParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAssocParts.Location = new System.Drawing.Point(413, 457);
+            this.dgvAssocParts.Location = new System.Drawing.Point(489, 457);
             this.dgvAssocParts.MultiSelect = false;
             this.dgvAssocParts.Name = "dgvAssocParts";
             this.dgvAssocParts.ReadOnly = true;
@@ -113,7 +113,7 @@ namespace InventoryTrackingApp.Views
             // label_AllParts
             // 
             this.label_AllParts.AutoSize = true;
-            this.label_AllParts.Location = new System.Drawing.Point(413, 63);
+            this.label_AllParts.Location = new System.Drawing.Point(489, 63);
             this.label_AllParts.Name = "label_AllParts";
             this.label_AllParts.Size = new System.Drawing.Size(105, 15);
             this.label_AllParts.TabIndex = 5;
@@ -219,7 +219,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_AddAssocPart
             // 
-            this.btn_AddAssocPart.Location = new System.Drawing.Point(413, 369);
+            this.btn_AddAssocPart.Location = new System.Drawing.Point(413, 84);
             this.btn_AddAssocPart.Name = "btn_AddAssocPart";
             this.btn_AddAssocPart.Size = new System.Drawing.Size(67, 31);
             this.btn_AddAssocPart.TabIndex = 18;
@@ -231,9 +231,9 @@ namespace InventoryTrackingApp.Views
             // 
             this.btn_DelAscPart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btn_DelAscPart.ForeColor = System.Drawing.Color.White;
-            this.btn_DelAscPart.Location = new System.Drawing.Point(413, 744);
+            this.btn_DelAscPart.Location = new System.Drawing.Point(413, 457);
             this.btn_DelAscPart.Name = "btn_DelAscPart";
-            this.btn_DelAscPart.Size = new System.Drawing.Size(67, 29);
+            this.btn_DelAscPart.Size = new System.Drawing.Size(67, 35);
             this.btn_DelAscPart.TabIndex = 19;
             this.btn_DelAscPart.Text = "Delete";
             this.btn_DelAscPart.UseVisualStyleBackColor = false;
@@ -263,7 +263,7 @@ namespace InventoryTrackingApp.Views
             // label_AssocParts
             // 
             this.label_AssocParts.AutoSize = true;
-            this.label_AssocParts.Location = new System.Drawing.Point(413, 439);
+            this.label_AssocParts.Location = new System.Drawing.Point(489, 439);
             this.label_AssocParts.Name = "label_AssocParts";
             this.label_AssocParts.Size = new System.Drawing.Size(93, 15);
             this.label_AssocParts.TabIndex = 23;

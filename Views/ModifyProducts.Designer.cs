@@ -282,7 +282,7 @@ namespace InventoryTrackingApp.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1355, 860);
+            this.ClientSize = new System.Drawing.Size(1355, 905);
             this.Controls.Add(this.label_AssocParts);
             this.Controls.Add(this.testLableAP);
             this.Controls.Add(this.btn_ModSaveProd);
