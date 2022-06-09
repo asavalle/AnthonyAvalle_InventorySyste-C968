@@ -26,7 +26,7 @@ namespace InventoryTrackingApp
             Inventory.AllParts.Add(new Inhouse("front wheel", Convert.ToDecimal("5.20"), 10, 10, 40, 1001));
             Inventory.AllParts.Add(new Inhouse("rear wheel", Convert.ToDecimal("5.20"), 10, 10, 40, 1002));
             Inventory.AllParts.Add(new Inhouse("seat", Convert.ToDecimal("5.25"), 10, 5, 20, 1000));
-            Inventory.AllParts.Add(new Inhouse(" Double Rear Wheel", Convert.ToDecimal("10.99"), 20, 10, 20, 1002));
+            Inventory.AllParts.Add(new Inhouse(" double rear wheel", Convert.ToDecimal("10.99"), 20, 10, 20, 1002));
 
             //    Outsourced Parts Source
             Inventory.AllParts.Add( new Outsourced ( "left pedal", Convert.ToDecimal("10.20"),10,5,  20,  "Company1" ));
@@ -39,9 +39,9 @@ namespace InventoryTrackingApp
             testParts.Add(new Inhouse("handle bar", Convert.ToDecimal("10.20"), 10, 5, 20, 1000));
 
             //Products Source
-            Inventory.Products.Add(new Product ("Boy's Bicycle",  Convert.ToDecimal("150.00"),  10, 5, 20, testParts ));
-            Inventory.Products.Add(new Product("Girl's Bicycle",  Convert.ToDecimal("150.00"),  10,  5,  20, testParts) );
-            Inventory.Products.Add(new Product("Tri-wheeler",  Convert.ToDecimal("299.99"),  10,  5,  20, testParts));
+            Inventory.Products.Add(new Product ("boy's bicycle",  Convert.ToDecimal("150.00"),  10, 5, 20, testParts ));
+            Inventory.Products.Add(new Product("girl's bicycle",  Convert.ToDecimal("150.00"),  10,  5,  20, testParts) );
+            Inventory.Products.Add(new Product("tri-wheeler",  Convert.ToDecimal("299.99"),  10,  5,  20, testParts));
 
             
 

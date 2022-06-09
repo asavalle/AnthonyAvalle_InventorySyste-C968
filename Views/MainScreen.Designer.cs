@@ -46,7 +46,7 @@ namespace InventoryTrackingApp
             this.labelTitle = new System.Windows.Forms.Label();
             this.bt_Exit = new System.Windows.Forms.Button();
             this.btn_ResetSearch = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnResetProdSearch = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -232,14 +232,15 @@ namespace InventoryTrackingApp
             this.btn_ResetSearch.UseVisualStyleBackColor = true;
             this.btn_ResetSearch.Click += new System.EventHandler(this.btn_ResetSearch_Click);
             // 
-            // button1
+            // btnResetProdSearch
             // 
-            this.button1.Location = new System.Drawing.Point(1315, 116);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Reset";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnResetProdSearch.Location = new System.Drawing.Point(1315, 116);
+            this.btnResetProdSearch.Name = "btnResetProdSearch";
+            this.btnResetProdSearch.Size = new System.Drawing.Size(75, 25);
+            this.btnResetProdSearch.TabIndex = 9;
+            this.btnResetProdSearch.Text = "Reset";
+            this.btnResetProdSearch.UseVisualStyleBackColor = true;
+            this.btnResetProdSearch.Click += new System.EventHandler(this.btnResetProdSearch_Click);
             // 
             // button2
             // 
@@ -256,7 +257,7 @@ namespace InventoryTrackingApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1504, 720);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnResetProdSearch);
             this.Controls.Add(this.btn_ResetSearch);
             this.Controls.Add(this.bt_Exit);
             this.Controls.Add(this.labelTitle);
@@ -300,7 +301,7 @@ namespace InventoryTrackingApp
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Button bt_Exit;
         private System.Windows.Forms.Button btn_ResetSearch;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnResetProdSearch;
         public System.Windows.Forms.DataGridView dgvParts;
         private System.Windows.Forms.Button button2;
     }

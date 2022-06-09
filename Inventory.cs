@@ -18,17 +18,19 @@ namespace InventoryTrackingApp
         public static int CurrentPartID { get; set; }
         public static Product CurrentProduct { get; set; }
         public static int CurrentProductID { get; set; }
-        //public static object AllProducts { get; private set; }
 
 
 
         /***************PUBLIC METHODS****************/
+
+        /***************************  PRODUCTS  **************************************************/
+
         public static void addProduct(Product product) {
             Products.Add(product);
             
         }
 
-        // public static bool removeProduct(int) { }
+        //public static bool removeProduct(int) { }
 
         public static Product lookupProduct(int prodID)
         {

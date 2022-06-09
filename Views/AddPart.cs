@@ -47,7 +47,7 @@ namespace InventoryTrackingApp.Views
                 var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
                 Inhouse newInhouse = new Inhouse
                 (
-                    tbAddPartName.Text,
+                    tbAddPartName.Text.ToLower(),
                     Convert.ToDecimal(priceRounded),
                     Convert.ToInt32(tbAddPartInventory.Text),
                     Convert.ToInt32(tbAddPartMin.Text),
@@ -62,12 +62,12 @@ namespace InventoryTrackingApp.Views
             {
                 Outsourced newOutsourced = new Outsourced
                 (
-                    tbAddPartName.Text,
+                    tbAddPartName.Text.ToLower(),
                     Convert.ToDecimal(tbAddPriceCost.Text),
                     Convert.ToInt32(tbAddPartInventory.Text),
                     Convert.ToInt32(tbAddPartMin.Text),
                     Convert.ToInt32(tbAddPartMax.Text),
-                    tbCompanyOrMachine.Text
+                    tbCompanyOrMachine.Text.ToLower()
                 );
 
                 Inventory.addPart(newOutsourced);

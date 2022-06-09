@@ -57,7 +57,7 @@ namespace InventoryTrackingApp.Views
             var newProdList = new BindingList<Part>();
             var priceRounded = string.Format("{0:0.00}", (string)tb_AddProdPrice.Text);
             Product tempProd = new Product(
-                        tb_AddProdName.Text,
+                        tb_AddProdName.Text.ToLower(),
                         Convert.ToDecimal(priceRounded),
                         Convert.ToInt32(tb_AddProdInventory.Text),
                         Convert.ToInt32(tb_AddProdMax.Text),

@@ -63,7 +63,7 @@ namespace InventoryTrackingApp
 
                 for (int i = 0; i < Inventory.AllParts.Count; i++)
                 {
-                    if (Inventory.AllParts[i].Name.Contains(searchParts.Text))
+                    if (Inventory.AllParts[i].Name.Contains(searchParts.Text.ToLower()))
                     {
                         TempList.Add(Inventory.AllParts[i]);
                         
@@ -87,7 +87,24 @@ namespace InventoryTrackingApp
         /***********SEARCH PRODUCT BUTTON EVENT***************/
         private void btnProdSearch_Click(object sender, EventArgs e)
         {
-        
+            BindingList<Product> tempProducts = new BindingList<Product>();
+            dgvProducts.ClearSelection();
+            bool found = false;
+
+            if(searchProducts.Text != "")
+            {
+                foreach(Product product in Inventory.Products)
+                {
+                    if (product.Name.Contains(searchProducts.Text.ToLower()))
+                    {
+                        tempProducts.Add(product);
+                        found = true;
+                    }
+                }
+                if (found) { dgvProducts.DataSource = tempProducts; }
+            }
+            if (!found) { MessageBox.Show("No Product found matching that criteria!"); }
+
         }
 
         /***********ADD PART BUTTON EVENT***************/
@@ -123,6 +140,7 @@ namespace InventoryTrackingApp
             btnModPart.Enabled = false;
             dgvParts.ClearSelection();
         }
+
 
         
         /***********CELL CLICK (SELECTED ROW) EVENT***************/
@@ -160,7 +178,8 @@ namespace InventoryTrackingApp
             modifyParts.Show();
 
         }
-
+        
+        /***********DELETE PART BUTTON EVENT***************/
         private void btnDelPart_Click(object sender, EventArgs e)
         {
             var dialogResult = MessageBox.Show("Are you sure you want to delete this Part?", "Delete Part?", MessageBoxButtons.YesNo);
@@ -208,8 +227,11 @@ namespace InventoryTrackingApp
             modProd.Show();
         }
 
-
-           }
+        private void btnResetProdSearch_Click(object sender, EventArgs e)
+        {
+            dgvProducts.DataSource = Inventory.Products;
+        }
+    }
 
 
 
