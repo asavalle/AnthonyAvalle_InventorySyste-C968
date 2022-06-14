@@ -119,6 +119,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartName.Name = "tb_ModPartName";
             this.tb_ModPartName.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartName.TabIndex = 1;
+            this.tb_ModPartName.TextChanged += new System.EventHandler(this.tb_ModPartName_TextChanged);
             // 
             // tb_ModPartInventory
             // 
@@ -126,6 +127,8 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartInventory.Name = "tb_ModPartInventory";
             this.tb_ModPartInventory.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartInventory.TabIndex = 2;
+            this.tb_ModPartInventory.TextChanged += new System.EventHandler(this.tb_ModPartInventory_TextChanged);
+            this.tb_ModPartInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartInventory_KeyPress);
             // 
             // tb_ModPartPrice
             // 
@@ -133,6 +136,9 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartPrice.Name = "tb_ModPartPrice";
             this.tb_ModPartPrice.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartPrice.TabIndex = 3;
+            this.tb_ModPartPrice.TextChanged += new System.EventHandler(this.tb_ModPartPrice_TextChanged);
+            this.tb_ModPartPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartPrice_KeyPress);
+            this.tb_ModPartPrice.Leave += new System.EventHandler(this.tb_ModPartPrice_Leave);
             // 
             // tb_ModPartMax
             // 
@@ -140,6 +146,8 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartMax.Name = "tb_ModPartMax";
             this.tb_ModPartMax.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartMax.TabIndex = 4;
+            this.tb_ModPartMax.TextChanged += new System.EventHandler(this.tb_ModPartMax_TextChanged);
+            this.tb_ModPartMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartMax_KeyPress);
             // 
             // tb_ModPartMin
             // 
@@ -147,6 +155,9 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartMin.Name = "tb_ModPartMin";
             this.tb_ModPartMin.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartMin.TabIndex = 5;
+            this.tb_ModPartMin.TextChanged += new System.EventHandler(this.tb_ModPartMin_TextChanged);
+            this.tb_ModPartMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartMin_KeyPress);
+            this.tb_ModPartMin.Leave += new System.EventHandler(this.tb_ModPartMin_Leave);
             // 
             // tb_ModPartMachineCompany
             // 
@@ -154,6 +165,8 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartMachineCompany.Name = "tb_ModPartMachineCompany";
             this.tb_ModPartMachineCompany.Size = new System.Drawing.Size(271, 23);
             this.tb_ModPartMachineCompany.TabIndex = 6;
+            this.tb_ModPartMachineCompany.TextChanged += new System.EventHandler(this.tb_ModPartMachineCompany_TextChanged);
+            this.tb_ModPartMachineCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartMachineCompany_KeyPress);
             // 
             // label_ModPartSource
             // 

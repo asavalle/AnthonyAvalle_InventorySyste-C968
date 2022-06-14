@@ -9,10 +9,10 @@ namespace InventoryTrackingApp
 
         public override int PartID { get; set; }
         public override string Name { get; set; }
-        public override decimal Price { get; set; }
         public override int InStock { get; set; }
-        public override int Min { get; set; }
+        public override decimal Price { get; set; }
         public override int Max { get; set; }
+        public override int Min{ get; set; }
         public int MachineID { get; set; } 
 
 
@@ -21,16 +21,16 @@ namespace InventoryTrackingApp
         //On constructor call, counts number of elements in the AllParts list and assigns to PartID
 
 
-        public Inhouse(string name, decimal price, int inStock, int min, int max, int machID)
+        public Inhouse(string name, int inStock,decimal price, int max, int min, int machID)
         {
 
             PartID += Inventory.AllParts.Count;
             //PartID ++;
             Name = name;
-            Price = price;
             InStock = inStock;
-            Min = min;
+            Price = price;
             Max = max;
+            Min = min;
             MachineID = machID;
 
 

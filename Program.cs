@@ -22,21 +22,21 @@ namespace InventoryTrackingApp
             *************************/  
             
             //    InHouse Parts Source
-            Inventory.AllParts.Add(new Inhouse ( "handle bar", Convert.ToDecimal("10.20"),  10,  5,  20, 1000 ));
-            Inventory.AllParts.Add(new Inhouse("front wheel", Convert.ToDecimal("5.20"), 10, 10, 40, 1001));
-            Inventory.AllParts.Add(new Inhouse("rear wheel", Convert.ToDecimal("5.20"), 10, 10, 40, 1002));
-            Inventory.AllParts.Add(new Inhouse("seat", Convert.ToDecimal("5.25"), 10, 5, 20, 1000));
-            Inventory.AllParts.Add(new Inhouse(" double rear wheel", Convert.ToDecimal("10.99"), 20, 10, 20, 1002));
+            Inventory.AllParts.Add(new Inhouse ( "handle bar", 10,Convert.ToDecimal("10.20"), 20, 2, 1000 ));
+            Inventory.AllParts.Add(new Inhouse("front wheel",10, Convert.ToDecimal("5.20"),  10, 4, 1001));
+            Inventory.AllParts.Add(new Inhouse("rear wheel", 10,Convert.ToDecimal("5.20"),  10, 4, 1002));
+            Inventory.AllParts.Add(new Inhouse("seat", 10,Convert.ToDecimal("5.25"),  50, 2, 1000));
+            Inventory.AllParts.Add(new Inhouse(" double rear wheel",20, Convert.ToDecimal("10.99"),  50, 20, 1002));
 
             //    Outsourced Parts Source
-            Inventory.AllParts.Add( new Outsourced ( "left pedal", Convert.ToDecimal("10.20"),10,5,  20,  "Company1" ));
-            Inventory.AllParts.Add( new Outsourced("right pedal", Convert.ToDecimal("5.45"), 10, 10, 40, "Company2"));
-            Inventory.AllParts.Add(new Outsourced("boy's frame", Convert.ToDecimal("25.60"), 10, 10, 20, "Company3"));
-            Inventory.AllParts.Add( new Outsourced("girl's frame", Convert.ToDecimal("25.60"), 10, 5, 20, "Company4"));
+            Inventory.AllParts.Add( new Outsourced ( "left pedal",10, Convert.ToDecimal("10.20"),50,  20,  "Company1" ));
+            Inventory.AllParts.Add( new Outsourced("right pedal", 10, Convert.ToDecimal("5.45"), 100, 40, "Company2"));
+            Inventory.AllParts.Add(new Outsourced("boy's frame", 10, Convert.ToDecimal("25.60"), 100, 20, "Company3"));
+            Inventory.AllParts.Add( new Outsourced("girl's frame", 10,Convert.ToDecimal("25.60"),  50, 20, "Company4"));
 
             //AssociatedParts
             BindingList<Part> testParts = new BindingList<Part>();
-            testParts.Add(new Inhouse("handle bar", Convert.ToDecimal("10.20"), 10, 5, 20, 1000));
+            testParts.Add(new Inhouse("handle bar",10,  Convert.ToDecimal("10.20"), 5, 20, 1000));
 
             //Products Source
             Inventory.Products.Add(new Product ("boy's bicycle",  Convert.ToDecimal("150.00"),  10, 5, 20, testParts ));

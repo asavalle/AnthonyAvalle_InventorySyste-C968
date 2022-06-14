@@ -193,6 +193,7 @@ namespace InventoryTrackingApp
             this.btnDelProduct.TabIndex = 12;
             this.btnDelProduct.Text = "DELETE";
             this.btnDelProduct.UseVisualStyleBackColor = false;
+            this.btnDelProduct.Click += new System.EventHandler(this.btnDelProduct_Click);
             // 
             // searchParts
             // 

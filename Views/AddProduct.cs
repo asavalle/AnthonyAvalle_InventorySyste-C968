@@ -199,16 +199,16 @@ namespace InventoryTrackingApp.Views
 
         private void dgvAssocParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var selectedIndex = e.RowIndex;
-            Inventory.CurrentPartID = selectedIndex;
+            var selectedIndex = Convert.ToInt32(dgvAssocParts.Rows[e.RowIndex].Cells[0].Value);
+            Inventory.CurrentPart = Inventory.lookupPart(selectedIndex); //sets the current part so it can be removed from list
+            //Inventory.CurrentPartID = Inventory.CurrentPart.PartID;
 
         }
 
         private void btn_DelAscPart_Click(object sender, EventArgs e)
         {
-            
-            Inventory.CurrentProduct.removeAssociatedPart(Inventory.CurrentProductID);
-            //Product.removeAssociatedPart(Inventory.CurrentPartID);
+
+            tempList.Remove(Inventory.CurrentPart);
 
         }
 

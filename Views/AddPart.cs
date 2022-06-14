@@ -27,8 +27,10 @@ namespace InventoryTrackingApp.Views
             foreach (TextBox tb in this.Controls.OfType<TextBox>().Where(x => x.Text == ""))
             {
                 if(tb != tbPartID)
-                  tb.BackColor = Color.Crimson;
-
+                  tb.BackColor = Color.OrangeRed;
+                
+                  btn_SavePart.Enabled = true;
+              
 
             }
 
@@ -65,8 +67,8 @@ namespace InventoryTrackingApp.Views
                     Inhouse newInhouse = new Inhouse
                     (
                         tbAddPartName.Text.ToLower(),
-                        Convert.ToDecimal(priceRounded),
                         Convert.ToInt32(tbAddPartInventory.Text),
+                        Convert.ToDecimal(priceRounded),
                         Convert.ToInt32(tbAddPartMin.Text),
                         Convert.ToInt32(tbAddPartMax.Text),
                         Convert.ToInt32(tbCompanyOrMachine.Text)
@@ -80,8 +82,8 @@ namespace InventoryTrackingApp.Views
                     Outsourced newOutsourced = new Outsourced
                     (
                         tbAddPartName.Text.ToLower(),
-                        Convert.ToDecimal(priceRounded),
                         Convert.ToInt32(tbAddPartInventory.Text),
+                        Convert.ToDecimal(priceRounded),
                         Convert.ToInt32(tbAddPartMin.Text),
                         Convert.ToInt32(tbAddPartMax.Text),
                         tbCompanyOrMachine.Text.ToLower()
@@ -110,7 +112,7 @@ namespace InventoryTrackingApp.Views
          *****************************************************/
         private void tbAddPartName_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartName.BackColor = Color.Crimson;
+            tbAddPartName.BackColor = Color.OrangeRed;
             bool blank = true;
             while(blank == true)
             {
@@ -130,7 +132,7 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPartInventory_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartInventory.BackColor = Color.Crimson;
+            tbAddPartInventory.BackColor = Color.OrangeRed;
             bool blank = true;
             while (blank == true)
             {
@@ -149,7 +151,7 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPriceCost_TextChanged(object sender, EventArgs e)
         {
-            tbAddPriceCost.BackColor = Color.Crimson;
+            tbAddPriceCost.BackColor = Color.OrangeRed;
             bool blank = true;
             while (blank == true)
             {
@@ -168,7 +170,7 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPartMax_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartMax.BackColor = Color.Crimson;
+            tbAddPartMax.BackColor = Color.OrangeRed;
             bool blank = true;
             while (blank == true)
             {
@@ -187,7 +189,7 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPartMin_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartMin.BackColor = Color.Crimson;
+            tbAddPartMin.BackColor = Color.OrangeRed;
             bool blank = true;
             while (blank == true)
             {
@@ -206,12 +208,12 @@ namespace InventoryTrackingApp.Views
 
         private void tbCompanyOrMachine_TextChanged(object sender, EventArgs e)
         {
-            tbCompanyOrMachine.BackColor = Color.Crimson;
+            tbCompanyOrMachine.BackColor = Color.OrangeRed;
             bool blank = true;
             while (blank == true)
             {
 
-                if (tbCompanyOrMachine.Text != "" || tbCompanyOrMachine.Text != null)
+                if (tbCompanyOrMachine.Text != "" )
                 {
                     tbCompanyOrMachine.BackColor = Color.White;
                     blank = false;
@@ -222,7 +224,7 @@ namespace InventoryTrackingApp.Views
 
             }
 
-            btn_SavePart.Enabled = true;
+           
 
         }
 
@@ -232,6 +234,8 @@ namespace InventoryTrackingApp.Views
          *****************************************************/
         private void tbAddPriceCost_Leave(object sender, EventArgs e)
         {
+            //Formats price to a currency
+
             if (tbAddPriceCost.Text.IndexOf(".") == -1)
             {
 
@@ -271,17 +275,20 @@ namespace InventoryTrackingApp.Views
 
         private void tbCompanyOrMachine_KeyPress(object sender, KeyPressEventArgs e)
         {
-            const int BACKSPACE = 8;
-            const int ZERO = 48;
-            const int NINE = 57;
+            if (rbInhouse.Checked) //Only allow numbers for Machine, but allows AlphaNumeric for Company Names
+            { 
+                const int BACKSPACE = 8;
+                const int ZERO = 48;
+                const int NINE = 57;
           
 
-            int keyvalue = e.KeyChar;
+                int keyvalue = e.KeyChar;
 
-            //Allow the Backspace, 0-9 keys only
-            if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+                //Allow the Backspace, 0-9 keys only
+                if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
 
-            e.Handled = true;
+                e.Handled = true;
+            }
         }
 
         private void tbAddPartInventory_KeyPress(object sender, KeyPressEventArgs e)

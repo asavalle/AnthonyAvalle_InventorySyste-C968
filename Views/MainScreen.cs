@@ -42,7 +42,10 @@ namespace InventoryTrackingApp
             btnModProduct.Enabled = false;
         }
 
-        /***********SAVE PART BUTTON EVENT***************/
+        /*************************************************
+                              PARTS  
+         *************************************************/
+
         private void btnPartSearch_Click(object sender, EventArgs e)
         {
 
@@ -82,32 +85,6 @@ namespace InventoryTrackingApp
             }
         }
 
-
-
-        /***********SEARCH PRODUCT BUTTON EVENT***************/
-        private void btnProdSearch_Click(object sender, EventArgs e)
-        {
-            BindingList<Product> tempProducts = new BindingList<Product>();
-            dgvProducts.ClearSelection();
-            bool found = false;
-
-            if(searchProducts.Text != "")
-            {
-                foreach(Product product in Inventory.Products)
-                {
-                    if (product.Name.Contains(searchProducts.Text.ToLower()))
-                    {
-                        tempProducts.Add(product);
-                        found = true;
-                    }
-                }
-                if (found) { dgvProducts.DataSource = tempProducts; }
-            }
-            if (!found) { MessageBox.Show("No Product found matching that criteria!"); }
-
-        }
-
-        /***********ADD PART BUTTON EVENT***************/
         private void btnAddPart_Click(object sender, EventArgs e)
         {
             AddPart addPart = new AddPart();
@@ -115,35 +92,36 @@ namespace InventoryTrackingApp
             addPart.Show();
         }
 
-
-        /***********ADD PRODUCT BUTTON EVENT***************/
-        private void btnAddProduct_Click(object sender, EventArgs e)
+        private void btnDelPart_Click(object sender, EventArgs e)
         {
-            AddProduct addProduct = new AddProduct();
-            this.Hide();
-            addProduct.Show();
-        }
-
-        /***********EXIT BUTTON EVENT***************/
-        private void bt_Exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            if (Inventory.CurrentPart != null)
+            {
+                var dialogResult = MessageBox.Show("Are you sure you want to delete this Part?", "Delete Part?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Inventory.deletePart(Inventory.CurrentPart);
+                    dgvParts.DataSource = Inventory.AllParts;
+                    dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+                    dgvParts.ClearSelection();
+                    MessageBox.Show("Part has been deleted.");
+                }
+                else
+                    return;
+            }
+            else
+                MessageBox.Show("Please select a part to delete.");
+           
             
         }
 
-        /***********RESET BUTTON EVENT***************/
-        private void btn_ResetSearch_Click(object sender, EventArgs e)
+        private void btnModPart_Click(object sender, EventArgs e)
         {
-            searchParts.Text = "";
-            dgvParts.DataSource = Inventory.AllParts;
-            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
-            btnModPart.Enabled = false;
-            dgvParts.ClearSelection();
+            ModifyParts modifyParts = new ModifyParts();
+            this.Hide();
+            modifyParts.Show();
+
         }
 
-
-        
-        /***********CELL CLICK (SELECTED ROW) EVENT***************/
         private void dgvParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -170,28 +148,39 @@ namespace InventoryTrackingApp
             }
         }
 
-        /***********MODIFY PART BUTTON EVENT***************/
-        private void btnModPart_Click(object sender, EventArgs e)
+
+
+        /*************************************************
+                              PRODUCTS
+         *************************************************/
+
+        private void btnProdSearch_Click(object sender, EventArgs e)
         {
-            ModifyParts modifyParts = new ModifyParts();
-            this.Hide();
-            modifyParts.Show();
+            BindingList<Product> tempProducts = new BindingList<Product>();
+            dgvProducts.ClearSelection();
+            bool found = false;
+
+            if(searchProducts.Text != "")
+            {
+                foreach(Product product in Inventory.Products)
+                {
+                    if (product.Name.Contains(searchProducts.Text.ToLower()))
+                    {
+                        tempProducts.Add(product);
+                        found = true;
+                    }
+                }
+                if (found) { dgvProducts.DataSource = tempProducts; }
+            }
+            if (!found) { MessageBox.Show("No Product found matching that criteria!"); }
 
         }
-        
-        /***********DELETE PART BUTTON EVENT***************/
-        private void btnDelPart_Click(object sender, EventArgs e)
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            var dialogResult = MessageBox.Show("Are you sure you want to delete this Part?", "Delete Part?", MessageBoxButtons.YesNo);
-            if(dialogResult == DialogResult.Yes)
-            {
-                Inventory.deletePart(Inventory.CurrentPart);
-                dgvParts.DataSource = Inventory.AllParts;
-                dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
-                dgvParts.ClearSelection();
-                MessageBox.Show("Part has been deleted.");
-            }
-            
+            AddProduct addProduct = new AddProduct();
+            this.Hide();
+            addProduct.Show();
         }
 
         private void DgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -231,6 +220,41 @@ namespace InventoryTrackingApp
         {
             dgvProducts.DataSource = Inventory.Products;
         }
+        private void btnDelProduct_Click(object sender, EventArgs e)
+        {
+
+            if (Inventory.CurrentProduct != null)
+            {
+               var dialogResult = MessageBox.Show("Are you sure you want to delete this Product?", "Delete Product?", MessageBoxButtons.YesNo);
+               if(dialogResult == DialogResult.Yes)
+                    Inventory.Products.Remove(Inventory.CurrentProduct);
+            }
+            else
+                MessageBox.Show("Please select a product to delete.");
+           
+        }
+
+
+
+        /*************************************************
+                        MAINSCREEN FUNCTIONS
+         *************************************************/
+        private void bt_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            
+        }
+
+        private void btn_ResetSearch_Click(object sender, EventArgs e)
+        {
+            searchParts.Text = "";
+            dgvParts.DataSource = Inventory.AllParts;
+            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            btnModPart.Enabled = false;
+            dgvParts.ClearSelection();
+        }
+
+        
     }
 
 

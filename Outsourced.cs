@@ -8,21 +8,21 @@ namespace InventoryTrackingApp
     {
         public override int PartID { get; set; }
         public override string Name { get; set; }
-        public override decimal Price { get; set; }
         public override int InStock { get; set; }
-        public override int Min { get; set; }
+ public override decimal Price { get; set; }
         public override int Max { get; set; }
+        public override int Min { get; set; }
         public string CompanyName { get; set; }
 
         //On constructor call, counts number of elements in the AllParts list and assigns to PartID
-        public Outsourced( string name, decimal price, int inStock, int min, int max, string companyName)
+        public Outsourced( string name, int inStock,decimal price, int max, int min, string companyName)
         {
             PartID += Inventory.AllParts.Count;
             Name = name;
-            Price = price;
             InStock = inStock;
-            Min = min;
+            Price = price;
             Max = max;
+            Min = min;
             CompanyName = companyName;
 
         }

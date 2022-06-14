@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,7 +16,10 @@ namespace InventoryTrackingApp.Views
         {
             InitializeComponent();
             rb_ModPartInHouse.Checked = true;  //Set Inhouse checked by default
-    
+
+
+            
+
             if (Inventory.CurrentPart is Inhouse)
             {
                 /*Set the Inventory property, CurrentPart, which is type Part, to a new Inhouse type before adding the objects from the
@@ -52,6 +57,22 @@ namespace InventoryTrackingApp.Views
                 Inventory.CurrentPartID = oPart.PartID;
 
             }
+
+
+
+            /******************************************
+             ** SET ALL TEXTBOX BACKGROUNDS TO Orange**
+             ******************************************/
+
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                if (tb.Name != "tb_ModPartID" && tb.Text == "")
+                    tb.BackColor = Color.OrangeRed;
+                
+
+
+
+            }
         }
 
                
@@ -62,42 +83,134 @@ namespace InventoryTrackingApp.Views
             main.Show();
             
         }
-        
+
         private void btn_ModPartSave_Click(object sender, EventArgs e)
         {
-            var dialogResult = MessageBox.Show($"Do you want to Modify '{Inventory.CurrentPart.Name}'?", "Modify Part?", MessageBoxButtons.YesNo);
-
-            try {
-                if (dialogResult == DialogResult.Yes)
+            bool emptyForm = false;
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                if (tb.BackColor == Color.OrangeRed )
                 {
-                    if (rb_ModPartInHouse.Checked)
+                    MessageBox.Show("Form is not complete. Please verify all fields are filled out.");
+                    emptyForm = true;
+                }
+                
+            }
+            if (!emptyForm)
+            {
+                try 
+                {
+                    var dialogResult = MessageBox.Show($"Do you want to Modify '{Inventory.CurrentPart.Name}'?", "Modify Part?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        Part updated = new Inhouse(tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text), Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text), Convert.ToInt32(tb_ModPartMin.Text), Convert.ToInt32(tb_ModPartMachineCompany.Text));
-                        updated.PartID = Inventory.CurrentPartID;
-                        Inventory.updatePart(Inventory.CurrentPartID, updated);
-                    }
-                    else
-                    {
-                        Part updated = new Outsourced(tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text), Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text), Convert.ToInt32(tb_ModPartMin.Text), tb_ModPartMachineCompany.Text);
-                        updated.PartID = Inventory.CurrentPartID;
-                        Inventory.updatePart(Inventory.CurrentPartID, updated);
+                        if (rb_ModPartInHouse.Checked)
+                        {
+                            Part updated = new Inhouse
+                                (
+                                tb_ModPartName.Text, 
+                                Convert.ToInt32(tb_ModPartInventory.Text),
+                                Convert.ToDecimal(tb_ModPartPrice.Text),
+                                Convert.ToInt32(tb_ModPartMax.Text) ,
+                                Convert.ToInt32(tb_ModPartMin.Text),
+                                Convert.ToInt32(tb_ModPartMachineCompany.Text)
+                                );
+                            updated.PartID = Inventory.CurrentPartID;
+                            Inventory.updatePart(Inventory.CurrentPartID, updated);
+                        }
+                        else
+                        {
+                            Part updated = new Outsourced
+                                (
+                                tb_ModPartName.Text, 
+                                Convert.ToInt32(tb_ModPartInventory.Text),
+                                Convert.ToDecimal(tb_ModPartPrice.Text),
+                                Convert.ToInt32(tb_ModPartMax.Text), 
+                                Convert.ToInt32(tb_ModPartMin.Text), 
+                                tb_ModPartMachineCompany.Text
+                                );
+                            updated.PartID = Inventory.CurrentPartID;
+                            Inventory.updatePart(Inventory.CurrentPartID, updated);
+
+                        }
+                        MainScreen main = new MainScreen();
+                        MessageBox.Show("Part has been updated!");
+                        this.Close();
+                        main.Show();
 
                     }
-                    MainScreen main = new MainScreen();
-                    MessageBox.Show("Part has been updated!");
-                    this.Close();
-                    main.Show();
-
+                }
+                catch (FormatException err)
+                {
+                    MessageBox.Show(err.Message);
                 }
             }
-            catch (FormatException err)
-            {
-                MessageBox.Show(err.Message);
-            }
+            
+
         }
 
         
 
+        
+
+       
+
+
+
+        /*****************************************************
+         *     CHANGE TEXTBOX COLOR IF TEXTBOX LEFT BLANK    *
+         *****************************************************/
+        private void tb_ModPartName_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ModPartName.Text == "")
+                tb_ModPartName.BackColor = Color.OrangeRed;
+            else
+                tb_ModPartName.BackColor = Color.White;
+        }
+
+        private void tb_ModPartInventory_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ModPartInventory.Text == "")
+                tb_ModPartInventory.BackColor = Color.OrangeRed;
+            else
+                tb_ModPartInventory.BackColor = Color.White;
+        }
+
+        private void tb_ModPartPrice_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ModPartPrice.Text == "")
+                tb_ModPartPrice.BackColor = Color.OrangeRed;
+            else
+                tb_ModPartPrice.BackColor = Color.White;
+
+            
+            
+        }
+
+        private void tb_ModPartMax_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ModPartMax.Text == "")
+                tb_ModPartMax.BackColor = Color.OrangeRed;
+            else
+                tb_ModPartMax.BackColor = Color.White;
+        }
+
+        private void tb_ModPartMin_TextChanged(object sender, EventArgs e)
+        {
+            if ( tb_ModPartMin.Text == "" || (Convert.ToInt32(tb_ModPartMax.Text) < Convert.ToInt32(tb_ModPartMin.Text)) )    
+               tb_ModPartMin.BackColor = Color.OrangeRed;
+            else 
+                tb_ModPartMin.BackColor = Color.White;
+
+          
+        }
+
+        private void tb_ModPartMachineCompany_TextChanged(object sender, EventArgs e)
+        {
+            if (tb_ModPartMachineCompany.Text == "")
+                tb_ModPartMachineCompany.BackColor = Color.OrangeRed;
+            else
+                tb_ModPartMachineCompany.BackColor = Color.White;
+        }
         private void rb_ModPartInHouse_CheckedChanged(object sender, EventArgs e)
         {
             label_ModPartSource.Text = "Machine ID";
@@ -107,5 +220,133 @@ namespace InventoryTrackingApp.Views
         {
             label_ModPartSource.Text = "Company Name";
         }
+
+
+
+        /*****************************************************
+         * FIRES EVENT WHEN LEAVING TEXTBOX TO FORMAT STRING**
+         *****************************************************/
+        private void tb_ModPartPrice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                //Formats price to a currency
+                if (tb_ModPartPrice.Text.IndexOf(".") == -1)
+                    tb_ModPartPrice.Text = string.Format(new CultureInfo("en-US"), "{0:0.00}", decimal.Parse(tb_ModPartPrice.Text));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Price can not be left blank.");
+            }
+        }
+
+        private void tb_ModPartMin_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+             //Check Min is not greater than Max
+            if (Convert.ToInt32(tb_ModPartMin.Text) > Convert.ToInt32(tb_ModPartMax.Text))
+                MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Minimum stock level can not be blank.");
+            }
+                
+
+            
+          
+        }
+
+
+        /*************************************************************************
+         * KEY PRESS VALIDATION - ONLY ALLOW APPROPRIATE INPUT KEYS TO BE PRESSED*
+         *************************************************************************/
+
+        private void tb_ModPartInventory_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const int BACKSPACE = 8;
+            const int ZERO = 48;
+            const int NINE = 57;
+
+
+            int keyvalue = e.KeyChar;
+
+            //Allow the Backspace, 0-9 keys only
+            if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+
+            e.Handled = true;
+        }
+
+        private void tb_ModPartPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const int BACKSPACE = 8;
+            const int DECIMAL_POINT = 46;
+            const int ZERO = 48;
+            const int NINE = 57;
+            const int NOT_FOUND = -1;
+
+            int keyvalue = e.KeyChar;
+
+            //Allow the Backspace, 0-9 keys only
+            if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+
+            // Allow one decimal point if the text does not already contain a decimal point.
+            if ((keyvalue == DECIMAL_POINT) && (tb_ModPartPrice.Text.IndexOf(".") == NOT_FOUND)) return;
+
+            e.Handled = true;
+        }
+
+        private void tb_ModPartMax_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const int BACKSPACE = 8;
+            const int ZERO = 48;
+            const int NINE = 57;
+
+
+            int keyvalue = e.KeyChar;
+
+            //Allow the Backspace, 0-9 keys only
+            if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+
+            e.Handled = true;
+        }
+
+        private void tb_ModPartMin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const int BACKSPACE = 8;
+            const int ZERO = 48;
+            const int NINE = 57;
+
+
+            int keyvalue = e.KeyChar;
+
+            //Allow the Backspace, 0-9 keys only
+            if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+
+            e.Handled = true;
+        }
+
+        private void tb_ModPartMachineCompany_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (rb_ModPartInHouse.Checked) //Only allow numbers for Machine, but allows AlphaNumeric for Company Names
+            {
+                const int BACKSPACE = 8;
+                const int ZERO = 48;
+                const int NINE = 57;
+
+
+                int keyvalue = e.KeyChar;
+
+                //Allow the Backspace, 0-9 keys only
+                if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+
+                e.Handled = true;
+            }
+        }
+
+
+        
     }
+
 }
