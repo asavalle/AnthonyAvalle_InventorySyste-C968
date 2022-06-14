@@ -28,9 +28,6 @@ namespace InventoryTrackingApp.Views
             dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvAllParts.ClearSelection();
             dgvAssocParts.Rows.Clear();
-
-
-
         }
 
         private void AddProduct_Load(object sender, EventArgs e) {
@@ -65,17 +62,79 @@ namespace InventoryTrackingApp.Views
                         newProdList
                     );
             
-
             return tempProd;
         }
 
-        
+        private void btn_AddProdSearch_Click(object sender, EventArgs e)
+        {
+            bool found = false;
+            BindingList<Part> tempList = new BindingList<Part>();
+
+            if (tb_AddProdSearch.Text != "")
+            {
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].Name.Contains(tb_AddProdSearch.Text.ToLower()))
+                    {
+                        tempList.Add(Inventory.AllParts[i]);
+
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    dgvAllParts.DataSource = tempList;
+                }
+                else
+                {
+                    MessageBox.Show("No Part found matching that criteria!");
+                }
+            }
+        }
+
+        private void btn_AddProdResetSrch_Click(object sender, EventArgs e)
+        {
+            dgvAllParts.DataSource = Inventory.AllParts;
+        }
+
+        /*Feature to search without button. Auto filters list while typing*/
+        //private void tb_AddProdSearch_TextChanged(object sender, EventArgs e)
+        //{
+
+        //    bool found = false;
+        //    BindingList<Part> tempList = new BindingList<Part>();
+
+        //    if(tb_AddProdSearch.Text != "")
+        //    {
+        //        for (int i = 0; i < Inventory.AllParts.Count; i++)
+        //        {
+        //            if (Inventory.AllParts[i].Name.Contains(tb_AddProdSearch.Text.ToLower()))
+        //            {
+        //                tempList.Add(Inventory.AllParts[i]);
+
+        //                found = true;
+        //            }
+        //        }
+        //        if (found)
+        //        {
+        //            dgvAllParts.DataSource = tempList;
+        //        }
+        //        else 
+        //        {
+        //            MessageBox.Show("No Part found matching that criteria!");
+        //        }
+        //    }
+        //    else { dgvAllParts.DataSource = Inventory.AllParts; }
+
+
+
+        //}
+
         private void btn_ProdCancel_Click(object sender, EventArgs e)
         {
             MainScreen main = new MainScreen();
             this.Close();
             main.Show();
-
         }
 
         
@@ -89,14 +148,12 @@ namespace InventoryTrackingApp.Views
                 dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.BlueViolet;
 
                 var selectedIndex = e.RowIndex;
-                //Inventory.CurrentPartID = selectedIndex;
                 Inventory.CurrentPart = Inventory.lookupPart(selectedIndex);
             }
             catch
             {
                 dgvAllParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
                 dgvAllParts.DefaultCellStyle.SelectionForeColor = Color.Black;
-
 
                 MessageBox.Show("You clicked a header. Please select a row.");
             }
@@ -106,30 +163,32 @@ namespace InventoryTrackingApp.Views
         private void btn_AddAssocPart_Click(object sender, EventArgs e)
         {                
             tempList.Add(Inventory.CurrentPart);
-
-
         }
+
         private void btnSaveProd_Click(object sender, EventArgs e)
         {
-            
-            Product tempProduct = BuildTempProduct();
-            foreach (Part p in tempList)
+            if (dgvAssocParts.RowCount > 0)
             {
-                tempProduct.addAssociatedPart(p);
+                Product tempProduct = BuildTempProduct();
+                foreach (Part p in tempList)
+                {
+                    tempProduct.addAssociatedPart(p);
+                }
 
+                var confirmResult = MessageBox.Show("Are you sure you want to add this product?", "Confirm Add Product.", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    Inventory.addProduct(tempProduct);
+                }
+                this.Close();
+                MainScreen main = new MainScreen();
+                main.Show();
             }
-
-            var confirmResult = MessageBox.Show("Are you sure you want to add this product?", "Confirm Add Product.", MessageBoxButtons.YesNo);
-            
-            if(confirmResult == DialogResult.Yes)
+            else
             {
-                Inventory.addProduct(tempProduct);             
-                
+                MessageBox.Show("Please add at least ONE(1) Associated Part.");
             }
-            this.Close();
-            MainScreen main = new MainScreen();
-            main.Show();
-            
         }
 
         private void tb_AddProdName_TextChanged(object sender, EventArgs e)
@@ -153,6 +212,6 @@ namespace InventoryTrackingApp.Views
 
         }
 
-       
+        
     }
 }

@@ -29,12 +29,11 @@ namespace InventoryTrackingApp.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addPartTitle = new System.Windows.Forms.Label();
             this.rbInhouse = new System.Windows.Forms.RadioButton();
             this.rbOutsourced = new System.Windows.Forms.RadioButton();
             this.tbPartID = new System.Windows.Forms.TextBox();
-            this.tbAddPartName = new System.Windows.Forms.TextBox();
-            this.tbAddPriceCost = new System.Windows.Forms.TextBox();
             this.tbAddPartMax = new System.Windows.Forms.TextBox();
             this.tbAddPartMin = new System.Windows.Forms.TextBox();
             this.tbCompanyOrMachine = new System.Windows.Forms.TextBox();
@@ -48,6 +47,10 @@ namespace InventoryTrackingApp.Views
             this.btn_CancelPart = new System.Windows.Forms.Button();
             this.label_AddPartInventory = new System.Windows.Forms.Label();
             this.tbAddPartInventory = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tbAddPartName = new System.Windows.Forms.TextBox();
+            this.tbAddPriceCost = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // addPartTitle
@@ -64,7 +67,7 @@ namespace InventoryTrackingApp.Views
             // 
             this.rbInhouse.AutoSize = true;
             this.rbInhouse.Checked = true;
-            this.rbInhouse.Location = new System.Drawing.Point(150, 23);
+            this.rbInhouse.Location = new System.Drawing.Point(172, 79);
             this.rbInhouse.Name = "rbInhouse";
             this.rbInhouse.Size = new System.Drawing.Size(74, 19);
             this.rbInhouse.TabIndex = 1;
@@ -76,7 +79,7 @@ namespace InventoryTrackingApp.Views
             // rbOutsourced
             // 
             this.rbOutsourced.AutoSize = true;
-            this.rbOutsourced.Location = new System.Drawing.Point(274, 24);
+            this.rbOutsourced.Location = new System.Drawing.Point(296, 80);
             this.rbOutsourced.Name = "rbOutsourced";
             this.rbOutsourced.Size = new System.Drawing.Size(87, 19);
             this.rbOutsourced.TabIndex = 2;
@@ -87,52 +90,44 @@ namespace InventoryTrackingApp.Views
             // tbPartID
             // 
             this.tbPartID.Enabled = false;
-            this.tbPartID.Location = new System.Drawing.Point(172, 86);
+            this.tbPartID.Location = new System.Drawing.Point(194, 142);
             this.tbPartID.Name = "tbPartID";
             this.tbPartID.ReadOnly = true;
             this.tbPartID.Size = new System.Drawing.Size(100, 23);
             this.tbPartID.TabIndex = 3;
             // 
-            // tbAddPartName
-            // 
-            this.tbAddPartName.Location = new System.Drawing.Point(172, 138);
-            this.tbAddPartName.Name = "tbAddPartName";
-            this.tbAddPartName.Size = new System.Drawing.Size(100, 23);
-            this.tbAddPartName.TabIndex = 4;
-            this.tbAddPartName.TextChanged += new System.EventHandler(this.tbAddPartName_TextChanged);
-            // 
-            // tbAddPriceCost
-            // 
-            this.tbAddPriceCost.Location = new System.Drawing.Point(172, 225);
-            this.tbAddPriceCost.Name = "tbAddPriceCost";
-            this.tbAddPriceCost.Size = new System.Drawing.Size(100, 23);
-            this.tbAddPriceCost.TabIndex = 6;
-            // 
             // tbAddPartMax
             // 
-            this.tbAddPartMax.Location = new System.Drawing.Point(172, 277);
+            this.tbAddPartMax.Location = new System.Drawing.Point(194, 333);
             this.tbAddPartMax.Name = "tbAddPartMax";
             this.tbAddPartMax.Size = new System.Drawing.Size(100, 23);
             this.tbAddPartMax.TabIndex = 7;
+            this.tbAddPartMax.TextChanged += new System.EventHandler(this.tbAddPartMax_TextChanged);
+            this.tbAddPartMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPartMax_KeyPress);
             // 
             // tbAddPartMin
             // 
-            this.tbAddPartMin.Location = new System.Drawing.Point(340, 277);
+            this.tbAddPartMin.Location = new System.Drawing.Point(362, 333);
             this.tbAddPartMin.Name = "tbAddPartMin";
             this.tbAddPartMin.Size = new System.Drawing.Size(100, 23);
             this.tbAddPartMin.TabIndex = 8;
+            this.tbAddPartMin.TextChanged += new System.EventHandler(this.tbAddPartMin_TextChanged);
+            this.tbAddPartMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPartMin_KeyPress);
+            this.tbAddPartMin.Leave += new System.EventHandler(this.tbAddPartMin_Leave);
             // 
             // tbCompanyOrMachine
             // 
-            this.tbCompanyOrMachine.Location = new System.Drawing.Point(172, 329);
+            this.tbCompanyOrMachine.Location = new System.Drawing.Point(194, 385);
             this.tbCompanyOrMachine.Name = "tbCompanyOrMachine";
             this.tbCompanyOrMachine.Size = new System.Drawing.Size(268, 23);
             this.tbCompanyOrMachine.TabIndex = 9;
+            this.tbCompanyOrMachine.TextChanged += new System.EventHandler(this.tbCompanyOrMachine_TextChanged);
+            this.tbCompanyOrMachine.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCompanyOrMachine_KeyPress);
             // 
             // label_AddPartID
             // 
             this.label_AddPartID.AutoSize = true;
-            this.label_AddPartID.Location = new System.Drawing.Point(122, 89);
+            this.label_AddPartID.Location = new System.Drawing.Point(144, 145);
             this.label_AddPartID.Name = "label_AddPartID";
             this.label_AddPartID.Size = new System.Drawing.Size(18, 15);
             this.label_AddPartID.TabIndex = 9;
@@ -141,7 +136,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartName
             // 
             this.label_AddPartName.AutoSize = true;
-            this.label_AddPartName.Location = new System.Drawing.Point(101, 141);
+            this.label_AddPartName.Location = new System.Drawing.Point(123, 197);
             this.label_AddPartName.Name = "label_AddPartName";
             this.label_AddPartName.Size = new System.Drawing.Size(39, 15);
             this.label_AddPartName.TabIndex = 10;
@@ -150,7 +145,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartPriceCost
             // 
             this.label_AddPartPriceCost.AutoSize = true;
-            this.label_AddPartPriceCost.Location = new System.Drawing.Point(72, 228);
+            this.label_AddPartPriceCost.Location = new System.Drawing.Point(94, 284);
             this.label_AddPartPriceCost.Name = "label_AddPartPriceCost";
             this.label_AddPartPriceCost.Size = new System.Drawing.Size(68, 15);
             this.label_AddPartPriceCost.TabIndex = 11;
@@ -159,7 +154,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartMax
             // 
             this.label_AddPartMax.AutoSize = true;
-            this.label_AddPartMax.Location = new System.Drawing.Point(110, 280);
+            this.label_AddPartMax.Location = new System.Drawing.Point(132, 336);
             this.label_AddPartMax.Name = "label_AddPartMax";
             this.label_AddPartMax.Size = new System.Drawing.Size(30, 15);
             this.label_AddPartMax.TabIndex = 12;
@@ -168,7 +163,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartMin
             // 
             this.label_AddPartMin.AutoSize = true;
-            this.label_AddPartMin.Location = new System.Drawing.Point(294, 281);
+            this.label_AddPartMin.Location = new System.Drawing.Point(316, 337);
             this.label_AddPartMin.Name = "label_AddPartMin";
             this.label_AddPartMin.Size = new System.Drawing.Size(28, 15);
             this.label_AddPartMin.TabIndex = 13;
@@ -177,7 +172,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartSource
             // 
             this.label_AddPartSource.AutoSize = true;
-            this.label_AddPartSource.Location = new System.Drawing.Point(73, 332);
+            this.label_AddPartSource.Location = new System.Drawing.Point(95, 388);
             this.label_AddPartSource.Name = "label_AddPartSource";
             this.label_AddPartSource.Size = new System.Drawing.Size(67, 15);
             this.label_AddPartSource.TabIndex = 14;
@@ -186,7 +181,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_SavePart
             // 
-            this.btn_SavePart.Location = new System.Drawing.Point(332, 410);
+            this.btn_SavePart.Location = new System.Drawing.Point(581, 439);
             this.btn_SavePart.Name = "btn_SavePart";
             this.btn_SavePart.Size = new System.Drawing.Size(75, 41);
             this.btn_SavePart.TabIndex = 11;
@@ -196,7 +191,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_CancelPart
             // 
-            this.btn_CancelPart.Location = new System.Drawing.Point(432, 410);
+            this.btn_CancelPart.Location = new System.Drawing.Point(681, 439);
             this.btn_CancelPart.Name = "btn_CancelPart";
             this.btn_CancelPart.Size = new System.Drawing.Size(75, 41);
             this.btn_CancelPart.TabIndex = 10;
@@ -207,7 +202,7 @@ namespace InventoryTrackingApp.Views
             // label_AddPartInventory
             // 
             this.label_AddPartInventory.AutoSize = true;
-            this.label_AddPartInventory.Location = new System.Drawing.Point(83, 184);
+            this.label_AddPartInventory.Location = new System.Drawing.Point(105, 240);
             this.label_AddPartInventory.Name = "label_AddPartInventory";
             this.label_AddPartInventory.Size = new System.Drawing.Size(57, 15);
             this.label_AddPartInventory.TabIndex = 19;
@@ -216,16 +211,41 @@ namespace InventoryTrackingApp.Views
             // tbAddPartInventory
             // 
             this.tbAddPartInventory.HideSelection = false;
-            this.tbAddPartInventory.Location = new System.Drawing.Point(172, 181);
+            this.tbAddPartInventory.Location = new System.Drawing.Point(194, 237);
             this.tbAddPartInventory.Name = "tbAddPartInventory";
             this.tbAddPartInventory.Size = new System.Drawing.Size(100, 23);
             this.tbAddPartInventory.TabIndex = 5;
+            this.tbAddPartInventory.TextChanged += new System.EventHandler(this.tbAddPartInventory_TextChanged);
+            this.tbAddPartInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPartInventory_KeyPress);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // tbAddPartName
+            // 
+            this.tbAddPartName.Location = new System.Drawing.Point(194, 194);
+            this.tbAddPartName.Name = "tbAddPartName";
+            this.tbAddPartName.Size = new System.Drawing.Size(100, 23);
+            this.tbAddPartName.TabIndex = 4;
+            this.tbAddPartName.TextChanged += new System.EventHandler(this.tbAddPartName_TextChanged);
+            // 
+            // tbAddPriceCost
+            // 
+            this.tbAddPriceCost.Location = new System.Drawing.Point(194, 284);
+            this.tbAddPriceCost.Name = "tbAddPriceCost";
+            this.tbAddPriceCost.Size = new System.Drawing.Size(100, 23);
+            this.tbAddPriceCost.TabIndex = 6;
+            this.tbAddPriceCost.TextChanged += new System.EventHandler(this.tbAddPriceCost_TextChanged);
+            this.tbAddPriceCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPriceCost_KeyPress);
+            this.tbAddPriceCost.Leave += new System.EventHandler(this.tbAddPriceCost_Leave);
             // 
             // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 492);
+            this.ClientSize = new System.Drawing.Size(768, 492);
+            this.Controls.Add(this.tbAddPriceCost);
             this.Controls.Add(this.label_AddPartInventory);
             this.Controls.Add(this.tbAddPartInventory);
             this.Controls.Add(this.btn_CancelPart);
@@ -239,14 +259,14 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.tbCompanyOrMachine);
             this.Controls.Add(this.tbAddPartMin);
             this.Controls.Add(this.tbAddPartMax);
-            this.Controls.Add(this.tbAddPriceCost);
             this.Controls.Add(this.tbAddPartName);
             this.Controls.Add(this.tbPartID);
             this.Controls.Add(this.rbOutsourced);
             this.Controls.Add(this.rbInhouse);
             this.Controls.Add(this.addPartTitle);
             this.Name = "AddPart";
-            this.Text = "AddPart";
+            this.Text = "Add Part";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,8 +278,6 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.RadioButton rbInhouse;
         private System.Windows.Forms.RadioButton rbOutsourced;
         private System.Windows.Forms.TextBox tbPartID;
-        private System.Windows.Forms.TextBox tbAddPartName;
-        private System.Windows.Forms.TextBox tbAddPriceCost;
         private System.Windows.Forms.TextBox tbAddPartMax;
         private System.Windows.Forms.TextBox tbAddPartMin;
         private System.Windows.Forms.TextBox tbCompanyOrMachine;
@@ -273,5 +291,10 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Button btn_CancelPart;
         private System.Windows.Forms.Label label_AddPartInventory;
         private System.Windows.Forms.TextBox tbAddPartInventory;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox tbAddPartName;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbAddPriceCost;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

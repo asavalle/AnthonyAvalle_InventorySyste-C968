@@ -32,7 +32,7 @@ namespace InventoryTrackingApp.Views
             this.label_ModPartID = new System.Windows.Forms.Label();
             this.label_ModPartName = new System.Windows.Forms.Label();
             this.label_ModPartInventory = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_ModPartPrice = new System.Windows.Forms.Label();
             this.label_ModPartMax = new System.Windows.Forms.Label();
             this.label_ModPartMin = new System.Windows.Forms.Label();
             this.tb_ModPartID = new System.Windows.Forms.TextBox();
@@ -45,7 +45,7 @@ namespace InventoryTrackingApp.Views
             this.label_ModPartSource = new System.Windows.Forms.Label();
             this.rb_ModPartInHouse = new System.Windows.Forms.RadioButton();
             this.rb_ModPartOutsourced = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_ModPartTitle = new System.Windows.Forms.Label();
             this.btn_ModPartSave = new System.Windows.Forms.Button();
             this.btn_ModPartCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -53,7 +53,7 @@ namespace InventoryTrackingApp.Views
             // label_ModPartID
             // 
             this.label_ModPartID.AutoSize = true;
-            this.label_ModPartID.Location = new System.Drawing.Point(137, 103);
+            this.label_ModPartID.Location = new System.Drawing.Point(137, 136);
             this.label_ModPartID.Name = "label_ModPartID";
             this.label_ModPartID.Size = new System.Drawing.Size(18, 15);
             this.label_ModPartID.TabIndex = 0;
@@ -62,7 +62,7 @@ namespace InventoryTrackingApp.Views
             // label_ModPartName
             // 
             this.label_ModPartName.AutoSize = true;
-            this.label_ModPartName.Location = new System.Drawing.Point(116, 156);
+            this.label_ModPartName.Location = new System.Drawing.Point(116, 189);
             this.label_ModPartName.Name = "label_ModPartName";
             this.label_ModPartName.Size = new System.Drawing.Size(39, 15);
             this.label_ModPartName.TabIndex = 1;
@@ -71,25 +71,25 @@ namespace InventoryTrackingApp.Views
             // label_ModPartInventory
             // 
             this.label_ModPartInventory.AutoSize = true;
-            this.label_ModPartInventory.Location = new System.Drawing.Point(98, 209);
+            this.label_ModPartInventory.Location = new System.Drawing.Point(98, 242);
             this.label_ModPartInventory.Name = "label_ModPartInventory";
             this.label_ModPartInventory.Size = new System.Drawing.Size(57, 15);
             this.label_ModPartInventory.TabIndex = 2;
             this.label_ModPartInventory.Text = "Inventory";
             // 
-            // label4
+            // label_ModPartPrice
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(87, 262);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Price / Cost";
+            this.label_ModPartPrice.AutoSize = true;
+            this.label_ModPartPrice.Location = new System.Drawing.Point(87, 295);
+            this.label_ModPartPrice.Name = "label_ModPartPrice";
+            this.label_ModPartPrice.Size = new System.Drawing.Size(68, 15);
+            this.label_ModPartPrice.TabIndex = 3;
+            this.label_ModPartPrice.Text = "Price / Cost";
             // 
             // label_ModPartMax
             // 
             this.label_ModPartMax.AutoSize = true;
-            this.label_ModPartMax.Location = new System.Drawing.Point(125, 315);
+            this.label_ModPartMax.Location = new System.Drawing.Point(125, 348);
             this.label_ModPartMax.Name = "label_ModPartMax";
             this.label_ModPartMax.Size = new System.Drawing.Size(30, 15);
             this.label_ModPartMax.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace InventoryTrackingApp.Views
             // label_ModPartMin
             // 
             this.label_ModPartMin.AutoSize = true;
-            this.label_ModPartMin.Location = new System.Drawing.Point(338, 315);
+            this.label_ModPartMin.Location = new System.Drawing.Point(338, 348);
             this.label_ModPartMin.Name = "label_ModPartMin";
             this.label_ModPartMin.Size = new System.Drawing.Size(28, 15);
             this.label_ModPartMin.TabIndex = 5;
@@ -107,7 +107,7 @@ namespace InventoryTrackingApp.Views
             // tb_ModPartID
             // 
             this.tb_ModPartID.Enabled = false;
-            this.tb_ModPartID.Location = new System.Drawing.Point(201, 100);
+            this.tb_ModPartID.Location = new System.Drawing.Point(201, 133);
             this.tb_ModPartID.Name = "tb_ModPartID";
             this.tb_ModPartID.ReadOnly = true;
             this.tb_ModPartID.Size = new System.Drawing.Size(100, 23);
@@ -115,42 +115,42 @@ namespace InventoryTrackingApp.Views
             // 
             // tb_ModPartName
             // 
-            this.tb_ModPartName.Location = new System.Drawing.Point(201, 153);
+            this.tb_ModPartName.Location = new System.Drawing.Point(201, 186);
             this.tb_ModPartName.Name = "tb_ModPartName";
             this.tb_ModPartName.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartName.TabIndex = 1;
             // 
             // tb_ModPartInventory
             // 
-            this.tb_ModPartInventory.Location = new System.Drawing.Point(201, 206);
+            this.tb_ModPartInventory.Location = new System.Drawing.Point(201, 239);
             this.tb_ModPartInventory.Name = "tb_ModPartInventory";
             this.tb_ModPartInventory.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartInventory.TabIndex = 2;
             // 
             // tb_ModPartPrice
             // 
-            this.tb_ModPartPrice.Location = new System.Drawing.Point(201, 259);
+            this.tb_ModPartPrice.Location = new System.Drawing.Point(201, 292);
             this.tb_ModPartPrice.Name = "tb_ModPartPrice";
             this.tb_ModPartPrice.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartPrice.TabIndex = 3;
             // 
             // tb_ModPartMax
             // 
-            this.tb_ModPartMax.Location = new System.Drawing.Point(201, 312);
+            this.tb_ModPartMax.Location = new System.Drawing.Point(201, 345);
             this.tb_ModPartMax.Name = "tb_ModPartMax";
             this.tb_ModPartMax.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartMax.TabIndex = 4;
             // 
             // tb_ModPartMin
             // 
-            this.tb_ModPartMin.Location = new System.Drawing.Point(372, 311);
+            this.tb_ModPartMin.Location = new System.Drawing.Point(372, 344);
             this.tb_ModPartMin.Name = "tb_ModPartMin";
             this.tb_ModPartMin.Size = new System.Drawing.Size(100, 23);
             this.tb_ModPartMin.TabIndex = 5;
             // 
             // tb_ModPartMachineCompany
             // 
-            this.tb_ModPartMachineCompany.Location = new System.Drawing.Point(201, 365);
+            this.tb_ModPartMachineCompany.Location = new System.Drawing.Point(201, 398);
             this.tb_ModPartMachineCompany.Name = "tb_ModPartMachineCompany";
             this.tb_ModPartMachineCompany.Size = new System.Drawing.Size(271, 23);
             this.tb_ModPartMachineCompany.TabIndex = 6;
@@ -158,7 +158,7 @@ namespace InventoryTrackingApp.Views
             // label_ModPartSource
             // 
             this.label_ModPartSource.AutoSize = true;
-            this.label_ModPartSource.Location = new System.Drawing.Point(88, 368);
+            this.label_ModPartSource.Location = new System.Drawing.Point(88, 401);
             this.label_ModPartSource.Name = "label_ModPartSource";
             this.label_ModPartSource.Size = new System.Drawing.Size(67, 15);
             this.label_ModPartSource.TabIndex = 13;
@@ -168,7 +168,7 @@ namespace InventoryTrackingApp.Views
             // 
             this.rb_ModPartInHouse.AutoSize = true;
             this.rb_ModPartInHouse.Checked = true;
-            this.rb_ModPartInHouse.Location = new System.Drawing.Point(184, 30);
+            this.rb_ModPartInHouse.Location = new System.Drawing.Point(184, 63);
             this.rb_ModPartInHouse.Name = "rb_ModPartInHouse";
             this.rb_ModPartInHouse.Size = new System.Drawing.Size(74, 19);
             this.rb_ModPartInHouse.TabIndex = 14;
@@ -180,7 +180,7 @@ namespace InventoryTrackingApp.Views
             // rb_ModPartOutsourced
             // 
             this.rb_ModPartOutsourced.AutoSize = true;
-            this.rb_ModPartOutsourced.Location = new System.Drawing.Point(338, 30);
+            this.rb_ModPartOutsourced.Location = new System.Drawing.Point(338, 63);
             this.rb_ModPartOutsourced.Name = "rb_ModPartOutsourced";
             this.rb_ModPartOutsourced.Size = new System.Drawing.Size(87, 19);
             this.rb_ModPartOutsourced.TabIndex = 15;
@@ -188,19 +188,19 @@ namespace InventoryTrackingApp.Views
             this.rb_ModPartOutsourced.UseVisualStyleBackColor = true;
             this.rb_ModPartOutsourced.CheckedChanged += new System.EventHandler(this.rb_ModPartOutsourced_CheckedChanged);
             // 
-            // label1
+            // label_ModPartTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 30);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Modify Part";
+            this.label_ModPartTitle.AutoSize = true;
+            this.label_ModPartTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_ModPartTitle.Location = new System.Drawing.Point(12, 9);
+            this.label_ModPartTitle.Name = "label_ModPartTitle";
+            this.label_ModPartTitle.Size = new System.Drawing.Size(120, 30);
+            this.label_ModPartTitle.TabIndex = 17;
+            this.label_ModPartTitle.Text = "Modify Part";
             // 
             // btn_ModPartSave
             // 
-            this.btn_ModPartSave.Location = new System.Drawing.Point(335, 412);
+            this.btn_ModPartSave.Location = new System.Drawing.Point(575, 445);
             this.btn_ModPartSave.Name = "btn_ModPartSave";
             this.btn_ModPartSave.Size = new System.Drawing.Size(75, 35);
             this.btn_ModPartSave.TabIndex = 8;
@@ -210,7 +210,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_ModPartCancel
             // 
-            this.btn_ModPartCancel.Location = new System.Drawing.Point(441, 412);
+            this.btn_ModPartCancel.Location = new System.Drawing.Point(681, 445);
             this.btn_ModPartCancel.Name = "btn_ModPartCancel";
             this.btn_ModPartCancel.Size = new System.Drawing.Size(75, 35);
             this.btn_ModPartCancel.TabIndex = 7;
@@ -222,10 +222,10 @@ namespace InventoryTrackingApp.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 492);
+            this.ClientSize = new System.Drawing.Size(768, 492);
             this.Controls.Add(this.btn_ModPartCancel);
             this.Controls.Add(this.btn_ModPartSave);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_ModPartTitle);
             this.Controls.Add(this.rb_ModPartOutsourced);
             this.Controls.Add(this.rb_ModPartInHouse);
             this.Controls.Add(this.label_ModPartSource);
@@ -238,12 +238,12 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.tb_ModPartID);
             this.Controls.Add(this.label_ModPartMin);
             this.Controls.Add(this.label_ModPartMax);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label_ModPartPrice);
             this.Controls.Add(this.label_ModPartInventory);
             this.Controls.Add(this.label_ModPartName);
             this.Controls.Add(this.label_ModPartID);
             this.Name = "ModifyParts";
-            this.Text = "ModifyParts";
+            this.Text = "Modify Part";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,13 +252,13 @@ namespace InventoryTrackingApp.Views
         #endregion
         private System.Windows.Forms.Label label_ModPartName;
         private System.Windows.Forms.Label label_ModPartInventory;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_ModPartPrice;
         private System.Windows.Forms.Label label_ModPartMax;
         private System.Windows.Forms.Label label_ModPartMin;
         private System.Windows.Forms.Label label_ModPartSource;
         private System.Windows.Forms.RadioButton rb_ModPartInHouse;
         private System.Windows.Forms.RadioButton rb_ModPartOutsourced;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_ModPartTitle;
         private System.Windows.Forms.Button btn_ModPartSave;
         private System.Windows.Forms.Button btn_ModPartCancel;
         public System.Windows.Forms.TextBox tb_ModPartID;

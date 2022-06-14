@@ -66,28 +66,34 @@ namespace InventoryTrackingApp.Views
         private void btn_ModPartSave_Click(object sender, EventArgs e)
         {
             var dialogResult = MessageBox.Show($"Do you want to Modify '{Inventory.CurrentPart.Name}'?", "Modify Part?", MessageBoxButtons.YesNo);
-            if(dialogResult == DialogResult.Yes)
-            {
-                 if (rb_ModPartInHouse.Checked)
+
+            try {
+                if (dialogResult == DialogResult.Yes)
                 {
-                    Part updated = new Inhouse( tb_ModPartName.Text,Convert.ToDecimal(tb_ModPartPrice.Text),Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text),Convert.ToInt32(tb_ModPartMin.Text), Convert.ToInt32(tb_ModPartMachineCompany.Text) );
-                    updated.PartID = Inventory.CurrentPartID;
-                    Inventory.updatePart(Inventory.CurrentPartID, updated);
-                }
-                else
-                {
-                    Part updated = new Outsourced (tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text),  Convert.ToInt32(tb_ModPartInventory.Text) , Convert.ToInt32(tb_ModPartMax.Text),  Convert.ToInt32(tb_ModPartMin.Text),  tb_ModPartMachineCompany.Text);
-                    updated.PartID = Inventory.CurrentPartID;
-                    Inventory.updatePart(Inventory.CurrentPartID, updated);
+                    if (rb_ModPartInHouse.Checked)
+                    {
+                        Part updated = new Inhouse(tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text), Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text), Convert.ToInt32(tb_ModPartMin.Text), Convert.ToInt32(tb_ModPartMachineCompany.Text));
+                        updated.PartID = Inventory.CurrentPartID;
+                        Inventory.updatePart(Inventory.CurrentPartID, updated);
+                    }
+                    else
+                    {
+                        Part updated = new Outsourced(tb_ModPartName.Text, Convert.ToDecimal(tb_ModPartPrice.Text), Convert.ToInt32(tb_ModPartInventory.Text), Convert.ToInt32(tb_ModPartMax.Text), Convert.ToInt32(tb_ModPartMin.Text), tb_ModPartMachineCompany.Text);
+                        updated.PartID = Inventory.CurrentPartID;
+                        Inventory.updatePart(Inventory.CurrentPartID, updated);
+
+                    }
+                    MainScreen main = new MainScreen();
+                    MessageBox.Show("Part has been updated!");
+                    this.Close();
+                    main.Show();
 
                 }
-                MainScreen main = new MainScreen();
-                MessageBox.Show("Part has been updated!");
-                this.Close();
-                main.Show();
-
             }
-
+            catch (FormatException err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
 
         
