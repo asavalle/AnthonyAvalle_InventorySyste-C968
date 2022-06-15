@@ -24,9 +24,9 @@ namespace InventoryTrackingApp.Views
              * SET ALL TEXTBOX BACKGROUNDS TO RED**
              **************************************/
 
-            foreach (TextBox tb in this.Controls.OfType<TextBox>().Where(x => x.Text == ""))
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
             {
-                if(tb != tbPartID)
+                if(tb.Name != "tbPartID" && tb.Text == "")
                   tb.BackColor = Color.OrangeRed;
                 
                   btn_SavePart.Enabled = true;
@@ -41,11 +41,13 @@ namespace InventoryTrackingApp.Views
         private void rbOutsourced_CheckedChanged(object sender, EventArgs e)
         {
             this.label_AddPartSource.Text = "Company Name";
+            tbCompanyOrMachine.Text = "";
         }
 
         private void rbInhouse_CheckedChanged(object sender, EventArgs e)
         {
             this.label_AddPartSource.Text = "Machine ID";
+            tbCompanyOrMachine.Text = "";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -58,49 +60,68 @@ namespace InventoryTrackingApp.Views
         {
             BindingList<Part> list = new BindingList<Part>();
 
-            try
+            var numEmptyFields = 0;
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
             {
-                if (rbInhouse.Checked)
+                if (tb.BackColor == Color.OrangeRed)
                 {
-                    var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
-
-                    Inhouse newInhouse = new Inhouse
-                    (
-                        tbAddPartName.Text.ToLower(),
-                        Convert.ToInt32(tbAddPartInventory.Text),
-                        Convert.ToDecimal(priceRounded),
-                        Convert.ToInt32(tbAddPartMin.Text),
-                        Convert.ToInt32(tbAddPartMax.Text),
-                        Convert.ToInt32(tbCompanyOrMachine.Text)
-                    );
-
-                    Inventory.addPart(newInhouse);
+                    numEmptyFields++;    
+                    
                 }
-                else
+                if(numEmptyFields > 0)
                 {
-                    var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
-                    Outsourced newOutsourced = new Outsourced
-                    (
-                        tbAddPartName.Text.ToLower(),
-                        Convert.ToInt32(tbAddPartInventory.Text),
-                        Convert.ToDecimal(priceRounded),
-                        Convert.ToInt32(tbAddPartMin.Text),
-                        Convert.ToInt32(tbAddPartMax.Text),
-                        tbCompanyOrMachine.Text.ToLower()
-                    );
-
-                    Inventory.addPart(newOutsourced);
-
+                    MessageBox.Show("Form is not complete. Please verify all fields are filled out.");
+                    return;
                 }
 
 
-                MessageBox.Show("Part Added");
-                this.Close();
-                mainScreen.Show();
             }
-            catch (FormatException err)
+            if (numEmptyFields < 6)
             {
-                MessageBox.Show(err.Message);
+                try
+                {
+                    if (rbInhouse.Checked)
+                    {
+                        var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
+
+                        Inhouse newInhouse = new Inhouse
+                        (
+                            tbAddPartName.Text.ToLower(),
+                            Convert.ToInt32(tbAddPartInventory.Text),
+                            Convert.ToDecimal(priceRounded),
+                            Convert.ToInt32(tbAddPartMin.Text),
+                            Convert.ToInt32(tbAddPartMax.Text),
+                            Convert.ToInt32(tbCompanyOrMachine.Text)
+                        );
+
+                        Inventory.addPart(newInhouse);
+                    }
+                    else
+                    {
+                        var priceRounded = string.Format("{0:0.00}", (string)tbAddPriceCost.Text);
+                        Outsourced newOutsourced = new Outsourced
+                        (
+                            tbAddPartName.Text.ToLower(),
+                            Convert.ToInt32(tbAddPartInventory.Text),
+                            Convert.ToDecimal(priceRounded),
+                            Convert.ToInt32(tbAddPartMin.Text),
+                            Convert.ToInt32(tbAddPartMax.Text),
+                            tbCompanyOrMachine.Text.ToLower()
+                        );
+
+                        Inventory.addPart(newOutsourced);
+
+                    }
+
+
+                    MessageBox.Show("Part Added");
+                    this.Close();
+                    mainScreen.Show();
+                }
+                catch (FormatException err)
+                {
+                    MessageBox.Show(err.Message);
+                }
             }
         }
 
@@ -189,21 +210,10 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPartMin_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartMin.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while (blank == true)
-            {
-
-                if (tbAddPartMin.Text != "")
-                {
-                    tbAddPartMin.BackColor = Color.White;
-                    blank = false;
-
-                }
-                else
-                    blank = false;
-
-            }
+            if (tbAddPartMin.Text == "" || (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartMin.Text)))
+                tbAddPartMin.BackColor = Color.OrangeRed;
+            else
+                tbAddPartMin.BackColor = Color.White;
         }
 
         private void tbCompanyOrMachine_TextChanged(object sender, EventArgs e)
@@ -212,19 +222,14 @@ namespace InventoryTrackingApp.Views
             bool blank = true;
             while (blank == true)
             {
-
                 if (tbCompanyOrMachine.Text != "" )
                 {
                     tbCompanyOrMachine.BackColor = Color.White;
                     blank = false;
-
                 }
                 else
                     blank = false;
-
             }
-
-           
 
         }
 
@@ -245,10 +250,18 @@ namespace InventoryTrackingApp.Views
 
         private void tbAddPartMin_Leave(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(tbAddPartMin.Text) > Convert.ToInt32(tbAddPartMax.Text))
+            try
             {
-                MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
+                if (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartMin.Text) )
+                {
+                    MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
+                }
             }
+            catch (FormatException)
+            {
+                MessageBox.Show("Minimum stock level can not be blank.");
+            }
+            
         }
 
         /*************************************************************************
@@ -283,12 +296,12 @@ namespace InventoryTrackingApp.Views
           
 
                 int keyvalue = e.KeyChar;
-
-                //Allow the Backspace, 0-9 keys only
-                if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
+                if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;//Allow the Backspace, 0-9 keys only
+                
 
                 e.Handled = true;
             }
+            
         }
 
         private void tbAddPartInventory_KeyPress(object sender, KeyPressEventArgs e)

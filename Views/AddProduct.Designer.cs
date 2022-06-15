@@ -197,6 +197,8 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdInventory.Name = "tb_AddProdInventory";
             this.tb_AddProdInventory.Size = new System.Drawing.Size(184, 23);
             this.tb_AddProdInventory.TabIndex = 14;
+            this.tb_AddProdInventory.TextChanged += new System.EventHandler(this.tb_AddProdInventory_TextChanged);
+            this.tb_AddProdInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdInventory_KeyPress);
             // 
             // tb_AddProdPrice
             // 
@@ -204,6 +206,9 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdPrice.Name = "tb_AddProdPrice";
             this.tb_AddProdPrice.Size = new System.Drawing.Size(184, 23);
             this.tb_AddProdPrice.TabIndex = 15;
+            this.tb_AddProdPrice.TextChanged += new System.EventHandler(this.tb_AddProdPrice_TextChanged);
+            this.tb_AddProdPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdPrice_KeyPress);
+            this.tb_AddProdPrice.Leave += new System.EventHandler(this.tb_AddProdPrice_Leave);
             // 
             // tb_AddProdMax
             // 
@@ -211,6 +216,8 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMax.Name = "tb_AddProdMax";
             this.tb_AddProdMax.Size = new System.Drawing.Size(79, 23);
             this.tb_AddProdMax.TabIndex = 16;
+            this.tb_AddProdMax.TextChanged += new System.EventHandler(this.tb_AddProdMax_TextChanged);
+            this.tb_AddProdMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdMax_KeyPress);
             // 
             // tb_AddProdMin
             // 
@@ -218,6 +225,9 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMin.Name = "tb_AddProdMin";
             this.tb_AddProdMin.Size = new System.Drawing.Size(79, 23);
             this.tb_AddProdMin.TabIndex = 17;
+            this.tb_AddProdMin.TextChanged += new System.EventHandler(this.tb_AddProdMin_TextChanged);
+            this.tb_AddProdMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdMin_KeyPress);
+            this.tb_AddProdMin.Leave += new System.EventHandler(this.tb_AddProdMin_Leave);
             // 
             // btn_AddAssocPart
             // 
@@ -312,7 +322,6 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.addProductTitle);
             this.Name = "AddProduct";
             this.Text = "Add Product";
-            this.Load += new System.EventHandler(this.AddProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).EndInit();
             this.ResumeLayout(false);

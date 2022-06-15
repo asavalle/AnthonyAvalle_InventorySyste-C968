@@ -14,20 +14,20 @@ namespace InventoryTrackingApp
 
         public int ProductID { get; set; }
         public string Name { get; set; }
-        public decimal Price { get; set; }
         public int InStock { get; set; }
+        public decimal Price { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
 
 
 
-        public Product( string name, decimal price, int inStock, int min, int max, BindingList<Part> list)
+        public Product( string name, int inStock, decimal price,int min, int max, BindingList<Part> list)
         {
 
             ProductID += Inventory.Products.Count;
-            Name = name;
-            Price = price;
+            Name = name;            
             InStock = inStock;
+            Price = price;
             Min = min;
             Max = max;
             AssociatedParts = list;

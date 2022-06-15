@@ -195,14 +195,14 @@ namespace InventoryTrackingApp
                 int selectedIndex = e.RowIndex;               
                 Inventory.CurrentProductID = (int)dgvProducts.Rows[selectedIndex].Cells[0].Value;
                 Inventory.CurrentProduct = Inventory.lookupProduct(Inventory.CurrentProductID);
-                btnModProduct.Enabled = true;
+                
             }
             catch
             {
                 dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
                 dgvParts.DefaultCellStyle.SelectionForeColor = Color.Black;
 
-                btnModProduct.Enabled = false;
+                
 
                 MessageBox.Show("You clicked a header. Please select a row.");
             }

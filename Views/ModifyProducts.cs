@@ -12,9 +12,9 @@ namespace InventoryTrackingApp.Views
     {
         Product tempProd = new Product
                 (
-                    Inventory.CurrentProduct.Name,
-                    Inventory.CurrentProduct.Price,
+                    Inventory.CurrentProduct.Name,                    
                     Inventory.CurrentProduct.InStock,
+                    Inventory.CurrentProduct.Price,
                     Inventory.CurrentProduct.Max,
                     Inventory.CurrentProduct.Min,
                     Inventory.CurrentProduct.AssociatedParts

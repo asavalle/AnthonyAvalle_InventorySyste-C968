@@ -39,9 +39,9 @@ namespace InventoryTrackingApp
             testParts.Add(new Inhouse("handle bar",10,  Convert.ToDecimal("10.20"), 5, 20, 1000));
 
             //Products Source
-            Inventory.Products.Add(new Product ("boy's bicycle",  Convert.ToDecimal("150.00"),  10, 5, 20, testParts ));
-            Inventory.Products.Add(new Product("girl's bicycle",  Convert.ToDecimal("150.00"),  10,  5,  20, testParts) );
-            Inventory.Products.Add(new Product("tri-wheeler",  Convert.ToDecimal("299.99"),  10,  5,  20, testParts));
+            Inventory.Products.Add(new Product ("boy's bicycle", 10, Convert.ToDecimal("150.00"),   50, 20, testParts ));
+            Inventory.Products.Add(new Product("girl's bicycle", 10, Convert.ToDecimal("150.00"),    50,  20, testParts) );
+            Inventory.Products.Add(new Product("tri-wheeler", 10,  Convert.ToDecimal("299.99"),   50,  20, testParts));
 
             
 
