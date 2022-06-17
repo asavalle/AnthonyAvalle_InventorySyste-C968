@@ -293,8 +293,7 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.TextBox tbAddPartInventory;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox tbAddPartName;
-        private System.Windows.Forms.TextBox textBox1;
+        //private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox tbAddPriceCost;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

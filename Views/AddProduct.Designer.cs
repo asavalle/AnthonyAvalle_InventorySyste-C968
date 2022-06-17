@@ -190,6 +190,7 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdName.Size = new System.Drawing.Size(184, 23);
             this.tb_AddProdName.TabIndex = 13;
             this.tb_AddProdName.TextChanged += new System.EventHandler(this.tb_AddProdName_TextChanged);
+            this.tb_AddProdName.Leave += new System.EventHandler(this.tb_AddProdName_Leave);
             // 
             // tb_AddProdInventory
             // 
@@ -199,6 +200,7 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdInventory.TabIndex = 14;
             this.tb_AddProdInventory.TextChanged += new System.EventHandler(this.tb_AddProdInventory_TextChanged);
             this.tb_AddProdInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdInventory_KeyPress);
+            this.tb_AddProdInventory.Leave += new System.EventHandler(this.tb_AddProdInventory_Leave);
             // 
             // tb_AddProdPrice
             // 
@@ -218,6 +220,7 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMax.TabIndex = 16;
             this.tb_AddProdMax.TextChanged += new System.EventHandler(this.tb_AddProdMax_TextChanged);
             this.tb_AddProdMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdMax_KeyPress);
+            this.tb_AddProdMax.Leave += new System.EventHandler(this.tb_AddProdMax_Leave);
             // 
             // tb_AddProdMin
             // 
