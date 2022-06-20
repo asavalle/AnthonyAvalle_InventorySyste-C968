@@ -102,7 +102,7 @@ namespace InventoryTrackingApp
             // 
             this.btnDelPart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDelPart.ForeColor = System.Drawing.Color.White;
-            this.btnDelPart.Location = new System.Drawing.Point(642, 403);
+            this.btnDelPart.Location = new System.Drawing.Point(562, 471);
             this.btnDelPart.Name = "btnDelPart";
             this.btnDelPart.Size = new System.Drawing.Size(75, 33);
             this.btnDelPart.TabIndex = 6;
@@ -112,7 +112,7 @@ namespace InventoryTrackingApp
             // 
             // btnModPart
             // 
-            this.btnModPart.Location = new System.Drawing.Point(642, 211);
+            this.btnModPart.Location = new System.Drawing.Point(561, 442);
             this.btnModPart.Name = "btnModPart";
             this.btnModPart.Size = new System.Drawing.Size(75, 23);
             this.btnModPart.TabIndex = 5;
@@ -122,7 +122,7 @@ namespace InventoryTrackingApp
             // 
             // btnAddPart
             // 
-            this.btnAddPart.Location = new System.Drawing.Point(642, 155);
+            this.btnAddPart.Location = new System.Drawing.Point(480, 442);
             this.btnAddPart.Name = "btnAddPart";
             this.btnAddPart.Size = new System.Drawing.Size(75, 23);
             this.btnAddPart.TabIndex = 4;
@@ -165,7 +165,7 @@ namespace InventoryTrackingApp
             // 
             // btnAddProduct
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(1396, 155);
+            this.btnAddProduct.Location = new System.Drawing.Point(1234, 442);
             this.btnAddProduct.Name = "btnAddProduct";
             this.btnAddProduct.Size = new System.Drawing.Size(75, 23);
             this.btnAddProduct.TabIndex = 10;
@@ -175,7 +175,7 @@ namespace InventoryTrackingApp
             // 
             // btnModProduct
             // 
-            this.btnModProduct.Location = new System.Drawing.Point(1396, 211);
+            this.btnModProduct.Location = new System.Drawing.Point(1315, 442);
             this.btnModProduct.Name = "btnModProduct";
             this.btnModProduct.Size = new System.Drawing.Size(75, 23);
             this.btnModProduct.TabIndex = 11;
@@ -187,7 +187,7 @@ namespace InventoryTrackingApp
             // 
             this.btnDelProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnDelProduct.ForeColor = System.Drawing.Color.White;
-            this.btnDelProduct.Location = new System.Drawing.Point(1396, 403);
+            this.btnDelProduct.Location = new System.Drawing.Point(1315, 471);
             this.btnDelProduct.Name = "btnDelProduct";
             this.btnDelProduct.Size = new System.Drawing.Size(75, 33);
             this.btnDelProduct.TabIndex = 12;
@@ -214,7 +214,7 @@ namespace InventoryTrackingApp
             // 
             // bt_Exit
             // 
-            this.bt_Exit.Location = new System.Drawing.Point(1375, 662);
+            this.bt_Exit.Location = new System.Drawing.Point(1273, 662);
             this.bt_Exit.Name = "bt_Exit";
             this.bt_Exit.Size = new System.Drawing.Size(117, 46);
             this.bt_Exit.TabIndex = 13;
@@ -246,7 +246,7 @@ namespace InventoryTrackingApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1504, 720);
+            this.ClientSize = new System.Drawing.Size(1415, 720);
             this.Controls.Add(this.btnResetProdSearch);
             this.Controls.Add(this.btn_ResetSearch);
             this.Controls.Add(this.bt_Exit);

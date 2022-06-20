@@ -29,6 +29,7 @@ namespace InventoryTrackingApp.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label_AssocParts = new System.Windows.Forms.Label();
             this.btn_ModSaveProd = new System.Windows.Forms.Button();
             this.btn_ModProdCancel = new System.Windows.Forms.Button();
@@ -53,8 +54,19 @@ namespace InventoryTrackingApp.Views
             this.btn_ModSearchProduct = new System.Windows.Forms.Button();
             this.ModifyProductTitle = new System.Windows.Forms.Label();
             this.btn_ModProdResetSrch = new System.Windows.Forms.Button();
+            this.label_errorModProd = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModAssocParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModAllParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
             this.SuspendLayout();
             // 
             // label_AssocParts
@@ -115,6 +127,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModProdMin.Name = "tb_ModProdMin";
             this.tb_ModProdMin.Size = new System.Drawing.Size(79, 23);
             this.tb_ModProdMin.TabIndex = 41;
+            this.tb_ModProdMin.TextChanged += new System.EventHandler(this.tb_ModProdMin_TextChanged);
             // 
             // tb_ModProdMax
             // 
@@ -122,6 +135,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModProdMax.Name = "tb_ModProdMax";
             this.tb_ModProdMax.Size = new System.Drawing.Size(79, 23);
             this.tb_ModProdMax.TabIndex = 40;
+            this.tb_ModProdMax.TextChanged += new System.EventHandler(this.tb_ModProdMax_TextChanged);
             // 
             // tb_ModProdPrice
             // 
@@ -129,6 +143,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModProdPrice.Name = "tb_ModProdPrice";
             this.tb_ModProdPrice.Size = new System.Drawing.Size(184, 23);
             this.tb_ModProdPrice.TabIndex = 39;
+            this.tb_ModProdPrice.TextChanged += new System.EventHandler(this.tb_ModProdPrice_TextChanged);
             // 
             // tb_ModProdInventory
             // 
@@ -136,6 +151,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModProdInventory.Name = "tb_ModProdInventory";
             this.tb_ModProdInventory.Size = new System.Drawing.Size(184, 23);
             this.tb_ModProdInventory.TabIndex = 38;
+            this.tb_ModProdInventory.TextChanged += new System.EventHandler(this.tb_ModProdInventory_TextChanged);
             // 
             // tb_ModProdName
             // 
@@ -225,6 +241,8 @@ namespace InventoryTrackingApp.Views
             this.dgvModAssocParts.Location = new System.Drawing.Point(489, 457);
             this.dgvModAssocParts.MultiSelect = false;
             this.dgvModAssocParts.Name = "dgvModAssocParts";
+            this.dgvModAssocParts.ReadOnly = true;
+            this.dgvModAssocParts.RowHeadersVisible = false;
             this.dgvModAssocParts.RowTemplate.Height = 25;
             this.dgvModAssocParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvModAssocParts.Size = new System.Drawing.Size(601, 281);
@@ -237,6 +255,8 @@ namespace InventoryTrackingApp.Views
             this.dgvModAllParts.Location = new System.Drawing.Point(489, 84);
             this.dgvModAllParts.MultiSelect = false;
             this.dgvModAllParts.Name = "dgvModAllParts";
+            this.dgvModAllParts.ReadOnly = true;
+            this.dgvModAllParts.RowHeadersVisible = false;
             this.dgvModAllParts.RowTemplate.Height = 25;
             this.dgvModAllParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvModAllParts.Size = new System.Drawing.Size(601, 281);
@@ -280,11 +300,42 @@ namespace InventoryTrackingApp.Views
             this.btn_ModProdResetSrch.UseVisualStyleBackColor = true;
             this.btn_ModProdResetSrch.Click += new System.EventHandler(this.btn_ModProdResetSrch_Click);
             // 
+            // label_errorModProd
+            // 
+            this.label_errorModProd.AutoSize = true;
+            this.label_errorModProd.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_errorModProd.ForeColor = System.Drawing.Color.Red;
+            this.label_errorModProd.Location = new System.Drawing.Point(33, 520);
+            this.label_errorModProd.Name = "label_errorModProd";
+            this.label_errorModProd.Size = new System.Drawing.Size(0, 18);
+            this.label_errorModProd.TabIndex = 49;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
             // ModifyProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1235, 820);
+            this.Controls.Add(this.label_errorModProd);
             this.Controls.Add(this.btn_ModProdResetSrch);
             this.Controls.Add(this.label_AssocParts);
             this.Controls.Add(this.btn_ModSaveProd);
@@ -314,6 +365,11 @@ namespace InventoryTrackingApp.Views
             this.Load += new System.EventHandler(this.ModifyProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModAssocParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvModAllParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +401,11 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.Button btn_ModSearchProduct;
         private System.Windows.Forms.Label ModifyProductTitle;
         private System.Windows.Forms.Button btn_ModProdResetSrch;
+        private System.Windows.Forms.Label label_errorModProd;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
     }
 }

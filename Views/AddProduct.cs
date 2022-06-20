@@ -13,12 +13,10 @@ namespace InventoryTrackingApp.Views
     public partial class AddProduct : Form
     {
         static BindingList<Part> tempList = new BindingList<Part>();
-        private int numEmptyFields = 5;
 
         public AddProduct()
         {
             InitializeComponent();
-            btnSaveProd.Enabled = false;
             dgvAllParts.DataSource = Inventory.AllParts;
             dgvAssocParts.DataSource = tempList;
             dgvAllParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -107,39 +105,7 @@ namespace InventoryTrackingApp.Views
             
         }
 
-        /*Feature to search without button. Auto filters list while typing*/
-        //private void tb_AddProdSearch_TextChanged(object sender, EventArgs e)
-        //{
-
-        //    bool found = false;
-        //    BindingList<Part> tempList = new BindingList<Part>();
-
-        //    if(tb_AddProdSearch.Text != "")
-        //    {
-        //        for (int i = 0; i < Inventory.AllParts.Count; i++)
-        //        {
-        //            if (Inventory.AllParts[i].Name.Contains(tb_AddProdSearch.Text.ToLower()))
-        //            {
-        //                tempList.Add(Inventory.AllParts[i]);
-
-        //                found = true;
-        //            }
-        //        }
-        //        if (found)
-        //        {
-        //            dgvAllParts.DataSource = tempList;
-        //        }
-        //        else 
-        //        {
-        //            MessageBox.Show("No Part found matching that criteria!");
-        //        }
-        //    }
-        //    else { dgvAllParts.DataSource = Inventory.AllParts; }
-
-
-
-        //}
-
+        
         private void btn_ProdCancel_Click(object sender, EventArgs e)
         {
             MainScreen main = new MainScreen();
@@ -172,13 +138,18 @@ namespace InventoryTrackingApp.Views
         
         private void btn_AddAssocPart_Click(object sender, EventArgs e)
         {
-            if(numEmptyFields <= 0 && Inventory.CurrentPart != null) { 
-                tempList.Add(Inventory.CurrentPart);
-                btnSaveProd.Enabled = true;
-                Inventory.CurrentPart = null;
-            }
-            else
+            try
+            {
+                if (Inventory.CurrentPart != null)
+                {
+                    tempList.Add(Inventory.CurrentPart);
+                    Inventory.CurrentPart = null;
+                }
+                else
                 MessageBox.Show("Complete form or choose a part to associate.");
+            }
+            catch { }
+            
         }
 
         private void btnSaveProd_Click(object sender, EventArgs e)
@@ -200,6 +171,10 @@ namespace InventoryTrackingApp.Views
                     {
                         Inventory.addProduct(tempProduct);
                     }
+                    else
+                    {
+                        return;
+                    }
                     this.Close();
                     MainScreen main = new MainScreen();
                     main.Show();
@@ -212,7 +187,7 @@ namespace InventoryTrackingApp.Views
             }
             catch (FormatException)
             {
-                MessageBox.Show("Please check form is complete.");
+                MessageBox.Show("Please complete form.");
             }
 
         }
@@ -229,10 +204,24 @@ namespace InventoryTrackingApp.Views
 
         private void btn_DelAscPart_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (dgvAssocParts.RowCount != 0 && Inventory.CurrentPart != null)
+                {
+                    tempList.Remove(Inventory.CurrentPart);
+                }
+                else
+                {
+                    MessageBox.Show("Associated Part not selected.");
 
-            tempList.Remove(Inventory.CurrentPart);
-            if (dgvAssocParts.RowCount == 0)
-                btnSaveProd.Enabled = false;
+                }
+
+            }
+            catch
+            {
+
+            }
+            
         }
 
 
@@ -241,70 +230,27 @@ namespace InventoryTrackingApp.Views
         *****************************************************/
         private void tb_AddProdName_TextChanged(object sender, EventArgs e)
         {
-
-            if (tb_AddProdName.Text == "")
-            {
-                tb_AddProdName.BackColor = Color.OrangeRed;
-
-            }
-            else
-            {
-                tb_AddProdName.BackColor = Color.White;
-            }
-
+            validateName();
         }
 
         private void tb_AddProdInventory_TextChanged(object sender, EventArgs e)
         {
-            if (tb_AddProdInventory.Text == "")
-            {
-                tb_AddProdInventory.BackColor = Color.OrangeRed;
-
-            }
-            else
-            {
-                tb_AddProdInventory.BackColor = Color.White;
-            }
-            
+            validateInventory();
         }
 
         private void tb_AddProdPrice_TextChanged(object sender, EventArgs e)
         {
-            if (tb_AddProdPrice.Text == "")
-            {
-                tb_AddProdPrice.BackColor = Color.OrangeRed;
-                
-            }
-            else
-                tb_AddProdPrice.BackColor = Color.White;
-                
+            validatePrice();
         }
 
         private void tb_AddProdMax_TextChanged(object sender, EventArgs e)
         {
-            if (tb_AddProdMax.Text == "")
-            {
-                tb_AddProdMax.BackColor = Color.OrangeRed;
-                
-            }
-            else
-                tb_AddProdMax.BackColor = Color.White;
-                
+            validateMax();
         }
 
         private void tb_AddProdMin_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (tb_AddProdMin.Text == "" || (Convert.ToInt32(tb_AddProdMax.Text) < Convert.ToInt32(tb_AddProdMin.Text)))
-                    tb_AddProdMin.BackColor = Color.OrangeRed;
-                else
-                    tb_AddProdMin.BackColor = Color.White;
-                    
-            }
-            catch { }
-            
-
+            validateMin();
         }
 
 
@@ -313,12 +259,11 @@ namespace InventoryTrackingApp.Views
          *****************************************************/
         private void tb_AddProdName_Leave(object sender, EventArgs e)
         {
-            numEmptyFields--;
+            validateName();
         }
         private void tb_AddProdInventory_Leave(object sender, EventArgs e)
         {
-            numEmptyFields--;
-
+            validateInventory();
         }
 
 
@@ -332,43 +277,12 @@ namespace InventoryTrackingApp.Views
 
                     tb_AddProdPrice.Text = string.Format(new CultureInfo("en-US"), "{0:0.00}", decimal.Parse(tb_AddProdPrice.Text));
                 }
-                numEmptyFields--;
             }
-           catch(FormatException err)
-            {
-                MessageBox.Show("Field cannot be empty.");
-            }
+           catch { }
 
         }
-        private void tb_AddProdMax_Leave(object sender, EventArgs e)
-        {
-
-            numEmptyFields--;
-
-        }
-        private void tb_AddProdMin_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Convert.ToInt32(tb_AddProdMax.Text) < Convert.ToInt32(tb_AddProdMin.Text))
-                {
-                    MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
-                    btnSaveProd.Enabled = false;
-                    tb_AddProdMax.BackColor = Color.OrangeRed;
-
-                }
-                else
-                {
-                    btnSaveProd.Enabled = true;
-                }
-                numEmptyFields--;
-
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Minimum stock level can not be blank.");
-            }
-        }
+        
+      
 
         
 
@@ -441,6 +355,142 @@ namespace InventoryTrackingApp.Views
             e.Handled = true;
         }
 
-       
+
+
+
+
+        /**************************************
+        ********* VALIDATION METHODS **********
+        **************************************/
+
+        private void validateName() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_AddProdName.Text.Trim()))
+                {
+                    tb_AddProdName.BackColor = Color.OrangeRed;
+                    errorProvider1.SetError(tb_AddProdName, "Name is required.");
+
+                }
+                else
+                {
+                    tb_AddProdName.BackColor = Color.White;
+                    errorProvider1.SetError(tb_AddProdName, string.Empty);
+                }
+            }
+            catch { }
+        }
+
+        private void validateInventory() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_AddProdInventory.Text.Trim()))
+                {
+                    tb_AddProdInventory.BackColor = Color.OrangeRed;
+                    errorProvider2.SetError(tb_AddProdInventory, "Inventory is required to be between Max and Min values.");
+                }
+                else if (Convert.ToInt32(tb_AddProdMax.Text) < Convert.ToInt32(tb_AddProdInventory.Text) || Convert.ToInt32(tb_AddProdMin.Text) > Convert.ToInt32(tb_AddProdInventory.Text))
+                {
+
+                    tb_AddProdInventory.BackColor = Color.OrangeRed;
+                    errorProvider2.SetError(tb_AddProdInventory, "Must be between Max and Min values.");
+                }
+
+                else
+                {
+                    tb_AddProdInventory.BackColor = Color.White;
+                    errorProvider2.SetError(tb_AddProdInventory, string.Empty);
+                }
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void validatePrice() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_AddProdPrice.Text.Trim()))
+                {
+                    tb_AddProdPrice.BackColor = Color.OrangeRed;
+                    errorProvider3.SetError(tb_AddProdPrice, "Price is required.");
+                }
+                else
+                {
+                    tb_AddProdPrice.BackColor = Color.White;
+                    errorProvider3.SetError(tb_AddProdPrice, string.Empty);
+                }
+
+            }
+            catch { }
+        }
+
+        private void validateMax() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_AddProdMax.Text.Trim()))
+                {
+                    tb_AddProdMax.BackColor = Color.OrangeRed;
+                    errorProvider4.SetError(tb_AddProdMax, "Please enter a maximum stock level.");
+
+                }
+                else if (Convert.ToInt32(tb_AddProdMax.Text) < Convert.ToInt32(tb_AddProdInventory.Text))
+                {
+                    errorProvider4.SetError(tb_AddProdMax, "Enter a maximum limit greater than or equal to stock level.");
+                    tb_AddProdMax.BackColor = Color.OrangeRed;
+                    tb_AddProdInventory.BackColor = Color.OrangeRed;
+
+                }
+                else
+                {
+                    errorProvider4.SetError(tb_AddProdMax, string.Empty);
+                    tb_AddProdMax.BackColor = Color.White;
+                    tb_AddProdInventory.BackColor = Color.White;
+                }
+
+                validateInventory();
+            }
+            catch { }
+        }
+        private void validateMin() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_AddProdMin.Text.Trim()))
+                {
+                    tb_AddProdMin.BackColor = Color.OrangeRed;
+                    errorProvider5.SetError(tb_AddProdMin, "Please enter a minimum stock level.");
+
+                }
+                else if (Convert.ToInt32(tb_AddProdMin.Text) > Convert.ToInt32(tb_AddProdInventory.Text))
+                {
+                    errorProvider5.SetError(tb_AddProdMin, "Enter a minimum limit less than or equal to stock level.");
+                    tb_AddProdMin.BackColor = Color.OrangeRed;
+                    tb_AddProdInventory.BackColor = Color.OrangeRed;
+
+                }
+                else if (Convert.ToInt32(tb_AddProdMin.Text) > Convert.ToInt32(tb_AddProdMax.Text))
+                {
+                    errorProvider5.SetError(tb_AddProdMin, "Minimum cannot be larger than Maximum value.");
+                    tb_AddProdMin.BackColor = Color.OrangeRed;
+                    tb_AddProdMax.BackColor = Color.OrangeRed;
+                }
+                else
+                {
+                    errorProvider5.SetError(tb_AddProdMin, string.Empty);
+                    tb_AddProdMin.BackColor = Color.White;
+                    tb_AddProdInventory.BackColor = Color.White;
+                }
+
+                validateInventory();
+            }
+            catch { }
+        }
     }
 }

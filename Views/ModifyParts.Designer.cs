@@ -29,6 +29,7 @@ namespace InventoryTrackingApp.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label_ModPartID = new System.Windows.Forms.Label();
             this.label_ModPartName = new System.Windows.Forms.Label();
             this.label_ModPartInventory = new System.Windows.Forms.Label();
@@ -48,6 +49,18 @@ namespace InventoryTrackingApp.Views
             this.label_ModPartTitle = new System.Windows.Forms.Label();
             this.btn_ModPartSave = new System.Windows.Forms.Button();
             this.btn_ModPartCancel = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
             this.SuspendLayout();
             // 
             // label_ModPartID
@@ -129,6 +142,7 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartInventory.TabIndex = 2;
             this.tb_ModPartInventory.TextChanged += new System.EventHandler(this.tb_ModPartInventory_TextChanged);
             this.tb_ModPartInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartInventory_KeyPress);
+            this.tb_ModPartInventory.Leave += new System.EventHandler(this.tb_ModPartInventory_Leave);
             // 
             // tb_ModPartPrice
             // 
@@ -157,7 +171,6 @@ namespace InventoryTrackingApp.Views
             this.tb_ModPartMin.TabIndex = 5;
             this.tb_ModPartMin.TextChanged += new System.EventHandler(this.tb_ModPartMin_TextChanged);
             this.tb_ModPartMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ModPartMin_KeyPress);
-            this.tb_ModPartMin.Leave += new System.EventHandler(this.tb_ModPartMin_Leave);
             // 
             // tb_ModPartMachineCompany
             // 
@@ -213,7 +226,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_ModPartSave
             // 
-            this.btn_ModPartSave.Location = new System.Drawing.Point(575, 445);
+            this.btn_ModPartSave.Location = new System.Drawing.Point(575, 524);
             this.btn_ModPartSave.Name = "btn_ModPartSave";
             this.btn_ModPartSave.Size = new System.Drawing.Size(75, 35);
             this.btn_ModPartSave.TabIndex = 8;
@@ -223,7 +236,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_ModPartCancel
             // 
-            this.btn_ModPartCancel.Location = new System.Drawing.Point(681, 445);
+            this.btn_ModPartCancel.Location = new System.Drawing.Point(681, 524);
             this.btn_ModPartCancel.Name = "btn_ModPartCancel";
             this.btn_ModPartCancel.Size = new System.Drawing.Size(75, 35);
             this.btn_ModPartCancel.TabIndex = 7;
@@ -231,11 +244,35 @@ namespace InventoryTrackingApp.Views
             this.btn_ModPartCancel.UseVisualStyleBackColor = true;
             this.btn_ModPartCancel.Click += new System.EventHandler(this.btn_ModPartCancel_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
             // ModifyParts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 492);
+            this.ClientSize = new System.Drawing.Size(768, 571);
             this.Controls.Add(this.btn_ModPartCancel);
             this.Controls.Add(this.btn_ModPartSave);
             this.Controls.Add(this.label_ModPartTitle);
@@ -257,6 +294,12 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.label_ModPartID);
             this.Name = "ModifyParts";
             this.Text = "Modify Part";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +325,11 @@ namespace InventoryTrackingApp.Views
         public System.Windows.Forms.TextBox tb_ModPartMin;
         public System.Windows.Forms.TextBox tb_ModPartMachineCompany;
         public System.Windows.Forms.Label label_ModPartID;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
     }
 }

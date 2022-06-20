@@ -17,9 +17,6 @@ namespace InventoryTrackingApp.Views
             InitializeComponent();
             rb_ModPartInHouse.Checked = true;  //Set Inhouse checked by default
 
-
-            
-
             if (Inventory.CurrentPart is Inhouse)
             {
                 /*Set the Inventory property, CurrentPart, which is type Part, to a new Inhouse type before adding the objects from the
@@ -46,6 +43,7 @@ namespace InventoryTrackingApp.Views
             {
                 rb_ModPartOutsourced.Checked = true;
                 label_ModPartSource.Text = "Company Name";
+
                 Outsourced oPart = (Outsourced)Inventory.CurrentPart;
                 tb_ModPartID.Text = oPart.PartID.ToString();
                 tb_ModPartName.Text = oPart.Name.ToString(); ;
@@ -68,10 +66,6 @@ namespace InventoryTrackingApp.Views
             {
                 if (tb.Name != "tb_ModPartID" && tb.Text == "")
                     tb.BackColor = Color.OrangeRed;
-                
-
-
-
             }
         }
 
@@ -150,67 +144,43 @@ namespace InventoryTrackingApp.Views
 
         
 
-        
-
-       
-
-
 
         /*****************************************************
-         *     CHANGE TEXTBOX COLOR IF TEXTBOX LEFT BLANK    *
+         **********  CALL VALIDATION UPON TEXT CHANGE*********
          *****************************************************/
         private void tb_ModPartName_TextChanged(object sender, EventArgs e)
         {
-            if (tb_ModPartName.Text == "")
-                tb_ModPartName.BackColor = Color.OrangeRed;
-            else
-                tb_ModPartName.BackColor = Color.White;
+            validateName();             
         }
 
         private void tb_ModPartInventory_TextChanged(object sender, EventArgs e)
         {
-            if (tb_ModPartInventory.Text == "")
-                tb_ModPartInventory.BackColor = Color.OrangeRed;
-            else
-                tb_ModPartInventory.BackColor = Color.White;
+            validateInventory();                
         }
 
         private void tb_ModPartPrice_TextChanged(object sender, EventArgs e)
         {
-            if (tb_ModPartPrice.Text == "")
-                tb_ModPartPrice.BackColor = Color.OrangeRed;
-            else
-                tb_ModPartPrice.BackColor = Color.White;
-
-            
-            
+            validatePrice();
         }
 
         private void tb_ModPartMax_TextChanged(object sender, EventArgs e)
         {
-            if (tb_ModPartMax.Text == "")
-                tb_ModPartMax.BackColor = Color.OrangeRed;
-            else
-                tb_ModPartMax.BackColor = Color.White;
+            validateMax();
         }
 
         private void tb_ModPartMin_TextChanged(object sender, EventArgs e)
         {
-            if ( tb_ModPartMin.Text == "" || (Convert.ToInt32(tb_ModPartMax.Text) < Convert.ToInt32(tb_ModPartMin.Text)) )    
-               tb_ModPartMin.BackColor = Color.OrangeRed;
-            else 
-                tb_ModPartMin.BackColor = Color.White;
-
-          
+            validateMin();          
         }
 
         private void tb_ModPartMachineCompany_TextChanged(object sender, EventArgs e)
         {
-            if (tb_ModPartMachineCompany.Text == "")
-                tb_ModPartMachineCompany.BackColor = Color.OrangeRed;
-            else
-                tb_ModPartMachineCompany.BackColor = Color.White;
+            validateCompanyMachineID();
         }
+
+
+
+
         private void rb_ModPartInHouse_CheckedChanged(object sender, EventArgs e)
         {
             label_ModPartSource.Text = "Machine ID";
@@ -224,7 +194,7 @@ namespace InventoryTrackingApp.Views
 
 
         /*****************************************************
-         * FIRES EVENT WHEN LEAVING TEXTBOX TO FORMAT STRING**
+         *********** FIRES EVENT WHEN LEAVING TEXTBOX TO *****
          *****************************************************/
         private void tb_ModPartPrice_Leave(object sender, EventArgs e)
         {
@@ -240,22 +210,9 @@ namespace InventoryTrackingApp.Views
             }
         }
 
-        private void tb_ModPartMin_Leave(object sender, EventArgs e)
+        private void tb_ModPartInventory_Leave(object sender, EventArgs e)
         {
-            try
-            {
-             //Check Min is not greater than Max
-            if (Convert.ToInt32(tb_ModPartMin.Text) > Convert.ToInt32(tb_ModPartMax.Text))
-                MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Minimum stock level can not be blank.");
-            }
-                
-
-            
-          
+            validateInventory();
         }
 
 
@@ -345,6 +302,156 @@ namespace InventoryTrackingApp.Views
             }
         }
 
+
+
+
+
+        /**************************************
+        ********* VALIDATION METHODS **********
+        **************************************/
+
+        private void validateName() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartName.Text.Trim()))
+                {
+                    tb_ModPartName.BackColor = Color.OrangeRed;
+                    errorProvider1.SetError(tb_ModPartName, "Part Name is required.");
+                }
+
+                else
+                {
+                    tb_ModPartName.BackColor = Color.White;
+                    errorProvider1.SetError(tb_ModPartName, string.Empty);
+                }
+
+            }
+            catch { }
+        }
+
+        private void validateInventory() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartInventory.Text.Trim()))
+                {
+                    tb_ModPartInventory.BackColor = Color.OrangeRed;
+                    errorProvider2.SetError(tb_ModPartInventory, "Inventory quantity is required.");
+                }
+                else if (Convert.ToInt32(tb_ModPartMax.Text) < Convert.ToInt32(tb_ModPartInventory.Text) || Convert.ToInt32(tb_ModPartMin.Text) > Convert.ToInt32(tb_ModPartInventory.Text))
+                {
+                    //tb_ModPartMax.BackColor = Color.OrangeRed;
+                    tb_ModPartInventory.BackColor = Color.OrangeRed;
+                    errorProvider2.SetError(tb_ModPartInventory, "Must be between Max and Min values.");
+                }
+                else
+                {
+                    tb_ModPartInventory.BackColor = Color.White;
+                    //tb_ModPartMax.BackColor = Color.White;
+                    errorProvider2.SetError(tb_ModPartInventory, string.Empty);
+                }
+
+            }
+            catch { }
+        }
+
+        private void validatePrice()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartPrice.Text.Trim()))
+                {
+                    tb_ModPartPrice.BackColor = Color.OrangeRed;
+                    errorProvider3.SetError(tb_ModPartPrice, "A price is required.");
+                }
+                else
+                {
+                    tb_ModPartPrice.BackColor = Color.White;
+                    errorProvider3.SetError(tb_ModPartPrice, string.Empty);
+                }
+            }
+            catch { }
+        }
+
+        private void validateMax() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartMax.Text.Trim()))
+                {
+                    tb_ModPartMax.BackColor = Color.OrangeRed;
+                    errorProvider4.SetError(tb_ModPartMax, "A Maximum stock level is required.");
+                }
+                else if (Convert.ToInt32(tb_ModPartMax.Text) < Convert.ToInt32(tb_ModPartInventory.Text))
+                {
+                    tb_ModPartMax.BackColor = Color.OrangeRed;
+                    tb_ModPartInventory.BackColor = Color.OrangeRed;
+                    errorProvider4.SetError(tb_ModPartMax, "Must be equal or larger than Inventory.");
+                }
+                else
+                {
+                    tb_ModPartMax.BackColor = Color.White;
+                    tb_ModPartInventory.BackColor = Color.White;
+                    errorProvider4.SetError(tb_ModPartMax, string.Empty);
+                }
+                validateInventory();
+
+            }
+            catch { }
+        }
+        private void validateMin() 
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartMin.Text.Trim()))
+                {
+                    tb_ModPartMin.BackColor = Color.OrangeRed;
+                    errorProvider5.SetError(tb_ModPartMin, "Please enter a minimum stock level.");
+
+                }
+                else if (Convert.ToInt32(tb_ModPartMin.Text) > Convert.ToInt32(tb_ModPartInventory.Text))
+                {
+                    errorProvider5.SetError(tb_ModPartMin, "Enter a minimum limit less than or equal to stock level.");
+                    tb_ModPartMin.BackColor = Color.OrangeRed;
+                    tb_ModPartInventory.BackColor = Color.OrangeRed;
+
+                }
+                else if (Convert.ToInt32(tb_ModPartMin.Text) > Convert.ToInt32(tb_ModPartMax.Text))
+                {
+                    errorProvider5.SetError(tb_ModPartMin, "Minimum cannot be larger than Maximum value.");
+                    tb_ModPartMin.BackColor = Color.OrangeRed;
+                    tb_ModPartMax.BackColor = Color.OrangeRed;
+                }
+                else
+                {
+                    errorProvider5.SetError(tb_ModPartMin, string.Empty);
+                    tb_ModPartMin.BackColor = Color.White;
+                    tb_ModPartInventory.BackColor = Color.White;
+                }
+
+                validateInventory();
+            }
+            catch { }
+        }
+        private void validateCompanyMachineID()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tb_ModPartMachineCompany.Text.Trim()))
+                {
+                    tb_ModPartMachineCompany.BackColor = Color.OrangeRed;
+                    errorProvider6.SetError(tb_ModPartMachineCompany, "Enter a Machine ID or Company Name.");
+                }
+                else
+                {
+                    tb_ModPartMachineCompany.BackColor = Color.White;
+                    errorProvider6.SetError(tb_ModPartMachineCompany, string.Empty);
+                }
+
+            }
+            catch { }
+        }
 
         
     }

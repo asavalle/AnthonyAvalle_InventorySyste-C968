@@ -29,19 +29,19 @@ namespace InventoryTrackingApp
             Inventory.AllParts.Add(new Inhouse(" double rear wheel",20, Convert.ToDecimal("10.99"),  50, 20, 1002));
 
             //    Outsourced Parts Source
-            Inventory.AllParts.Add( new Outsourced ( "left pedal",10, Convert.ToDecimal("10.20"),50,  20,  "Company1" ));
-            Inventory.AllParts.Add( new Outsourced("right pedal", 10, Convert.ToDecimal("5.45"), 100, 40, "Company2"));
-            Inventory.AllParts.Add(new Outsourced("boy's frame", 10, Convert.ToDecimal("25.60"), 100, 20, "Company3"));
-            Inventory.AllParts.Add( new Outsourced("girl's frame", 10,Convert.ToDecimal("25.60"),  50, 20, "Company4"));
+            Inventory.AllParts.Add( new Outsourced ( "left pedal",10, Convert.ToDecimal("10.20"),50,  2,  "Company1" ));
+            Inventory.AllParts.Add( new Outsourced("right pedal", 10, Convert.ToDecimal("5.45"), 100, 4, "Company2"));
+            Inventory.AllParts.Add(new Outsourced("boy's frame", 10, Convert.ToDecimal("25.60"), 100, 2, "Company3"));
+            Inventory.AllParts.Add( new Outsourced("girl's frame", 10,Convert.ToDecimal("25.60"),  50, 2, "Company4"));
 
             //AssociatedParts
             BindingList<Part> testParts = new BindingList<Part>();
             testParts.Add(new Inhouse("handle bar",10,  Convert.ToDecimal("10.20"), 5, 20, 1000));
 
             //Products Source
-            Inventory.Products.Add(new Product ("boy's bicycle", 10, Convert.ToDecimal("150.00"),   50, 20, testParts ));
-            Inventory.Products.Add(new Product("girl's bicycle", 10, Convert.ToDecimal("150.00"),    50,  20, testParts) );
-            Inventory.Products.Add(new Product("tri-wheeler", 10,  Convert.ToDecimal("299.99"),   50,  20, testParts));
+            Inventory.Products.Add(new Product ("boy's bicycle", 10, Convert.ToDecimal("150.00"),   5, 20, testParts ));
+            Inventory.Products.Add(new Product("girl's bicycle", 10, Convert.ToDecimal("150.00"),    5,  20, testParts) );
+            Inventory.Products.Add(new Product("tri-wheeler", 10,  Convert.ToDecimal("299.99"),   5,  20, testParts));
 
             
 

@@ -50,7 +50,17 @@ namespace InventoryTrackingApp.Views
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tbAddPartName = new System.Windows.Forms.TextBox();
             this.tbAddPriceCost = new System.Windows.Forms.TextBox();
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).BeginInit();
             this.SuspendLayout();
             // 
             // addPartTitle
@@ -113,7 +123,6 @@ namespace InventoryTrackingApp.Views
             this.tbAddPartMin.TabIndex = 8;
             this.tbAddPartMin.TextChanged += new System.EventHandler(this.tbAddPartMin_TextChanged);
             this.tbAddPartMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPartMin_KeyPress);
-            this.tbAddPartMin.Leave += new System.EventHandler(this.tbAddPartMin_Leave);
             // 
             // tbCompanyOrMachine
             // 
@@ -181,7 +190,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_SavePart
             // 
-            this.btn_SavePart.Location = new System.Drawing.Point(581, 439);
+            this.btn_SavePart.Location = new System.Drawing.Point(581, 518);
             this.btn_SavePart.Name = "btn_SavePart";
             this.btn_SavePart.Size = new System.Drawing.Size(75, 41);
             this.btn_SavePart.TabIndex = 11;
@@ -191,7 +200,7 @@ namespace InventoryTrackingApp.Views
             // 
             // btn_CancelPart
             // 
-            this.btn_CancelPart.Location = new System.Drawing.Point(681, 439);
+            this.btn_CancelPart.Location = new System.Drawing.Point(681, 518);
             this.btn_CancelPart.Name = "btn_CancelPart";
             this.btn_CancelPart.Size = new System.Drawing.Size(75, 41);
             this.btn_CancelPart.TabIndex = 10;
@@ -217,9 +226,11 @@ namespace InventoryTrackingApp.Views
             this.tbAddPartInventory.TabIndex = 5;
             this.tbAddPartInventory.TextChanged += new System.EventHandler(this.tbAddPartInventory_TextChanged);
             this.tbAddPartInventory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPartInventory_KeyPress);
+            this.tbAddPartInventory.Leave += new System.EventHandler(this.tbAddPartInventory_Leave);
             // 
             // errorProvider1
             // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
             // tbAddPartName
@@ -240,11 +251,32 @@ namespace InventoryTrackingApp.Views
             this.tbAddPriceCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAddPriceCost_KeyPress);
             this.tbAddPriceCost.Leave += new System.EventHandler(this.tbAddPriceCost_Leave);
             // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
+            // errorProvider7
+            // 
+            this.errorProvider7.ContainerControl = this;
+            // 
             // AddPart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 492);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(768, 571);
             this.Controls.Add(this.tbAddPriceCost);
             this.Controls.Add(this.label_AddPartInventory);
             this.Controls.Add(this.tbAddPartInventory);
@@ -267,6 +299,11 @@ namespace InventoryTrackingApp.Views
             this.Name = "AddPart";
             this.Text = "Add Part";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +332,11 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.TextBox tbAddPartName;
         //private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox tbAddPriceCost;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
+        private System.Windows.Forms.ErrorProvider errorProvider7;
     }
 }

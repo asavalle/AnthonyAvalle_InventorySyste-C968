@@ -29,6 +29,7 @@ namespace InventoryTrackingApp.Views
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addProductTitle = new System.Windows.Forms.Label();
             this.btn_AddProdSearch = new System.Windows.Forms.Button();
             this.tb_AddProdSearch = new System.Windows.Forms.TextBox();
@@ -53,8 +54,19 @@ namespace InventoryTrackingApp.Views
             this.btnSaveProd = new System.Windows.Forms.Button();
             this.label_AssocParts = new System.Windows.Forms.Label();
             this.btn_AddProdResetSrch = new System.Windows.Forms.Button();
+            this.label_errorAddProd = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
             this.SuspendLayout();
             // 
             // addProductTitle
@@ -88,7 +100,10 @@ namespace InventoryTrackingApp.Views
             // 
             this.dgvAllParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAllParts.Location = new System.Drawing.Point(489, 84);
+            this.dgvAllParts.MultiSelect = false;
             this.dgvAllParts.Name = "dgvAllParts";
+            this.dgvAllParts.ReadOnly = true;
+            this.dgvAllParts.RowHeadersVisible = false;
             this.dgvAllParts.RowTemplate.Height = 25;
             this.dgvAllParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAllParts.Size = new System.Drawing.Size(601, 281);
@@ -220,7 +235,6 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMax.TabIndex = 16;
             this.tb_AddProdMax.TextChanged += new System.EventHandler(this.tb_AddProdMax_TextChanged);
             this.tb_AddProdMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdMax_KeyPress);
-            this.tb_AddProdMax.Leave += new System.EventHandler(this.tb_AddProdMax_Leave);
             // 
             // tb_AddProdMin
             // 
@@ -230,7 +244,6 @@ namespace InventoryTrackingApp.Views
             this.tb_AddProdMin.TabIndex = 17;
             this.tb_AddProdMin.TextChanged += new System.EventHandler(this.tb_AddProdMin_TextChanged);
             this.tb_AddProdMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_AddProdMin_KeyPress);
-            this.tb_AddProdMin.Leave += new System.EventHandler(this.tb_AddProdMin_Leave);
             // 
             // btn_AddAssocPart
             // 
@@ -266,7 +279,6 @@ namespace InventoryTrackingApp.Views
             // 
             // btnSaveProd
             // 
-            this.btnSaveProd.Enabled = false;
             this.btnSaveProd.Location = new System.Drawing.Point(1056, 773);
             this.btnSaveProd.Name = "btnSaveProd";
             this.btnSaveProd.Size = new System.Drawing.Size(72, 35);
@@ -294,11 +306,42 @@ namespace InventoryTrackingApp.Views
             this.btn_AddProdResetSrch.UseVisualStyleBackColor = true;
             this.btn_AddProdResetSrch.Click += new System.EventHandler(this.btn_AddProdResetSrch_Click);
             // 
+            // label_errorAddProd
+            // 
+            this.label_errorAddProd.AutoSize = true;
+            this.label_errorAddProd.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.label_errorAddProd.ForeColor = System.Drawing.Color.Red;
+            this.label_errorAddProd.Location = new System.Drawing.Point(33, 520);
+            this.label_errorAddProd.Name = "label_errorAddProd";
+            this.label_errorAddProd.Size = new System.Drawing.Size(0, 18);
+            this.label_errorAddProd.TabIndex = 25;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1235, 820);
+            this.Controls.Add(this.label_errorAddProd);
             this.Controls.Add(this.btn_AddProdResetSrch);
             this.Controls.Add(this.label_AssocParts);
             this.Controls.Add(this.btnSaveProd);
@@ -327,6 +370,11 @@ namespace InventoryTrackingApp.Views
             this.Text = "Add Product";
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssocParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,5 +406,11 @@ namespace InventoryTrackingApp.Views
         private System.Windows.Forms.TextBox tb_AddProdMax;
         private System.Windows.Forms.TextBox tb_AddProdMin;
         private System.Windows.Forms.Button btn_AddProdResetSrch;
+        private System.Windows.Forms.Label label_errorAddProd;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
     }
 }

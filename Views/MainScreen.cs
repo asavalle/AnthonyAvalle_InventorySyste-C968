@@ -22,7 +22,8 @@ namespace InventoryTrackingApp
             dgvParts.DefaultCellStyle.BackColor = Color.White;
             dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
             dgvParts.DefaultCellStyle.SelectionForeColor = Color.Black;
-
+            dgvParts.ReadOnly = true;
+            dgvParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvParts.RowHeadersVisible = false;
             dgvParts.ClearSelection();
 
@@ -35,7 +36,6 @@ namespace InventoryTrackingApp
             dgvProducts.DefaultCellStyle.SelectionForeColor = Color.Black;
             dgvProducts.ReadOnly = true;
             dgvProducts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             dgvProducts.RowHeadersVisible = false;
             dgvProducts.ClearSelection();
 
@@ -148,7 +148,14 @@ namespace InventoryTrackingApp
             }
         }
 
-
+        private void btn_ResetSearch_Click(object sender, EventArgs e)
+        {
+            searchParts.Text = "";
+            dgvParts.DataSource = Inventory.AllParts;
+            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            btnModPart.Enabled = false;
+            dgvParts.ClearSelection();
+        }
 
         /*************************************************
                               PRODUCTS
@@ -195,7 +202,7 @@ namespace InventoryTrackingApp
                 int selectedIndex = e.RowIndex;               
                 Inventory.CurrentProductID = (int)dgvProducts.Rows[selectedIndex].Cells[0].Value;
                 Inventory.CurrentProduct = Inventory.lookupProduct(Inventory.CurrentProductID);
-                
+                btnModProduct.Enabled = true;
             }
             catch
             {
@@ -218,20 +225,25 @@ namespace InventoryTrackingApp
 
         private void btnResetProdSearch_Click(object sender, EventArgs e)
         {
+            searchProducts.Text = "";
             dgvProducts.DataSource = Inventory.Products;
+            dgvProducts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            btnModProduct.Enabled = false;
+            dgvProducts.ClearSelection();
         }
         private void btnDelProduct_Click(object sender, EventArgs e)
         {
 
-            if (Inventory.CurrentProduct != null)
+            if (Inventory.CurrentProduct != null && Inventory.CurrentProduct.AssociatedParts.Count < 1)
             {
-               var dialogResult = MessageBox.Show("Are you sure you want to delete this Product?", "Delete Product?", MessageBoxButtons.YesNo);
-               if(dialogResult == DialogResult.Yes)
+                var dialogResult = MessageBox.Show("Are you sure you want to delete this Product?", "Delete Product?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                     Inventory.Products.Remove(Inventory.CurrentProduct);
             }
-            else
+            else if (Inventory.CurrentProduct == null)
                 MessageBox.Show("Please select a product to delete.");
-           
+            else
+                MessageBox.Show("You cannot delete a Product with Associated Parts.");
         }
 
 
@@ -245,14 +257,7 @@ namespace InventoryTrackingApp
             
         }
 
-        private void btn_ResetSearch_Click(object sender, EventArgs e)
-        {
-            searchParts.Text = "";
-            dgvParts.DataSource = Inventory.AllParts;
-            dgvParts.DefaultCellStyle.SelectionBackColor = Color.Transparent;
-            btnModPart.Enabled = false;
-            dgvParts.ClearSelection();
-        }
+        
 
         
     }

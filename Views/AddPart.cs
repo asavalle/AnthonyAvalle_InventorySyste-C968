@@ -23,15 +23,13 @@ namespace InventoryTrackingApp.Views
             /**************************************
              * SET ALL TEXTBOX BACKGROUNDS TO RED**
              **************************************/
-
             foreach (TextBox tb in this.Controls.OfType<TextBox>())
             {
+                
                 if(tb.Name != "tbPartID" && tb.Text == "")
                   tb.BackColor = Color.OrangeRed;
                 
                   btn_SavePart.Enabled = true;
-              
-
             }
 
         }
@@ -89,8 +87,8 @@ namespace InventoryTrackingApp.Views
                             tbAddPartName.Text.ToLower(),
                             Convert.ToInt32(tbAddPartInventory.Text),
                             Convert.ToDecimal(priceRounded),
-                            Convert.ToInt32(tbAddPartMin.Text),
                             Convert.ToInt32(tbAddPartMax.Text),
+                            Convert.ToInt32(tbAddPartMin.Text),
                             Convert.ToInt32(tbCompanyOrMachine.Text)
                         );
 
@@ -104,8 +102,8 @@ namespace InventoryTrackingApp.Views
                             tbAddPartName.Text.ToLower(),
                             Convert.ToInt32(tbAddPartInventory.Text),
                             Convert.ToDecimal(priceRounded),
-                            Convert.ToInt32(tbAddPartMin.Text),
                             Convert.ToInt32(tbAddPartMax.Text),
+                            Convert.ToInt32(tbAddPartMin.Text),
                             tbCompanyOrMachine.Text.ToLower()
                         );
 
@@ -133,136 +131,55 @@ namespace InventoryTrackingApp.Views
          *****************************************************/
         private void tbAddPartName_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartName.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while(blank == true)
-            {
-
-                if (tbAddPartName.Text != "")
-                {
-                    tbAddPartName.BackColor = Color.White;
-                    blank = false;
-                }
-                else
-                    blank = false;
-                    
-            }
-           
-
-        }
-
+            validateName();
+        }      
         private void tbAddPartInventory_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartInventory.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while (blank == true)
-            {
-
-                if (tbAddPartInventory.Text != "")
-                {
-                    tbAddPartInventory.BackColor = Color.White;
-                    blank = false;
-                    
-                }
-                else
-                    blank = false;
-
-            }
+            validateInventory();          
         }
-
         private void tbAddPriceCost_TextChanged(object sender, EventArgs e)
         {
-            tbAddPriceCost.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while (blank == true)
-            {
-
-                if (tbAddPriceCost.Text != "")
-                {
-                    tbAddPriceCost.BackColor = Color.White;
-                    blank = false;
-
-                }
-                else
-                    blank = false;
-
-            }
+            validatePrice();               
         }
-
         private void tbAddPartMax_TextChanged(object sender, EventArgs e)
         {
-            tbAddPartMax.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while (blank == true)
-            {
-
-                if (tbAddPartMax.Text != "")
-                {
-                    tbAddPartMax.BackColor = Color.White;
-                    blank = false;
-
-                }
-                else
-                    blank = false;
-
-            }
-        }
-
+            validateMax();           
+        }       
         private void tbAddPartMin_TextChanged(object sender, EventArgs e)
         {
-            if (tbAddPartMin.Text == "" || (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartMin.Text)))
-                tbAddPartMin.BackColor = Color.OrangeRed;
-            else
-                tbAddPartMin.BackColor = Color.White;
-        }
-
+            validateMin();                
+        }       
         private void tbCompanyOrMachine_TextChanged(object sender, EventArgs e)
         {
-            tbCompanyOrMachine.BackColor = Color.OrangeRed;
-            bool blank = true;
-            while (blank == true)
-            {
-                if (tbCompanyOrMachine.Text != "" )
-                {
-                    tbCompanyOrMachine.BackColor = Color.White;
-                    blank = false;
-                }
-                else
-                    blank = false;
-            }
 
+            validateCompanyMachineID();
         }
+
+
 
 
         /*****************************************************
          * FIRES EVENT WHEN LEAVING TEXTBOX TO FORMAT STRING**
          *****************************************************/
+        private void tbAddPartInventory_Leave(object sender, EventArgs e)
+        {
+            validateInventory();
+        }
         private void tbAddPriceCost_Leave(object sender, EventArgs e)
         {
             //Formats price to a currency
-
-            if (tbAddPriceCost.Text.IndexOf(".") == -1)
-            {
-
-                tbAddPriceCost.Text = string.Format(new CultureInfo("en-US"), "{0:0.00}", decimal.Parse(tbAddPriceCost.Text));
-            }
-        }
-
-        private void tbAddPartMin_Leave(object sender, EventArgs e)
-        {
             try
             {
-                if (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartMin.Text) )
+                if (tbAddPriceCost.Text.IndexOf(".") == -1)
                 {
-                    MessageBox.Show("Minimum stock level cannot exceed Maximum stock level.");
+                    tbAddPriceCost.Text = string.Format(new CultureInfo("en-US"), "{0:0.00}", decimal.Parse(tbAddPriceCost.Text));
                 }
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("Minimum stock level can not be blank.");
-            }
+            catch { }
             
         }
+
+        
 
         /*************************************************************************
          * KEY PRESS VALIDATION - ONLY ALLOW APPROPRIATE INPUT KEYS TO BE PRESSED*
@@ -347,6 +264,155 @@ namespace InventoryTrackingApp.Views
             if ((keyvalue == BACKSPACE) || ((keyvalue >= ZERO) && (keyvalue <= NINE))) return;
             
             e.Handled = true;
+        }
+
+
+
+        /**************************************
+        ********* VALIDATION METHODS **********
+        **************************************/
+        private void validateName()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbAddPartName.Text.Trim()))
+                {
+                    tbAddPartName.BackColor = Color.OrangeRed;
+                    errorProvider1.SetError(tbAddPartName, "Part Name is required.");
+
+                }
+                else
+                {
+                    tbAddPartName.BackColor = Color.White;
+                    errorProvider1.SetError(tbAddPartName, string.Empty);
+                }
+            }
+            catch { }
+        }
+        private void validateInventory()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbAddPartInventory.Text.Trim()))
+                {
+                    tbAddPartInventory.BackColor = Color.OrangeRed;
+                    errorProvider3.SetError(tbAddPartInventory, "Inventory is required to be between Max and Min values.");
+                }
+                else if (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartInventory.Text) || Convert.ToInt32(tbAddPartMin.Text) > Convert.ToInt32(tbAddPartInventory.Text))
+                {
+
+                    tbAddPartInventory.BackColor = Color.OrangeRed;
+                    errorProvider3.SetError(tbAddPartInventory, "Must be between Max and Min values.");
+                }
+
+                else
+                {
+                    tbAddPartInventory.BackColor = Color.White;
+                    errorProvider3.SetError(tbAddPartInventory, string.Empty);
+                }
+
+            }
+            catch {
+                
+            }
+        }
+        private void validatePrice()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbAddPriceCost.Text.Trim()))
+                {
+                    tbAddPriceCost.BackColor = Color.OrangeRed;
+                    errorProvider4.SetError(tbAddPriceCost, "Price is required.");
+                }
+                else
+                {
+                    tbAddPriceCost.BackColor = Color.White;
+                    errorProvider4.SetError(tbAddPriceCost, string.Empty);
+                }
+
+            }
+            catch { }
+        }
+        private void validateMax()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbAddPartMax.Text.Trim()))
+                {
+                    tbAddPartMax.BackColor = Color.OrangeRed;
+                    errorProvider5.SetError(tbAddPartMax, "Please enter a maximum stock level.");
+
+                }
+                else if (Convert.ToInt32(tbAddPartMax.Text) < Convert.ToInt32(tbAddPartInventory.Text))
+                {
+                    errorProvider5.SetError(tbAddPartMax, "Enter a maximum limit greater than or equal to stock level.");
+                    tbAddPartMax.BackColor = Color.OrangeRed;
+                    tbAddPartInventory.BackColor = Color.OrangeRed;
+
+                }
+                else
+                {
+                    errorProvider5.SetError(tbAddPartMax, string.Empty);
+                    tbAddPartMax.BackColor = Color.White;
+                    tbAddPartInventory.BackColor = Color.White;
+                }
+
+                validateInventory();
+            }
+            catch { }
+        }
+        private void validateMin()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbAddPartMin.Text.Trim()))
+                {
+                    tbAddPartMin.BackColor = Color.OrangeRed;
+                    errorProvider6.SetError(tbAddPartMin, "Please enter a minimum stock level.");
+
+                }
+                else if (Convert.ToInt32(tbAddPartMin.Text) > Convert.ToInt32(tbAddPartInventory.Text))
+                {
+                    errorProvider6.SetError(tbAddPartMin, "Enter a minimum limit less than or equal to stock level.");
+                    tbAddPartMin.BackColor = Color.OrangeRed;
+                    tbAddPartInventory.BackColor = Color.OrangeRed;
+
+                }
+                else if (Convert.ToInt32(tbAddPartMin.Text) > Convert.ToInt32(tbAddPartMax.Text))
+                {
+                    errorProvider6.SetError(tbAddPartMin, "Minimum cannot be larger than Maximum value.");
+                    tbAddPartMin.BackColor = Color.OrangeRed;
+                    tbAddPartMax.BackColor = Color.OrangeRed;
+                }
+                else
+                {
+                    errorProvider6.SetError(tbAddPartMin, string.Empty);
+                    tbAddPartMin.BackColor = Color.White;
+                    tbAddPartInventory.BackColor = Color.White;
+                }
+
+                validateInventory();
+            }
+            catch { }
+        }
+        private void validateCompanyMachineID()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbCompanyOrMachine.Text.Trim()))
+                {
+                    tbCompanyOrMachine.BackColor = Color.OrangeRed;
+                    errorProvider7.SetError(tbCompanyOrMachine, "Enter a Machine ID or Company Name.");
+                }
+                else
+                {
+                    tbCompanyOrMachine.BackColor = Color.White;
+                    errorProvider7.SetError(tbCompanyOrMachine, string.Empty);
+                }
+
+            }
+            catch { }
         }
 
         
