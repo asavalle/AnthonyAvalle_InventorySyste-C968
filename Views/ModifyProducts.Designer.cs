@@ -361,6 +361,7 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.btn_ModSearchProduct);
             this.Controls.Add(this.ModifyProductTitle);
             this.Name = "ModifyProducts";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModifyProducts";
             this.Load += new System.EventHandler(this.ModifyProducts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModAssocParts)).EndInit();

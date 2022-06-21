@@ -266,6 +266,7 @@ namespace InventoryTrackingApp
             this.Controls.Add(this.btnModPart);
             this.Controls.Add(this.btnDelPart);
             this.Name = "MainScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Screen";
             ((System.ComponentModel.ISupportInitialize)(this.dgvParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();

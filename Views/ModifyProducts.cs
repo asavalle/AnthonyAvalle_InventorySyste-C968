@@ -134,44 +134,47 @@ namespace InventoryTrackingApp.Views
 
         private void btn_ModSaveProd_Click(object sender, EventArgs e)
         {
-
-            bool emptyForm = false;
-            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            try
             {
-                if (tb.BackColor == Color.OrangeRed)
+                bool emptyForm = false;
+                foreach (TextBox tb in this.Controls.OfType<TextBox>())
                 {
-                    MessageBox.Show("Form is not complete. Please verify all fields are filled out.");
-                    emptyForm = true;
+                    if (tb.BackColor == Color.OrangeRed)
+                    {
+                        MessageBox.Show("Form is not complete. Please verify all fields are filled out.");
+                        emptyForm = true;
+                    }
+
                 }
-
-            }
-            if (dgvModAssocParts.RowCount > 0 && emptyForm == false) { 
-                var confirm = MessageBox.Show("Update Product", "Do you want to update this Product?", MessageBoxButtons.YesNo);
-                if(confirm == DialogResult.Yes)
+                if (emptyForm == false)
                 {
-                    tempProd.Name = tb_ModProdName.Text;
-                    tempProd.InStock = Convert.ToInt32(tb_ModProdInventory.Text);
-                    tempProd.Price = Convert.ToDecimal(tb_ModProdPrice.Text);
-                    tempProd.Max = Convert.ToInt32(tb_ModProdMax.Text);
-                    tempProd.Min = Convert.ToInt32(tb_ModProdMin.Text);
+                    var confirm = MessageBox.Show("Update Product", "Do you want to update this Product?", MessageBoxButtons.YesNo);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        tempProd.Name = tb_ModProdName.Text;
+                        tempProd.InStock = Convert.ToInt32(tb_ModProdInventory.Text);
+                        tempProd.Price = Convert.ToDecimal(tb_ModProdPrice.Text);
+                        tempProd.Max = Convert.ToInt32(tb_ModProdMax.Text);
+                        tempProd.Min = Convert.ToInt32(tb_ModProdMin.Text);
 
-                    Inventory.updateProduct(Inventory.CurrentProductID, tempProd);
-                    MessageBox.Show("Part has been modified.");
-                    MainScreen main = new MainScreen();
-                    this.Close();
-                    main.Show();
+                        Inventory.updateProduct(Inventory.CurrentProductID, tempProd);
+                        MessageBox.Show("Part has been modified.");
+                        MainScreen main = new MainScreen();
+                        this.Close();
+                        main.Show();
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Part has NOT been modified.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Part has NOT been modified.");             
+                    MessageBox.Show("Please add at least ONE(1) Associated Part.");
                 }
             }
-            else
-            {
-                MessageBox.Show("Please add at least ONE(1) Associated Part.");
-            }
-
+            catch { }
         }
 
        

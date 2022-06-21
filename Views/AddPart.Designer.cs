@@ -297,6 +297,7 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.rbInhouse);
             this.Controls.Add(this.addPartTitle);
             this.Name = "AddPart";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Part";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();

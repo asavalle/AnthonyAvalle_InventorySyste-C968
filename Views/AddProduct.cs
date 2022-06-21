@@ -154,9 +154,18 @@ namespace InventoryTrackingApp.Views
 
         private void btnSaveProd_Click(object sender, EventArgs e)
         {
-            try {   
-                if (dgvAssocParts.RowCount > 0)
+            try {
+                bool emptyForm = false;
+                foreach (TextBox tb in this.Controls.OfType<TextBox>())
                 {
+                    if (tb.BackColor == Color.OrangeRed)
+                    {
+                        MessageBox.Show("Form is not complete. Please verify all fields are filled out.");
+                        emptyForm = true;
+                    }
+                }
+                    if (emptyForm == false)
+                    {
                     
                     Product tempProduct = BuildTempProduct();
                     
@@ -178,7 +187,7 @@ namespace InventoryTrackingApp.Views
                     this.Close();
                     MainScreen main = new MainScreen();
                     main.Show();
-                }
+                    }
                 else
                 {
                     MessageBox.Show("Please add at least ONE(1) Associated Part.");

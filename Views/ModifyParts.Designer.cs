@@ -293,6 +293,7 @@ namespace InventoryTrackingApp.Views
             this.Controls.Add(this.label_ModPartName);
             this.Controls.Add(this.label_ModPartID);
             this.Name = "ModifyParts";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modify Part";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
