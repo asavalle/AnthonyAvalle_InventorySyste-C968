@@ -30,7 +30,20 @@ namespace InventoryTrackingApp
             
         }
 
-        //public static bool removeProduct(int) { }
+        public static bool removeProduct(int prodID) {
+            var product = Inventory.lookupProduct(prodID);
+            Products.Remove(product);
+            foreach (Product p in Products)
+            {
+                if (p.ProductID > product.ProductID)
+                {
+                    p.ProductID--;
+
+                };
+            }
+            return true;
+        
+        }
 
         public static Product lookupProduct(int prodID)
         {

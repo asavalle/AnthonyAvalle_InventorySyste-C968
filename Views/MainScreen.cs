@@ -233,17 +233,25 @@ namespace InventoryTrackingApp
         }
         private void btnDelProduct_Click(object sender, EventArgs e)
         {
-
-            if (Inventory.CurrentProduct != null && Inventory.CurrentProduct.AssociatedParts.Count < 1)
+            try
             {
-                var dialogResult = MessageBox.Show("Are you sure you want to delete this Product?", "Delete Product?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                    Inventory.Products.Remove(Inventory.CurrentProduct);
+                if (Inventory.CurrentProduct != null && Inventory.CurrentProduct.AssociatedParts.Count < 1)
+                {
+                    var dialogResult = MessageBox.Show("Are you sure you want to delete this Product?", "Delete Product?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                        Inventory.removeProduct(Inventory.CurrentProductID);
+                }
+                else if (Inventory.CurrentProduct == null)
+                    MessageBox.Show("Please select a product to delete.");
+                else
+                    MessageBox.Show("You cannot delete a Product with Associated Parts.");
+
             }
-            else if (Inventory.CurrentProduct == null)
-                MessageBox.Show("Please select a product to delete.");
-            else
-                MessageBox.Show("You cannot delete a Product with Associated Parts.");
+            catch
+            {
+
+            }
+
         }
 
 
