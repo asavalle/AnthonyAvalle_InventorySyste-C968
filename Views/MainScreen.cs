@@ -261,7 +261,7 @@ namespace InventoryTrackingApp
          *************************************************/
         private void bt_Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
             
         }
 
